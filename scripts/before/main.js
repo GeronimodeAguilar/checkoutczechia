@@ -199,10 +199,8 @@ const burger = document.getElementById('burger');
 function changeBurger() {
 if(burger.innerHTML === '×') {
   burger.innerHTML = '☰';
-  burger.style.display = 'none';
   } else { 
 burger.innerHTML = '×';
-burger.style.display = 'block';
 }
 }
 
