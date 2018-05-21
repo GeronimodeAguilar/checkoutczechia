@@ -232,8 +232,5 @@ ${yWalk}px ${xWalk * -1}px 0 rgba(255,255,255,255)
 }    
     
 hero.addEventListener('mousemove', shadow);    
-    
 
-
-
-
+/*slider*/
