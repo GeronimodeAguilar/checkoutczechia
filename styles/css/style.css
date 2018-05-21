@@ -72,6 +72,15 @@ h3 {
   border: 1rem ridge var(--red);
 }
 
+h4 {
+  color: var(--blue);
+  background-color: white; 
+  font-size: 1.3rem;
+  border: 5px solid var(--red);
+  padding: 5px;
+  font-weight: 700;
+  }
+
 header {
   position: relative;
   display: grid;
@@ -175,6 +184,14 @@ place-content: space-around;
   transition:all 0.3s;
   border-radius: 10px;
 }
+
+.mobile-menu a:hover {
+  color: var(--blue);
+  border-bottom: 4px solid var(--blue);  
+ background: white;
+ transition:all 0.2s;
+}
+
 .sub-list h4{
   background: var(--red);
   text-decoration: none;
@@ -253,7 +270,15 @@ body.fixed-nav nav {
 .submenu-box a {
   color: azure;
   background: var(--red);
+  border-bottom: 4px solid transparent;  
   border-radius: 10px;
+}
+
+.submenu-box a:hover {
+   color: var(--red);
+   border-bottom: 4px solid var(--red);  
+  background: white;
+  transition:all 0.3s;
 }
 
 .menu a {
@@ -403,7 +428,7 @@ footer >* {
   top:-20px;
   border-radius:2px;
   transition: all 0.5s;
-  transform: translate(-40px,90px);
+  transform: translate(-40px,75px);
   will-change: opacity;
   display: none;
 }
@@ -441,8 +466,8 @@ footer >* {
   align-self: start;
   justify-self: center;
   position: absolute;
-  width:20px;
-  height:20px;
+  width:10px;
+  height:10px;
   display: block;
   background: var(--blue);
   transform: translateY(-50%) rotate(45deg);
@@ -450,7 +475,12 @@ footer >* {
 
 .dropdown a {
   text-decoration: none;
-  color: whitesmoke;
+  color: azure;
+  border-bottom: 4px solid transparent;  
+}
+
+.dropdown a:hover {
+    border-bottom: 4px solid var(--red);  
 }
 
 /* slide up box*/
