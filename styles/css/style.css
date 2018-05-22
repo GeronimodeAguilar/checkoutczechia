@@ -30,6 +30,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
     place-items: center;
+    justify-content: space-around;	
     width: 100%;
     overflow: hidden;
 }
@@ -378,6 +379,96 @@ footer {
 footer >* {
   place-self: center;
 } 
+
+/*css slider*/
+
+.css-slider {
+  grid-column: 1 / -1;
+  place-self: center;
+  width: 100%;
+  background: var(--blue);
+}
+
+img.css-pic {
+  width: 100%;
+}
+
+.slide1 {
+  list-style: none;
+  display: none;
+  grid-area: picture;
+}
+
+.slider:nth-of-type(1):checked ~ .slide1:nth-of-type(1),
+.slider:nth-of-type(2):checked ~ .slide1:nth-of-type(2),
+.slider:nth-of-type(3):checked ~ .slide1:nth-of-type(3),
+.slider:nth-of-type(4):checked ~ .slide1:nth-of-type(4),
+.slider:nth-of-type(5):checked ~ .slide1:nth-of-type(5),
+.slider:nth-of-type(6):checked ~ .slide1:nth-of-type(6) {
+  display: block;
+ 
+}
+
+.radio-slider {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+      "picture picture picture picture picture picture"
+    "radio1 radio2 radio3 radio4 radio5 radio6";
+  grid-column: 1 / -1;
+  grid-gap: 10px;
+  place-self: center;
+  overflow: hidden;
+  height: 70vh;
+  width: 90vw;
+}
+
+
+input[type=radio] {
+  display: block;
+  place-self: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--red);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 10px solid whitesmoke;
+  transition: 0.2s all linear;
+  outline: none;
+}
+
+input[type=radio]:checked {
+  border: 10px solid var(--red);
+  background-color: var(--blue);
+}
+
+#1 {grid-area: radio1}
+#2 {grid-area: radio2}
+#3 {grid-area: radio3}
+#4 {grid-area: radio4}
+#5 {grid-area: radio5}
+#6 {grid-area: radio6}
+
+label {
+  text-align: center;
+  color: whitesmoke;
+  font-size: 1.3em;
+  font-weight: 700;
+  background-color: var(--blue) ;
+  font-family: "Bookman";
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+.selector {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  grid-column: 1 / -1;
+  justify-content: space-around;	
+}
 
 /*image carussel*/
 .arrsliderimg {
