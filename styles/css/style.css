@@ -98,6 +98,11 @@ header {
   z-index: 1;
 }
 
+.panoramabox {
+  overflow-x: hidden;
+  height: 100vh;
+}
+
 .carrusel {
   overflow-x: hidden;
   height: 100vh;
