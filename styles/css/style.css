@@ -98,6 +98,24 @@ header {
   z-index: 1;
 }
 
+.carrusel {
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+
+img.sliderimg {
+  position: absolute;
+  min-width: 100%;
+  height: 100vh;
+  transition: opacity .5s cubic-bezier(.17,.67,.83,.67);
+}
+
+img.sliderimg + img.sliderimg { 
+  opacity: 0;
+ }
+
+
 p {
   grid-column: 2 / -2;
   background: linear-gradient( to top left ,hsla(211, 80%, 90%,1), whitesmoke, hsla(358, 85%, 90%,1));

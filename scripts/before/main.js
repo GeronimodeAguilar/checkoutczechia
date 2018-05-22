@@ -234,3 +234,13 @@ ${yWalk}px ${xWalk * -1}px 0 rgba(255,255,255,255)
 hero.addEventListener('mousemove', shadow);    
 
 /*slider*/
+let current = 0,
+    slides = document.querySelectorAll(".sliderimg");
+
+setInterval(function() {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.opacity = 0;
+  }
+  current = (current != slides.length - 1) ? current + 1 : 0;
+  slides[current].style.opacity = 1;
+}, 2000);
