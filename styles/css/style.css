@@ -123,7 +123,7 @@ img.sliderimg + img.sliderimg {
 
 p {
   grid-column: 2 / -2;
-  background: linear-gradient( to top left ,hsla(211, 80%, 90%,1), whitesmoke, hsla(358, 85%, 90%,1));
+  background: linear-gradient( to top left ,hsla(211, 80%, 80%,1), whitesmoke, hsla(358, 85%, 80%,1));
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-weight: 500;
   font-size: 1em;
@@ -147,6 +147,23 @@ p {
   font-weight: 900;
   line-height: 0.80em;
   padding: 0;
+}
+
+.down-arrow {
+  color: var(--blue);
+  background: linear-gradient( to right , hsla(0, 0%, 100%,0.5) 50%, hsla(358, 83%, 46%,0.5) 50%);
+  border-radius: 5px;
+  border: 1px solid hsla(0, 0%, 100%,0.6);
+  z-index: 8;
+  cursor: pointer;
+  font-size: 4em;
+  line-height: 0.80em;
+  padding: 0;
+  padding-top: 40px;
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+  transform: rotate(180deg);
 }
 
 a.toggle {
@@ -362,7 +379,72 @@ footer >* {
   place-self: center;
 } 
 
+/*image carussel*/
+.arrsliderimg {
+  width: 100%;
+}
 
+.carousel-slideshow {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+.slide {
+  position: relative;
+  display: block;
+  top: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  transition: all 999ms cubic-bezier(.17,.67,.83,.67);
+  z-index: 1;
+  overflow: hidden;
+}
+.slider-arrow-box-left, .slider-arrow-box-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.slider-arrow-box-left {
+  left: 0;
+}
+.slider-arrow-box-right {
+  right: 0;
+}
+.slider-arrow-box-left:hover .left-slider-arrow,
+.slider-arrow-box-right:hover .right-slider-arrow {
+  border-color: rgba(255,255,255,0.9);
+}
+.left-slider-arrow, .right-slider-arrow {
+  position: relative;
+  top: 50%;
+  margin-top: -14px;
+  width: 40px;
+  height: 40px;
+  border-bottom: 14px solid;
+  border-left: 14px solid;
+  border-color: rgba(255,255,255,0.5);
+  -webkit-transition: border-color 200ms;
+  -moz-transition: border-color 200ms;
+  -o-transition: border-color 200ms;
+  transition: border-color 200ms;
+}
+.left-slider-arrow {
+  margin-left: 10px;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.right-slider-arrow {
+  margin-right: 10px;
+  -ms-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
 
 .loader {
   background: #000;

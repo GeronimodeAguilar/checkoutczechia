@@ -20,12 +20,14 @@
     <div class="wrapsite">
 
     <header>
+      <div class="carrusel">
       <img class="sliderimg" src="../img/cont/trolejbus.jpg" />
       <img class="sliderimg" src="../img/cont/busstation.jpg" />
       <img class="sliderimg" src="../img/cont/overtake.jpg" />
       <img class="sliderimg" src="../img/cont/tunnel.jpg" />
+      </div>
         <h2 class="header-title">Travel infrastructure</h2> 
-      
+        <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>        
     </header> 
     
     <nav class="menu" id="navbox">
@@ -220,6 +222,19 @@
  
 </ul>
       </div>
+<script>
+  let current = 0,
+    slides = document.querySelectorAll(".sliderimg");
 
+setInterval(function() {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.opacity = 0;
+    slides[i].style.width 
+  }
+  current = (current != slides.length - 1) ? current + 1 : 0;
+  slides[current].style.opacity = 1;
+}, 2000);
+
+</script>
 </body>
 </html>

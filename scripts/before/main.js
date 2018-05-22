@@ -117,8 +117,15 @@ animateHTML().init()
 /*scroll to top*/
 
 document.querySelector('.toTop').onclick = function () {
-  scrollTo(document.body, 0, 1250); 
+  window.scrollTo(0,0); 
 }
+
+/*scroll to bottom*/
+
+document.querySelector('.down-arrow').onclick = function () {
+  window.scrollTo(0,600); 
+}
+
 
 // Show an element
 let show = function (elem) {
@@ -233,103 +240,187 @@ ${yWalk}px ${xWalk * -1}px 0 rgba(255,255,255,255)
     
 hero.addEventListener('mousemove', shadow);    
 
-/*slider*/
-let current = 0,
-    slides = document.querySelectorAll(".sliderimg");
+/*arrow carussel*/
+  const slideSpeed = 1;
+  const enableAutoSlide = true;
+  const autoSlideRate = 5000;
+  const imageFitPercentage = 100;
 
-setInterval(function() {
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.opacity = 0;
-    slides[i].style.width 
+  let sliders;
+  let images = [];
+  let currentSlide = 0;
+  
+  initSlider();
+
+  function initSlider() {
+    sliders = document.getElementsByClassName('carousel-slideshow');
+    for(var i = 0; i < sliders.length; i++)
+      buildSlider(sliders[i]);
   }
-  current = (current != slides.length - 1) ? current + 1 : 0;
-  slides[current].style.opacity = 1;
-}, 2000);
-
-/* panorama canvas*/
-
-let img = new Image();
-
-// User Variables - customize these to change the image being scrolled, its
-// direction, and the speed.
-
-img.src = '../img/bkg/sumava-panorama.jpg';
-let CanvasXSize = 2700;
-let CanvasYSize = 720;
-let speed = 60; // lower is faster
-let scale = 1.05;
-let y = -4.5; // vertical offset
-
-// Main program
-
-let dx = 0.75;
-let imgW;
-let imgH;
-let x = 0;
-let clearX;
-let clearY;
-let ctx;
-
-img.onload = function() {
-    imgW = img.width * scale;
-    imgH = img.height * scale;
-    
-    if (imgW > CanvasXSize) {
-        // image larger than canvas
-        x = CanvasXSize - imgW;
+  function buildSlider(slider) {
+    var imgSrc = [];
+    stashImageSources(slider.children, imgSrc);
+    slider.innerHTML = '';
+    addArrows(slider);
+    createInitSlide(slider, imgSrc[0]);
+    loadStoredImages(imgSrc);
+  }
+  function stashImageSources(images, imgSrc) {
+    for(var i = 0; i < images.length; i++) {
+      imgSrc.push(images[i].src);
+      images[i].src = '';
     }
-    if (imgW > CanvasXSize) {
-        // image width larger than canvas
-        clearX = imgW;
-    } else {
-        clearX = CanvasXSize;
+  }
+  function addArrows(slider) {
+    addClassDiv(slider, 'slider-arrow-box-left');
+    addClassDiv(slider, 'slider-arrow-box-right');
+    addClassDiv(slider.children[0], 'left-slider-arrow');
+    addClassDiv(slider.children[1], 'right-slider-arrow');
+    addPrevListener(slider);
+    addNextListener(slider);
+    if(enableAutoSlide) startAutoSlide(slider);
+  }
+  function addClassDiv(parent, className) {
+    var div = document.createElement('div');
+    addClass(div, className);
+    parent.appendChild(div);
+  }
+  function addClass(element, className) {
+    var classes = element.className.split(' ');
+    if(classes.indexOf(className) == -1)
+      element.className += ' ' + className;
+  }
+  function addPrevListener(slider) {
+    slider.children[0].onmousedown = function() {
+      if(!slider.animRunning) prevSlide(slider);
+    };
+  }
+  function addNextListener(slider) {
+    slider.children[1].onmousedown = function() {
+      if(!slider.animRunning) nextSlide(slider);
+    };
+  }
+  function createInitSlide(slider, src) {
+    var initSlide = createSlide(slider, src);
+    slider.appendChild(initSlide);
+    fitImageToSlider(initSlide, slider);
+  }
+  function createSlide(slider, src) {
+    var slide = document.createElement('img');
+    slide.setAttribute('src', src);
+    addClass(slide, 'slide');
+    return slide;
+  }
+  function fitImageToSlider(slide, slider) {
+    slide.style.height = imageFitPercentage + '%';
+    if(slide.clientWidth >= slider.clientWidth) {
+      slide.style.width = imageFitPercentage + 'vw';
+      slide.style.height = '  initSlider();';
     }
-    if (imgH > CanvasYSize) {
-        // image height larger than canvas
-        clearY = imgH;
-    } else {
-        clearY = CanvasYSize;
+   }
+  function loadStoredImages(imgSrc) {
+    for(var i = 0; i < imgSrc.length; i++) {
+      images[i] = new Image;
+      images[i].src = imgSrc[i];
     }
-    
-    // get canvas context
-    ctx = document.getElementById('canvas').getContext('2d');
- 
-    // set refresh rate
-    return setInterval(draw, speed);
-}
+  }
+  function nextSlide(slider) {
+    if(enableAutoSlide) resetAutoSlide(slider);
+    currentSlide = carouselIncrement(currentSlide, 0, images.length-1);
+    var nextSrc = images[currentSlide].src;
+    var nextSlide = createSlide(slider, nextSrc);
+    nextSlide.style.position = 'absolute';
+    nextSlide.style.left = '100%';
+    slider.appendChild(nextSlide);
+    fitImageToSlider(nextSlide, slider);
+    slideToNext(slider);
+  }
+  function resetAutoSlide(slider) {
+    if(slider.autoSlideTimer != undefined)
+      clearTimeout(slider.autoSlideTimer);
+    startAutoSlide(slider);
+  }
+  function startAutoSlide(slider) {
+    slider.autoSlideTimer = setTimeout(function() {
+      if(!slider.animRunning) nextSlide(slider);
+    }, autoSlideRate);
+  }
+  function carouselIncrement(variable, min, max) {
+    if(variable + 1 > max) return min;
+    else return ++variable;
+  }
+  function slideToNext(slider) {
+    var oldSlide = slider.children[2];
+    var newSlide = slider.children[3];
+    startNextSlideAnimation(slider, oldSlide, newSlide);
+  }
+  function startNextSlideAnimation(slider, oldSlide, newSlide) {
+    slider.animRunning = true;
+    var newSlidePos = getPxStyle(newSlide, 'left');
+    var delta = Math.floor(newSlidePos * slideSpeed);
+    if(delta < 4) delta = 4;
+    oldSlide.style.left = getPxStyle(oldSlide, 'left') - delta + 'px';
+    newSlide.style.left = newSlidePos - delta + 'px';
+    if(getPxStyle(newSlide, 'left') <= 0)
+      endNextSlideAnimation(slider, oldSlide, newSlide);
+    else window.requestAnimationFrame(function() {
+      startNextSlideAnimation(slider, oldSlide, newSlide);
+    });
+  }
+  function getPxStyle(element, style) {
+    var style = window.getComputedStyle(element).getPropertyValue(style);
+    return parseInt(style.substring(0, style.length - 2));
+  }
+  function endNextSlideAnimation(slider, oldSlide, newSlide) {
+    newSlide.style.left = 0 + 'px';
+    slider.removeChild(oldSlide);
+    newSlide.style.position = 'relative';
+    slider.animRunning = false;
+  }
+  function prevSlide(slider) {
+    currentSlide = carouselDecrement(currentSlide, 0, images.length-1);
+    var prevSrc = images[currentSlide].src;
+    var prevSlide = createSlide(slider, prevSrc);
+    prevSlide.style.position = 'absolute';
+    prevSlide.style.left = '-100%';
+    slider.appendChild(prevSlide);
+    fitImageToSlider(prevSlide, slider);
+    slideToPrev(slider);
+  }
+  function carouselDecrement(variable, min, max) {
+    if(variable - 1 < min) return max;
+    else return --variable;
+  }
+  function slideToPrev(slider) {
+    var oldSlide = slider.children[2];
+    var newSlide = slider.children[3];
+    startPrevSlideAnimation(slider, oldSlide, newSlide);
+  }
+  function startPrevSlideAnimation(slider, oldSlide, newSlide) {
+    slider.animRunning = true;
+    var newSlidePos = getPxStyle(newSlide, 'left');
+    var delta = -Math.floor(newSlidePos * slideSpeed);
+    if(delta < 4) delta = 4;
+    oldSlide.style.left = getPxStyle(oldSlide, 'left') + delta + 'px';
+    newSlide.style.left = newSlidePos + delta + 'px';
+    if(getPxStyle(newSlide, 'left') >= 0)
+      endNextSlideAnimation(slider, oldSlide, newSlide);
+    else window.requestAnimationFrame(function() {
+      startPrevSlideAnimation(slider, oldSlide, newSlide);
+    });
+  }
+  function endPrevSlideAnimation(slider, oldSlide, newSlide) {
+    newSlide.style.left = 0 + 'px';
+    slider.removeChild(oldSlide);
+    newSlide.style.position = 'relative';
+    slider.animRunning = false;
+  }
 
-function draw() {
-    ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
-    
-    // if image is <= Canvas Size
-    if (imgW <= CanvasXSize) {
-        // reset, start from beginning
-        if (x > CanvasXSize) {
-            x = -imgW + x;
-        }
-        // draw additional image1
-        if (x > 0) {
-            ctx.drawImage(img, -imgW + x, y, imgW, imgH);
-        }
-        // draw additional image2
-        if (x - imgW > 0) {
-            ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
-        }
+  window.onresize = function() {
+    sliders = document.getElementsByClassName('carousel-slideshow');
+    for(var i = 0; i < sliders.length; i++) {
+      var slide = sliders[i].children[2];
+      fitImageToSlider(slide, sliders[i]);
     }
+  };
 
-    // image is > Canvas Size
-    else {
-        // reset, start from beginning
-        if (x > (CanvasXSize)) {
-            x = CanvasXSize - imgW;
-        }
-        // draw aditional image
-        if (x > (CanvasXSize-imgW)) {
-            ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
-        }
-    }
-    // draw image
-    ctx.drawImage(img, x, y,imgW, imgH);
-    // amount to move
-    x += dx;
-}
