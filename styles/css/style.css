@@ -87,7 +87,7 @@ h4 {
 header {
   position: relative;
   display: grid;
-  background: no-repeat center/100% url("../../img/bkg/charles-bridge-blue_compressed.jpg");
+  /*background: no-repeat center/100% url("../../img/bkg/charles-bridge-blue_compressed.jpg");*/
   grid-column: 1 / -1;
   width: 100%;
   height: 100vh;
@@ -381,22 +381,16 @@ footer >* {
 } 
 
 /*css slider*/
-
-.css-slider {
-  grid-column: 1 / -1;
-  place-self: center;
-  width: 100%;
-  background: var(--blue);
-}
-
 img.css-pic {
-  width: 100%;
+  width: 100vw;
 }
 
 .slide1 {
   list-style: none;
   display: none;
   grid-area: picture;
+  overflow: hidden;
+  place-self: center;
 }
 
 .slider:nth-of-type(1):checked ~ .slide1:nth-of-type(1),
@@ -405,8 +399,7 @@ img.css-pic {
 .slider:nth-of-type(4):checked ~ .slide1:nth-of-type(4),
 .slider:nth-of-type(5):checked ~ .slide1:nth-of-type(5),
 .slider:nth-of-type(6):checked ~ .slide1:nth-of-type(6) {
-  display: block;
- 
+  display: block 
 }
 
 .radio-slider {
@@ -414,13 +407,20 @@ img.css-pic {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 
       "picture picture picture picture picture picture"
-    "radio1 radio2 radio3 radio4 radio5 radio6";
+    "radio1 radio2 radio3 radio4 radio5 radio6"
+    "selector selector selector selector selector selector"
+    ;
   grid-column: 1 / -1;
   grid-gap: 10px;
+  justify-content: space-around;	
   place-self: center;
   overflow: hidden;
-  height: 70vh;
+  height: 80vh;
   width: 90vw;
+  background: var(--blue);
+   margin: 0px;
+  padding: 0px; 
+  border-radius: 10px;
 }
 
 
@@ -430,18 +430,15 @@ input[type=radio] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: var(--red);
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  border: 10px solid whitesmoke;
-  transition: 0.2s all linear;
+  border: 20px solid whitesmoke;
+  transition: 0.4s all linear;
   outline: none;
+  z-index: 3;
 }
 
 input[type=radio]:checked {
-  border: 10px solid var(--red);
-  background-color: var(--blue);
+  border: 20px solid  var(--red);
 }
 
 #1 {grid-area: radio1}
@@ -452,10 +449,11 @@ input[type=radio]:checked {
 #6 {grid-area: radio6}
 
 label {
+  place-self: center;
   text-align: center;
   color: whitesmoke;
-  font-size: 1.3em;
-  font-weight: 700;
+  font-size: 1.4em;
+  font-weight: 600;
   background-color: var(--blue) ;
   font-family: "Bookman";
   cursor: pointer;
@@ -465,9 +463,10 @@ label {
 .selector {
   display: grid;
   grid-auto-flow: column;
-  grid-gap: 20px;
+  grid-area: selector;
   grid-column: 1 / -1;
   justify-content: space-around;	
+  margin-bottom: 10px;
 }
 
 /*image carussel*/
@@ -536,6 +535,8 @@ label {
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
+
+/* loader spinner*/
 
 .loader {
   background: #000;

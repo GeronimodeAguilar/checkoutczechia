@@ -73,7 +73,7 @@ const sliderImages = document.querySelectorAll('.slide-in');
   
   function checkSlide(e) {
 sliderImages.forEach(sliderImage => {
-const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 3;
+const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 4;
 const imageBottom = sliderImage.offsetTop + sliderImage.height;
 const isHalfShown = slideInAt > sliderImage.offsetTop;
 const isNotScrolledPast = window.scrollY <imageBottom;
@@ -243,7 +243,7 @@ hero.addEventListener('mousemove', shadow);
 /*arrow carussel*/
   const slideSpeed = 1;
   const enableAutoSlide = true;
-  const autoSlideRate = 5000;
+  const autoSlideRate = 2000;
   const imageFitPercentage = 100;
 
   let sliders;
@@ -254,11 +254,11 @@ hero.addEventListener('mousemove', shadow);
 
   function initSlider() {
     sliders = document.getElementsByClassName('carousel-slideshow');
-    for(var i = 0; i < sliders.length; i++)
+    for(let i = 0; i < sliders.length; i++)
       buildSlider(sliders[i]);
   }
   function buildSlider(slider) {
-    var imgSrc = [];
+    let imgSrc = [];
     stashImageSources(slider.children, imgSrc);
     slider.innerHTML = '';
     addArrows(slider);
@@ -266,7 +266,7 @@ hero.addEventListener('mousemove', shadow);
     loadStoredImages(imgSrc);
   }
   function stashImageSources(images, imgSrc) {
-    for(var i = 0; i < images.length; i++) {
+    for(let i = 0; i < images.length; i++) {
       imgSrc.push(images[i].src);
       images[i].src = '';
     }
@@ -281,12 +281,12 @@ hero.addEventListener('mousemove', shadow);
     if(enableAutoSlide) startAutoSlide(slider);
   }
   function addClassDiv(parent, className) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     addClass(div, className);
     parent.appendChild(div);
   }
   function addClass(element, className) {
-    var classes = element.className.split(' ');
+    let classes = element.className.split(' ');
     if(classes.indexOf(className) == -1)
       element.className += ' ' + className;
   }
@@ -301,12 +301,12 @@ hero.addEventListener('mousemove', shadow);
     };
   }
   function createInitSlide(slider, src) {
-    var initSlide = createSlide(slider, src);
+    let initSlide = createSlide(slider, src);
     slider.appendChild(initSlide);
     fitImageToSlider(initSlide, slider);
   }
   function createSlide(slider, src) {
-    var slide = document.createElement('img');
+    let slide = document.createElement('img');
     slide.setAttribute('src', src);
     addClass(slide, 'slide');
     return slide;
@@ -319,7 +319,7 @@ hero.addEventListener('mousemove', shadow);
     }
    }
   function loadStoredImages(imgSrc) {
-    for(var i = 0; i < imgSrc.length; i++) {
+    for(let i = 0; i < imgSrc.length; i++) {
       images[i] = new Image;
       images[i].src = imgSrc[i];
     }
@@ -327,8 +327,8 @@ hero.addEventListener('mousemove', shadow);
   function nextSlide(slider) {
     if(enableAutoSlide) resetAutoSlide(slider);
     currentSlide = carouselIncrement(currentSlide, 0, images.length-1);
-    var nextSrc = images[currentSlide].src;
-    var nextSlide = createSlide(slider, nextSrc);
+    let nextSrc = images[currentSlide].src;
+    let nextSlide = createSlide(slider, nextSrc);
     nextSlide.style.position = 'absolute';
     nextSlide.style.left = '100%';
     slider.appendChild(nextSlide);
@@ -345,19 +345,19 @@ hero.addEventListener('mousemove', shadow);
       if(!slider.animRunning) nextSlide(slider);
     }, autoSlideRate);
   }
-  function carouselIncrement(variable, min, max) {
-    if(variable + 1 > max) return min;
-    else return ++variable;
+  function carouselIncrement(ariable, min, max) {
+    if(ariable + 1 > max) return min;
+    else return ++ariable;
   }
   function slideToNext(slider) {
-    var oldSlide = slider.children[2];
-    var newSlide = slider.children[3];
+    let oldSlide = slider.children[2];
+    let newSlide = slider.children[3];
     startNextSlideAnimation(slider, oldSlide, newSlide);
   }
   function startNextSlideAnimation(slider, oldSlide, newSlide) {
     slider.animRunning = true;
-    var newSlidePos = getPxStyle(newSlide, 'left');
-    var delta = Math.floor(newSlidePos * slideSpeed);
+    let newSlidePos = getPxStyle(newSlide, 'left');
+    let delta = Math.floor(newSlidePos * slideSpeed);
     if(delta < 4) delta = 4;
     oldSlide.style.left = getPxStyle(oldSlide, 'left') - delta + 'px';
     newSlide.style.left = newSlidePos - delta + 'px';
@@ -368,8 +368,8 @@ hero.addEventListener('mousemove', shadow);
     });
   }
   function getPxStyle(element, style) {
-    var style = window.getComputedStyle(element).getPropertyValue(style);
-    return parseInt(style.substring(0, style.length - 2));
+    let styl = window.getComputedStyle(element).getPropertyValue(style);
+    return parseInt(styl.substring(0, styl.length - 2));
   }
   function endNextSlideAnimation(slider, oldSlide, newSlide) {
     newSlide.style.left = 0 + 'px';
@@ -379,27 +379,27 @@ hero.addEventListener('mousemove', shadow);
   }
   function prevSlide(slider) {
     currentSlide = carouselDecrement(currentSlide, 0, images.length-1);
-    var prevSrc = images[currentSlide].src;
-    var prevSlide = createSlide(slider, prevSrc);
+    let prevSrc = images[currentSlide].src;
+    let prevSlide = createSlide(slider, prevSrc);
     prevSlide.style.position = 'absolute';
     prevSlide.style.left = '-100%';
     slider.appendChild(prevSlide);
     fitImageToSlider(prevSlide, slider);
     slideToPrev(slider);
   }
-  function carouselDecrement(variable, min, max) {
-    if(variable - 1 < min) return max;
-    else return --variable;
+  function carouselDecrement(ariable, min, max) {
+    if(ariable - 1 < min) return max;
+    else return --ariable;
   }
   function slideToPrev(slider) {
-    var oldSlide = slider.children[2];
-    var newSlide = slider.children[3];
+    let oldSlide = slider.children[2];
+    let newSlide = slider.children[3];
     startPrevSlideAnimation(slider, oldSlide, newSlide);
   }
   function startPrevSlideAnimation(slider, oldSlide, newSlide) {
     slider.animRunning = true;
-    var newSlidePos = getPxStyle(newSlide, 'left');
-    var delta = -Math.floor(newSlidePos * slideSpeed);
+    let newSlidePos = getPxStyle(newSlide, 'left');
+    let delta = -Math.floor(newSlidePos * slideSpeed);
     if(delta < 4) delta = 4;
     oldSlide.style.left = getPxStyle(oldSlide, 'left') + delta + 'px';
     newSlide.style.left = newSlidePos + delta + 'px';
@@ -418,8 +418,8 @@ hero.addEventListener('mousemove', shadow);
 
   window.onresize = function() {
     sliders = document.getElementsByClassName('carousel-slideshow');
-    for(var i = 0; i < sliders.length; i++) {
-      var slide = sliders[i].children[2];
+    for(let i = 0; i < sliders.length; i++) {
+      let slide = sliders[i].children[2];
       fitImageToSlider(slide, sliders[i]);
     }
   };
