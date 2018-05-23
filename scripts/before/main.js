@@ -423,4 +423,3 @@ hero.addEventListener('mousemove', shadow);
       fitImageToSlider(slide, sliders[i]);
     }
   };
-
