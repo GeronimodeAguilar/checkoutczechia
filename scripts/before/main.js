@@ -217,7 +217,7 @@ burger.addEventListener('click', changeBurger);
 
 const hero = document.querySelector('header');
 const text = hero.querySelector('.header-title');
-const walk = 4;
+const walk = 8;
     
 function shadow(e) {
 const width = hero.offsetWidth;  
@@ -234,7 +234,7 @@ const xWalk = Math.round((x / width * walk) - (walk/2));
 const yWalk =  Math.round((y / height * walk) - (walk/2));     
 text.style.textShadow = `
 ${xWalk}px ${yWalk}px 0 hsla(211, 76%, 28%,1),
-${yWalk}px ${xWalk * -1}px 0 rgba(255,255,255,255)
+${yWalk}px ${xWalk * -1}px 0 hsla(358, 83%, 46%,1)
 `;
 }    
     
