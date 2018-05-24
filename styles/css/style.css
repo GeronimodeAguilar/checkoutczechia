@@ -290,8 +290,8 @@ nav {
   grid-template-columns: 60px 1fr;
   background-color: var(--blue);
   width: 100vw;
+  top: 0;
   grid-column: 1 / -1;
-  top:0;
   transition:all 0.7s;
   position: relative;
   z-index: 1;
@@ -370,6 +370,7 @@ figcaption {
 }
 
 footer {
+  margin-top: 50px;
   display: grid;
   grid-column: 1 / -1;
   grid-gap: 20px;
@@ -752,15 +753,20 @@ span.imgcaption {
   grid-auto-columns: 1fr;
   grid-auto-flow: column dense;
   justify-content: space-around;
+  grid-gap: 10px;
    grid-column: 1 / -1;
+   height: auto;
 }
 
 .full-screen-img {
     position: absolute;
       transform: none;
-      border: 50px solid rgba(0,0,0,.01);
+      border: 5px solid var(--blue);
       z-index: 9;
       opacity: 1;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(50,50,93,.1), 0 1px 3px rgba(50,50,93,.15), 0 5px 1px rgba(0,0,0,.1);
     }
 
 
@@ -769,15 +775,17 @@ span.imgcaption {
   transition: all .5s cubic-bezier(.17,.67,.83,.67);
   opacity: 0; 
   transform: translate(-1%,-1%) skew(1deg,1deg) rotate(1deg);
-  border: 5px solid rgba(0,0,0,.01);
-  place-self: centrer;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(50,50,93,.1), 0 1px 3px rgba(50,50,93,.15), 0 5px 1px rgba(0,0,0,.1);
 }
 
 .reveal-img-box .reveal-item.img-visible { 
   opacity: 1; 
   transform: translate(1%,1%) skew(-1deg,-1deg) rotate(-1deg);  
+  width: 100%;
+  transition: all .5s cubic-bezier(.17,.67,.83,.67);
+  border: 5px solid rgba(0,0,0,.01);
+  place-self: centrer;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(50,50,93,.1), 0 1px 3px rgba(50,50,93,.15), 0 5px 1px rgba(0,0,0,.1);
 }
 
 .reveal-img-box .reveal-item:hover {

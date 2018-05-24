@@ -244,11 +244,13 @@
     const imageGalery = document.querySelector('.reveal-img-box');
     
     function openModalImg(e) {
-    if(e.target !== imageGalery) {
+    if(e.target.classList.contains('img-visible')) {
     e.target.classList.toggle('full-screen-img'); 
+    e.target.classList.toggle('reveal-item'); 
     }
     }
     
-    imageGalery.addEventListener('click', openModalImg);</script>
+    imageGalery.addEventListener('click', openModalImg);
+    </script>
 </body>
 </html>
