@@ -1,0 +1,34 @@
+.reveal-img-box { 
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column dense;
+   grid-column: 1 / -1;
+   height: 100vh;
+}
+.reveal-img-box .reveal-item { 
+  width: 100%;
+  transition: opacity .5s cubic-bezier(.17,.67,.83,.67);
+opacity: 0; 
+
+ }
+
+.reveal-img-box .reveal-item.img-visible { opacity: 1; }
+
+/*sequential image reveal*/
+
+.reveal-img-box { 
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+   grid-column: 1 / -1;
+}
+.reveal-img-box .reveal-item { 
+  min-width: 10%;
+  height: 25%;
+  transition: opacity .5s cubic-bezier(.17,.67,.83,.67);
+opacity: 0; 
+
+ }
+
+.reveal-img-box .reveal-item.img-visible { opacity: 1; }

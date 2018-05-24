@@ -114,6 +114,38 @@ let animateHTML = function () {
 }
 animateHTML().init()
 
+/*sequential image reveal*/
+
+let revealImages = function () {
+  let imgElements;
+  let  revealBoxHeight;
+  let revealPicInit = function () {
+    imgElements = document.querySelectorAll('.reveal-img-box')
+    revealBoxHeight = window.innerHeight
+    _addRevealHandlers()
+  }
+    const _addRevealHandlers = function () {
+    window.addEventListener('scroll', _checkRevealPosition)
+    window.addEventListener('resize', revealPicInit)
+  }
+  const _checkRevealPosition = function () {
+    for (let i = 0; i < imgElements.length; i++) {
+      let fromTop = imgElements[i].getBoundingClientRect().top
+      if (fromTop - revealBoxHeight <= 0) {
+ let revealItems = document.querySelectorAll(".reveal-img-box img"), revealTime = 1;
+  Array.prototype.forEach.call(revealItems, function(revealItem) { 
+	setTimeout(function(){ revealItem.classList.add("img-visible") }, 200 * revealTime)
+	revealTime++;
+})
+      }
+    }
+  }
+  return {
+    revealPicInit: revealPicInit
+  }
+}
+revealImages().revealPicInit()
+
 /*scroll to top*/
 
 document.querySelector('.toTop').onclick = function () {
