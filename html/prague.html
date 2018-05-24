@@ -21,7 +21,8 @@
 
     <header>
   <video class="headervideo" src="../video/prag-radio-tower.mp4" muted autoplay loop playsinline></video>    
-  <h2 class="header-title">Welcome to Czech Republic</h2>      
+  <h2 class="header-title">Prague : center of EU</h2>    
+  <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>    
     </header> 
     
     <nav class="menu" id="navbox">
@@ -237,6 +238,17 @@
  
 </ul>
       </div>
+<script>
+/*gallery modal*/
 
+    const imageGalery = document.querySelector('.reveal-img-box');
+    
+    function openModalImg(e) {
+    if(e.target !== imageGalery) {
+    e.target.classList.toggle('full-screen-img'); 
+    }
+    }
+    
+    imageGalery.addEventListener('click', openModalImg);</script>
 </body>
 </html>

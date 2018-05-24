@@ -753,10 +753,19 @@ span.imgcaption {
   grid-auto-flow: column dense;
   justify-content: space-around;
    grid-column: 1 / -1;
-   height: 100vh;
 }
+
+.full-screen-img {
+    position: absolute;
+      transform: none;
+      border: 50px solid rgba(0,0,0,.01);
+      z-index: 9;
+      opacity: 1;
+    }
+
+
 .reveal-img-box .reveal-item { 
-  width: 90%;
+  width: 100%;
   transition: all .5s cubic-bezier(.17,.67,.83,.67);
   opacity: 0; 
   transform: translate(-1%,-1%) skew(1deg,1deg) rotate(1deg);
