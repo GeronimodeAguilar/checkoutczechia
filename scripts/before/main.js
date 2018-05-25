@@ -83,9 +83,16 @@ sliderImage.classList.remove('active');
 }
 })          
   }
+/* slide in on mouseover*/
 
 window.addEventListener('scroll',debounce(checkSlide));
-
+for(pictureItem of sliderImages) {
+function imgOnMouseEnter(e) {
+  e.target.classList.add('active');
+  pictureItem.removeEventListener('mouseover', imgOnMouseEnter);
+}  
+pictureItem.addEventListener('mouseover', imgOnMouseEnter);
+}
 /*slide up box*/
 
 let animateHTML = function () {
@@ -97,8 +104,11 @@ let animateHTML = function () {
     _addEventHandlers()
   }
   let _addEventHandlers = function () {
-    window.addEventListener('scroll', _checkPosition)
-    window.addEventListener('resize', init)
+    window.addEventListener('scroll', _checkPosition);
+    window.addEventListener('resize', init);
+    for( item of elems) { 
+    item.addEventListener('mouseover', _checkPosition );
+    } 
   }
   let _checkPosition = function () {
     for (let i = 0; i < elems.length; i++) {
@@ -134,7 +144,7 @@ let revealImages = function () {
       if (fromTop - revealBoxHeight <= 0) {
  let revealItems = document.querySelectorAll(".reveal-img-box img"), revealTime = 1;
   Array.prototype.forEach.call(revealItems, function(revealItem) { 
-	setTimeout(function(){ revealItem.classList.add("img-visible") }, 200 * revealTime)
+	setTimeout(function(){ revealItem.classList.add("img-visible") }, 100 * revealTime)
 	revealTime++;
 })
       }

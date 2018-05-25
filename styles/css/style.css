@@ -772,7 +772,7 @@ span.imgcaption {
 
 .reveal-img-box .reveal-item { 
   width: 100%;
-  transition: all .5s cubic-bezier(.17,.67,.83,.67);
+  transition: all .9s cubic-bezier(.17,.67,.83,.67);
   opacity: 0; 
   transform: translate(-1%,-1%) skew(1deg,1deg) rotate(1deg);
 }
@@ -781,7 +781,7 @@ span.imgcaption {
   opacity: 1; 
   transform: translate(1%,1%) skew(-1deg,-1deg) rotate(-1deg);  
   width: 100%;
-  transition: all .5s cubic-bezier(.17,.67,.83,.67);
+  transition: all .3s cubic-bezier(.17,.67,.83,.67);
   border: 5px solid rgba(0,0,0,.01);
   place-self: centrer;
   border-radius: 10px;
@@ -790,6 +790,7 @@ span.imgcaption {
 
 .reveal-img-box .reveal-item:hover {
   border: 5px solid whitesmoke;
+  transform: none;
 }
 
 /* slide up box*/

@@ -241,15 +241,25 @@
 <script>
 /*gallery modal*/
 
+/*reveal on mouseover*/
+
     const imageGalery = document.querySelector('.reveal-img-box');
-    
+
+function showOnLoad(e) {
+  let revealmoveItems = document.querySelectorAll(".reveal-img-box img"), revealTime = 1;
+  Array.prototype.forEach.call(revealmoveItems, function(revealItem) { 
+	setTimeout(function(){ revealItem.classList.add("img-visible") }, 100 * revealTime)
+  revealTime++;
+})
+imageGalery.removeEventListener('mouseover', showOnLoad);
+}
     function openModalImg(e) {
     if(e.target.classList.contains('img-visible')) {
     e.target.classList.toggle('full-screen-img'); 
     e.target.classList.toggle('reveal-item'); 
     }
     }
-    
+    imageGalery.addEventListener('mouseover', showOnLoad);
     imageGalery.addEventListener('click', openModalImg);
     </script>
 </body>
