@@ -133,3 +133,11 @@ function draw() {
   });
 
   initSlider();
+
+  let string = "Bikers travel through the Winecountry! ";
+let str = string.split("");
+let el = document.getElementById('str');
+(function animate() {
+str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running); 
+let running = setTimeout(animate, 100);
+})();

@@ -63,7 +63,7 @@ h2.header-title {
   position: absolute; 
   color: white;  
   background-color: hsla(211, 76%, 28%,0.7); 
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-family:  "arial";
   box-shadow: 0 50px 100px rgba(50,50,93,.2), 0 15px 35px rgba(50,50,93,.3), 0 5px 15px rgba(0,0,0,.2); 
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -122,6 +122,11 @@ img.sliderimg + img.sliderimg {
   opacity: 0;
  }
 
+/*javascript typing text animation*/
+
+ #str {
+  
+  }
 
 p {
   grid-column: 2 / -2;
@@ -381,6 +386,61 @@ footer {
 footer >* {
   place-self: center;
 } 
+
+/*simplest css slider*/
+
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+* {
+  box-sizing: border-box;
+}
+figure.css-slide, .only-css-slider, .css-carrusel { 
+  margin: 0; 
+}
+.css-carrusel { 
+  width: 100%;
+  height: 70vh;
+ overflow: hidden; 
+ grid-column: 1 / -1;
+ place-self: center;
+}
+figure.only-css-slider { 
+  position: relative; 
+  width: 500%;
+  font-size: 0;
+   animation: 20s slidy infinite; 
+   transition: all 1s cubic-bezier(.17,.67,.83,.67);
+}
+figure.only-css-slider figure.css-slide { 
+  width: 20%;
+   height: auto;
+  display: inline-block; 
+   position: inherit; 
+}
+figure.css-slide img { 
+  width: 100%;
+   height:100vh; 
+  }
+figure.only-css-slider figure.css-slide figcaption { 
+  position: absolute; 
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+   width: 100%;
+  font-size: 2rem;
+   padding: .6rem; 
+}
+
+
 
 /*css slider*/
 img.css-pic {
