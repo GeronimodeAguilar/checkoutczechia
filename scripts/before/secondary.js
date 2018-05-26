@@ -10,7 +10,7 @@ let CanvasXSize = 3840;
 let CanvasYSize = 1080;
 let speed = 60; // lower is faster
 let scale = 1.5;
-let y = -4.5; // vertical offset
+let y = -0.5; // vertical offset
 
 // Main program
 
@@ -138,6 +138,6 @@ function draw() {
 let str = string.split("");
 let el = document.getElementById('str');
 (function animate() {
-str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running); 
 let running = setTimeout(animate, 100);
+str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running); 
 })();
