@@ -408,7 +408,7 @@ figure.css-slide, .only-css-slider, .css-carrusel {
 }
 .css-carrusel { 
   width: 100%;
-  height: 70vh;
+  height: 100vh;
  overflow: hidden; 
  grid-column: 1 / -1;
  place-self: center;
@@ -438,6 +438,74 @@ figure.only-css-slider figure.css-slide figcaption {
    width: 100%;
   font-size: 2rem;
    padding: .6rem; 
+}
+
+/*panels boxes transform*/
+
+.panels-box {
+    grid-column: 1 / -1;
+    place-self: start center;  
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column; 
+    place-items: center;
+    justify-content: space-around;	
+}
+
+.panel-item {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+    justify-content: space-around;	
+}
+
+.panel-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;	
+  text-align: center;
+  background: rgba(142, 233, 232, 0.95);
+  padding: 20px;
+  color: white;
+  transition: transform 0.5s ease;
+  overflow: hidden;
+}
+
+.panel-picture {
+ width: 100%;
+}
+
+.panel-item:hover .panel-content {
+  transform: translate(0, 0);
+}
+
+.panel-right .panel-content {
+  transform: translate(100%, 0);
+}
+
+.panel-bottom .panel-content {
+  transform: translate(0, 100%);
+}
+
+.panel-top .panel-content {
+  transform: translate(0, -100%);
+}
+
+.panel-left .panel-content {
+  transform: translate(-100%, 0);
+}
+
+.panel-picture {
+ width: 100%;
 }
 
 /*Thumbnail slider*/
@@ -974,6 +1042,33 @@ animation: fade-in 1.4s;
 .hidden {
   opacity: 0;
 }
+/* Currency Converter widget by FreeCurrencyRates.com*/
+.currency {
+  grid-column:  2;
+  place-self: end;
+  background: var(--blue);
+  border: 10px solid var(--blue);
+}
+
+.gcw_mainF2iGzWPq4{
+  color: whitesmoke;  !important
+  background-color: var(--blue);  !important
+  font-size: 1rem; !important
+} 
+.gcw_headerF2iGzWPq4{
+  color: var(--red); !important
+  background-color: whitesmoke; !important
+  font-size: 1.2em; !important
+}
+ .gcw_ratesF2iGzWPq4{
+  color: whitesmoke;  
+  background-color: var(--blue); 
+  font-size: 1rem;
+ }
+ .gcw_sourceF2iGzWPq4{
+
+ } 
+
 
 @media (max-width: 600px) {
  
