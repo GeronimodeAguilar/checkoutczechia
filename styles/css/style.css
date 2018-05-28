@@ -1029,6 +1029,110 @@ span.imgcaption {
   transform: none;
 }
 
+/*weather dark sky api*/
+
+.weather-box {
+  display: grid;
+  grid-template: 1fr 4fr 2fr / 1fr;
+  grid-column: 1;
+  width: 100%;
+  height: 80vh;
+  place-items: center;
+  background-color: hsla(211, 76%, 88%,1);
+  color: var(--blue);
+  border: 5px solid var(--blue);
+  border-radius: 10px;
+}
+
+#current-weather-details {
+  display:grid;
+  justify-items: center;
+  border-radius: 10px;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: auto;
+  font-size: 1em;
+  color: var(--blue);
+  padding: 10px;
+}
+
+
+#current-icon {
+  width: 25%;
+  height: auto;
+  border: none;
+  border-radius: 50px;
+}
+
+#temperature-icon {
+  width: 10%;
+  height: auto;
+  background: none;
+}
+
+#current-temperature {
+  cursor: pointer;
+  width: 30%;
+  height: auto;
+  color: var(--red); 
+  font-size: 1.2em;
+}
+
+#getWeather {
+  width: 100%;
+  height: auto; 
+  font-size: 1.2em;
+  font-weight: 700;
+  border-radius: 0px;
+  outline: none;
+  cursor: pointer;
+  background-color: hsla(211, 76%, 58%,1);
+  color: var(--red);   
+  transition: 0.2s;
+  padding: 5px;
+}
+
+#getWeather:hover {
+  background-color: hsla(211, 76%, 88%,1);
+  color: var(--blue);
+}
+
+.weather-sum {
+  width: 100%;
+  height: auto;
+  color: whitesmoke;
+  padding: 10px;
+  background:var(--blue);
+  border: none;
+  border-radius: 0;
+}
+
+.weather-link {
+  color: var(--blue);
+  background-color: hsla(211, 76%, 88%,1);
+  width: 70%;
+  height: auto;
+}
+
+.info-plugins {
+  margin: 0;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-column: 1 / -1;
+  place-items: center;
+  justify-content: space-around;	
+  width: 100%;
+  height: 75vh;
+}
+
+/* Currency Converter widget by FreeCurrencyRates.com*/
+.currency {
+  grid-column:  3;
+  background: var(--blue);
+  border: 10px solid var(--blue);
+}
+
 /* slide up box*/
 
 @keyframes fade-in {
@@ -1042,32 +1146,6 @@ animation: fade-in 1.4s;
 .hidden {
   opacity: 0;
 }
-/* Currency Converter widget by FreeCurrencyRates.com*/
-.currency {
-  grid-column:  2;
-  place-self: end;
-  background: var(--blue);
-  border: 10px solid var(--blue);
-}
-
-.gcw_mainF2iGzWPq4{
-  color: whitesmoke;  !important
-  background-color: var(--blue);  !important
-  font-size: 1rem; !important
-} 
-.gcw_headerF2iGzWPq4{
-  color: var(--red); !important
-  background-color: whitesmoke; !important
-  font-size: 1.2em; !important
-}
- .gcw_ratesF2iGzWPq4{
-  color: whitesmoke;  
-  background-color: var(--blue); 
-  font-size: 1rem;
- }
- .gcw_sourceF2iGzWPq4{
-
- } 
 
 
 @media (max-width: 600px) {
