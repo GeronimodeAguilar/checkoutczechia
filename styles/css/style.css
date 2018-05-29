@@ -508,6 +508,70 @@ figure.only-css-slider figure.css-slide figcaption {
  width: 100%;
 }
 
+/*javascript accordion*/
+
+.accordionWrapper{
+  display: grid;
+  grid-column: 2;
+  grid-auto-columns: 1fr;
+  background:var(--blue);
+  width:100%;
+  box-shadow: 0 1.5em 85px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  border: 5px solid var(--red); 
+  border-radius: 10px;
+}
+
+p.accordion-text {
+  background: hsla(211, 76%, 88%,1);
+  color: #0b2c50;
+  padding: 5px;
+}
+      
+.accordionItem{
+  position: relative;
+  display:block;
+  width:100%;
+  border: 5px solid var(--red); 
+  padding: 0px;
+}
+
+accordionItem .close-accord
+
+.accordionItemHeading{
+  cursor:pointer;
+  padding:5px;
+  background: var(--blue);
+  color:whitesmoke;
+  width:100%;
+  height: auto;
+  border-radius: none;
+}
+.close-accord .accordionItemContent{
+  height:0px;
+  transition:all .4s ease-out;
+  opacity: 0;
+  padding: 5px;
+  display:block;
+}
+
+.open-acccord .accordionItemContent{
+  padding: 5px;
+  background-color : var(--blue);
+  width: 100%;
+    height: 100%;
+  display:block;
+opacity: 1;
+transition: all 0.5s ease-in-out;
+}
+
+.open-acccord .accordionItemHeading{
+  background-color: var(--red);
+  color: whitesmoke;
+  border-radius: 0px;
+
+}
+
 /*Thumbnail slider*/
 
 .thumbnail-gallery-box{
