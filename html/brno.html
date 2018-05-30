@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/css/style.css">  
-  <title>checkCZechia</title>
+  <title>Brno</title>
   <script>
       window.onload = function() {
           let element = document.createElement("script");
@@ -91,14 +91,14 @@
       
         <div class="accordionbox">
           <div class="accordion-item">
-            <a class="link-accordion"> <span class="arrows-accordion">&#8645;</span> Veřejná doprava <span class="arrows-accordion">&#8645;</span> </a>
+            <a class="link-accordion ripple"> <span class="arrows-accordion">&#8645;</span> Veřejná doprava <span class="arrows-accordion">&#8645;</span> </a>
             <div class="accordion-item-content">
               <p class="text-accordion"> 
               Hromadnou dopravu po městě i regionu zajišťuje Integrovaný dopravní systém Jihomoravského kraje (IDS JMK). Pro cestování s různými dopravci vám bude stačit jedna jízdenka, ale musíte dát pozor na to, kolik zón projedete. V samotném městě jsou nejčastěji využívány jízdenky pro zóny 100 a 101. Kromě žlutých automatů, umístěných na některých zastávkách MHD, můžete jízdní doklady koupit například v informačních centrech, na nádražích, v trafikách a s příplatkem vám je prodá i řidič přímo ve voze, ovšem doporučuje se mít přesně odpočítanou částku. Jízdné je možné uhradit také odesláním textové zprávy či využitím mobilní aplikace.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <a class="link-accordion"> <span class="arrows-accordion">&#8645;</span> Automobilová
+            <a class="link-accordion ripple"> <span class="arrows-accordion">&#8645;</span> Automobilová
                 doprava <span class="arrows-accordion">&#8645;</span> </a>
             <div class="accordion-item-content">
               <p class="text-accordion">  
@@ -107,7 +107,7 @@
             </div>
           </div>
           <div class="accordion-item">
-            <a class="link-accordion"> <span class="arrows-accordion">&#8645;</span>  Cyklodoprava <span class="arrows-accordion">&#8645;</span> </a>
+            <a class="link-accordion ripple"> <span class="arrows-accordion">&#8645;</span>  Cyklodoprava <span class="arrows-accordion">&#8645;</span> </a>
             <div class="accordion-item-content">
               <p class="text-accordion"> 
                 Brno ještě není k cyklistům úplně nejvstřícnější, ale časy se pomalu mění. Konečně je povolen vjezd na kolech do pěších zón v centru, do jednosměrných ulic byly namalovány cyklopruhy a díky síti cyklostezek se dá po městě šlapat do pedálů poměrně pohodlně. Hlavním silničním tahům se raději vyhněte, zde byste se většinou museli pohybovat uprostřed hustého provozu.          
@@ -115,7 +115,7 @@
             </div>
           </div>
           <div class="accordion-item">
-            <a class="link-accordion"> <span class="arrows-accordion">&#8645;</span> Meziměstská doprava <span class="arrows-accordion">&#8645;</span> </a>
+            <a class="link-accordion ripple"> <span class="arrows-accordion">&#8645;</span> Meziměstská doprava <span class="arrows-accordion">&#8645;</span> </a>
             <div class="accordion-item-content">
               <p class="text-accordion"> 
               Nejlépe se do Brna (a samozřejmě také z něj) dostanete vlakem, autobusem nebo letadlem.
@@ -127,6 +127,28 @@
         </div>
         
       </div>   
+
+      <div class="tile-container">  
+        <div id="tile-header"></div>
+             <div id="demoTiles" class="tiles">
+               <div class="unit bg-base00 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/6.jpg"/></div>
+               <div class="unit bg-base01 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/21.jpg"/></div>
+               <div class="unit bg-base02 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/3.jpg"/></div>
+               <div class="unit bg-base03 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/12.jpg"/></div>
+               <div class="unit bg-base04 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/20.jpg"/></div>
+               <div class="unit bg-base08 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/17.jpg"/></div>
+               <div class="unit bg-base0f shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/15.jpg"/></div>
+               <div class="unit bg-base0e shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/18.jpg"/></div>
+               <div class="unit bg-base05 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/14.jpg"/></div>
+               <div class="unit bg-base06 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/7.jpg"/></div>
+               <div class="unit bg-base07 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/9.jpg"/></div>
+               <div class="unit bg-base09 shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/6.jpg"/></div>
+               <div class="unit bg-base0a shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/8.jpg"/></div>
+               <div class="unit bg-base0d shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/16.jpg"/></div>
+               <div class="unit bg-base0b shade-added hidden-tile"> <img class="tile-pic" src="../img/cont/2.jpg"/></div>
+             </div>   
+        </div>   
+            
 
   <figure>
     <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/vysehrad.jpg" alt="">
@@ -292,5 +314,22 @@
  
 </ul>
       </div>
+      <script>
+      /*show lements on buttonclick*/
+
+function toggleEl() {
+  let Header = document.getElementById('tile-header');
+  let toggleBtn1 = document.createElement('button');
+  toggleBtn1.innerHTML='show pictures';
+  toggleBtn1.setAttribute('class', 'show-tiles');
+  Header.insertBefore(toggleBtn1, Header.firstChild);
+  toggleBtn1.addEventListener('click', function () {
+    [].map.call(document.querySelectorAll('.shade-added'), function(el) {
+      el.classList.toggle('hidden-tile');
+    });
+  });
+} 
+toggleEl();
+      </script>
 </body>
 </html>
