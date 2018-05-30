@@ -1243,6 +1243,103 @@ animation: fade-in 1.4s;
   opacity: 0;
 }
 
+/*simple ripple effect*/
+
+.ripple-wrapper {
+  display: grid;
+  grid-auto-flow: row;
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+}
+
+.box {
+  background-color: #f2f2f2;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.box span {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+
+.btn {
+  border: 0 none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  color: #eee;
+  transition: box-shadow 0.3s linear;
+}
+.btn:hover {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+}
+
+.btn.round {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+.btn-grey {
+  background-color: #888;
+}
+
+.btn-light {
+  box-shadow: 0 0 0;
+  color: rgba(0, 0, 0, 0.81);
+}
+.btn-light:hover {
+  box-shadow: 0 0 0;
+}
+
+.btn-dark {
+  background: #333;
+}
+
+.btn-red {
+  background: #d32;
+}
+
+.btn-green {
+  background: #6a3;
+}
+
+.btn-blue {
+  background: #39c;
+}
+
+.ripple-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 1px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.033);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ripple-effect.light {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.ripple-effect.dark {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
 
 @media (max-width: 600px) {
  
