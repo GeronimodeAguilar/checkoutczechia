@@ -523,19 +523,25 @@ figure.only-css-slider figure.css-slide figcaption {
 }
 
 accordionbox {
-  padding: 4rem;
+  padding: 1em;
   width: 100%;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: space-around;	
-    grid-gap: 10px;
 }
 
 .accordion-item {
-  padding: 20px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: space-around;	
+  place-self: center;
 }
        
 a.link-accordion {
+  display: grid;
+  grid-template-columns: 1fr 15fr 1fr;
+  justify-content: space-around;
   width: 100%;
   background-color: var(--red);
   color: whitesmoke;
@@ -543,55 +549,40 @@ a.link-accordion {
   cursor:pointer;
   padding: 10px;
   text-align: center;
-}
-
-.accordionbox a {
   position: relative;
-  font-size: 1.15rem;
-  font-weight: 400;
+  font-size: 1em;
+  font-weight: 600;
 }
 
-.accordionbox a:hover,
-.accordionbox a:hover::after {
+.arrows-accordion {
+    background-color: var(--blue);
+  color: whitesmoke;
+  font-weight: 900;
+  font-size: 1.1em;
+  border-radius: 50%;
+}
+
+.arrows-accordion:hover {
+   color: var(--blue);
+   background-color: var(--red);
+}
+
+.accordionbox a:hover {
   cursor: pointer;
-  color: #03b5d2;
-}
-
-.accordionbox a:hover::after {
-  border: 1px solid #03b5d2;
+  background: whitesmoke;
+  color:var(--blue);
 }
 
 .accordionbox a.active {
-  color: #03b5d2;
-  border: 1px solid #03b5d2;
-}
-
-.accordionbox a::after {
-  font-family: 'Ionicons';
-  content: '\f218';
-  position: absolute;
-  right: 1rem;
-  font-size: 1rem;
-  color: #7288a2;
-  padding: 5px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  text-align: center;
-}
-
-.accordionbox a.active::after {
-  font-family: 'Ionicons';
-  content: '\f209';
-  color: #03b5d2;
-  border: 1px solid #03b5d2;
+  background: whitesmoke;
+  color:var(--blue);
 }
 
 .accordionbox .accordion-item-content {
   opacity: 0;
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: all 0.2s ease 0.15s;
+  transition: all 0.4s ease 0.15s;
 }
 
 p.text-accordion {
@@ -608,7 +599,7 @@ p.text-accordion {
 
 .accordionbox .accordion-item-content.active {
   opacity: 1;
-  max-height: 100%;
+  height: 100%;
   transition: all 0.35s ease 0.15s;
 }
 

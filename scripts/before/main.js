@@ -168,15 +168,26 @@ document.querySelector('.down-arrow').onclick = function () {
   window.scrollTo(0,600); 
 }
 
+/*simple javascript accordion*/
+
+const items = document.querySelectorAll(".accordionbox a");
+    
+function toggleAccordion(){
+  this.classList.toggle('active');
+  this.nextElementSibling.classList.toggle('active');
+}
+
+items.forEach(item => item.addEventListener('click', toggleAccordion));
+
 /*javascript accordion*/
 
-var accItem = document.getElementsByClassName('accordionItem');
-var accHD = document.getElementsByClassName('accordionItemHeading');
+let accItem = document.getElementsByClassName('accordionItem');
+let accHD = document.getElementsByClassName('accordionItemHeading');
 for (i = 0; i < accHD.length; i++) {
     accHD[i].addEventListener('click', toggleItem, false);
 }
 function toggleItem() {
-    var itemClass = this.parentNode.className;
+    let itemClass = this.parentNode.className;
     for (i = 0; i < accItem.length; i++) {
         accItem[i].className = 'accordionItem close-accord';
     }
