@@ -122,6 +122,35 @@ img.sliderimg + img.sliderimg {
   opacity: 0;
  }
 
+ /*random stacked images*/
+
+ @keyframes show-photo {
+  to { 
+    opacity: 1; 
+  }
+}
+.shuffle {
+  min-height: 100vh;
+  position: relative;
+    background: var(--blue);
+}
+.shuffle img { 
+  width: 33%; 
+  opacity: 0; 
+  transform: scale(1.5);
+}
+.reveal-photo-box img { 
+  animation: show-photo 1s 1s forwards; 
+}
+
+.reveal-photo-box {
+
+}
+.expose {
+  border: 1rem solid #eee;
+  outline: 1rem solid var(--red);
+}
+
 /*javascript typing text animation*/
 
  #str {
