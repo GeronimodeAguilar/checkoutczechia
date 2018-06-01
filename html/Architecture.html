@@ -266,6 +266,13 @@ reveal.classList.remove("reveal-photo-box");
 let revealedImages = reveal.querySelectorAll(".reveal-pic"),
 i = 1;
 
+    function openModalPic(e) {
+    if(e.target.classList.contains('reveal-pic')) {
+    e.target.classList.toggle('full-screen-pic'); 
+    }
+    }
+    reveal.addEventListener('click', openModalPic);
+
 function racknstack() {
   Array.prototype.forEach.call(revealedImages, function(photo) { 
       setTimeout(function(){ photo.style.position = "absolute";
@@ -280,11 +287,10 @@ var animate = photo.animate([
     duration: 1000,
   fill: 'forwards'
   });                    
- }, 1300*i)
+ }, 1500*i)
 i++;
 })
 }
-
 racknstack ();
 
 /*reveal on mouseover*/
@@ -302,7 +308,6 @@ imageGalery.removeEventListener('mouseover', showOnLoad);
     function openModalImg(e) {
     if(e.target.classList.contains('img-visible')) {
     e.target.classList.toggle('full-screen-img'); 
-    e.target.classList.toggle('reveal-item'); 
     }
     }
     imageGalery.addEventListener('mouseover', showOnLoad);
