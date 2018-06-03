@@ -205,6 +205,19 @@
     <p class="hidden">
     Czechoslovakia remained the only democracy in this part of Europe in the interwar period.[22] However, the Czech part of Czechoslovakia was occupied by Germany in World War II, while the Slovak region became the Slovak Republic; Czechoslovakia was liberated in 1945 by the armies of the Soviet Union and the United States. The Czech country lost the majority of its German-speaking inhabitants after they were expelled following the war. The Communist Party of Czechoslovakia won the 1946 elections and after the 1948 coup d'état, Czechoslovakia became a one-party communist state under Soviet influence. In 1968, increasing dissatisfaction with the regime culminated in a reform movement known as the Prague Spring, which ended in a Soviet-led invasion. Czechoslovakia remained occupied until the 1989 Velvet Revolution, when the communist regime collapsed and market economy was reintroduced. On 1 January 1993, Czechoslovakia peacefully dissolved, with its constituent states becoming the independent states of the Czech Republic and Slovakia. The Czech Republic joined NATO in 1999 and the EU in 2004.</p>  
   
+    <div class="picture-zoom-box">
+      <div class="zoom-box"><img src="../img/cont/36.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/53.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/37.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/34.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/46.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/47.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/45.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/30.jpg" alt="" class="zoom-pic"></div>
+      <div class="zoom-box"><img src="../img/cont/32.jpg" alt="" class="zoom-pic"></div>     
+    </div>
+    
+
       <ul class="radio-slider">
         <input type="radio" name="slider" id="1" class="slider" checked>
         <input type="radio" name="slider" id="2" class="slider">
@@ -360,7 +373,79 @@ function fadeWords(quotewords) {
 
 splitWords();
 
-      /*show lements on buttonclick*/
+/*random effects image gallery*/
+
+function randomizer(min,max) {
+	randomresult = Math.random() * (max - min) + min;
+	return randomresult; 
+}
+    
+    let picConteiner = document.querySelector('.picture-zoom-box');
+    let zoomPictures = picConteiner.querySelectorAll('.zoom-pic');
+    
+    function fullScreen(e)  {
+        let closeIcon
+        let item = e.target;
+        item.style.transform = 'none'; 
+        item.classList.remove('zoom-pic-effect');
+        item.classList.add('whole-screen');
+        item.parentElement.classList.add('zoom-box-full');
+               
+       function closeFullScreen(e) {
+        item.classList.remove('whole-screen');
+        item.parentElement.classList.remove('zoom-box-full');
+        closeIcon.remove();
+       }
+        
+      if(!picConteiner.lastElementChild.classList.contains('closing-icon')) {
+        closeIcon = document.createElement('span');
+        closeIcon.classList.add('closing-icon');
+        closeIcon.innerHTML = '&#10006';
+        picConteiner.append(closeIcon);
+        closeIcon.addEventListener('click', closeFullScreen);
+      }
+   }
+    
+        function zoomEffect(e)  {
+let elem = e.target;
+const maxscale = 1.5;
+const minscale = 1.2;
+const minrotate = 1;   
+const maxrotate = 5;  
+const minMov = 1;
+const maxMov = 5;
+const minSkew = 1;
+const maxSkew = 3;            
+let moveY = randomizer(minMov,maxMov).toFixed(2);
+moveY = Math.random() < 0.5 ? -Math.abs(moveY) : Math.abs(moveY);
+let skewY = randomizer(minSkew,maxSkew).toFixed(2);
+skewY = Math.random() < 0.5 ? -Math.abs(skewY) : Math.abs(skewY);   
+let scalar = randomizer(minscale,maxscale).toFixed(2);      
+let rotator = randomizer(minrotate,maxrotate).toFixed(2);     
+rotator = Math.random() < 0.5 ? -Math.abs(rotator) : Math.abs(rotator);  
+let skewX = randomizer(minSkew,maxSkew).toFixed(2);
+skewX = Math.random() < 0.5 ? -Math.abs(skewX) : Math.abs(skewX);   
+let moveX = randomizer(minMov,maxMov).toFixed(2);
+moveX = Math.random() < 0.5 ? -Math.abs(moveX) : Math.abs(moveX);      
+            
+    if(!elem.classList.contains('whole-screen')) {
+        elem.style.transform = `scale(${scalar}) rotate(${rotator}deg) skew(${skewX}deg, ${skewY}deg) translate(${moveX}%, ${moveY}%)` 
+        elem.classList.add('zoom-pic-effect');  
+        
+      function mouseLeave(event)  {
+        elem.classList.remove('zoom-pic-effect');
+        elem.style.transform = 'none'; 
+    }               
+                     
+    zoomPictures.forEach((pic) => pic.addEventListener('mouseout', mouseLeave));
+            }
+    }
+           
+    zoomPictures.forEach((pic) => pic.addEventListener('click', fullScreen));
+    zoomPictures.forEach((pic) => pic.addEventListener('mouseover', zoomEffect));
+
+
+      /*show elements on buttonclick*/
 
 function toggleEl() {
   let Header = document.getElementById('tile-header');
