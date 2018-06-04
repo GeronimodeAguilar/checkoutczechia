@@ -1428,6 +1428,64 @@ span.imgcaption {
   border: 10px solid var(--blue);
 }
 
+/*calendar*/
+
+.calendar {
+  grid-column: 1 / -1;
+  height: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat( 3, 1fr);
+  grid-template-rows: repeat( 4, 1fr);
+  background: whitesmoke;
+}
+
+table {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1rem;
+}
+
+td {
+  text-align: center;
+  line-height: 1.75rem;
+  width: 1.75rem;
+}
+
+thead td {
+  color: #999;
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+tbody td {
+  font-size: .875rem;
+}
+
+tbody td:hover {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+td.before, td.after {
+  color: #999;
+}
+
+.scale-cell {
+  transform: scale(3);
+  font-size: 2em;
+  background: var(--blue);
+  color: whitesmoke;
+}
+
+
+.scale-cell:hover {
+  background: var(--red);
+  color: whitesmoke;
+  cursor: pointer;
+}
+
 /* slide up box*/
 
 @keyframes fade-in {

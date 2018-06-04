@@ -100,9 +100,8 @@
 <div id='gcw_mainF2iGzWPq4' class='gcw_mainF2iGzWPq4' style="background-color: var(--blue); color: #c9e0f8;"></div>
 <a id='gcw_siteF2iGzWPq4' href='https://freecurrencyrates.com/en/' style="background-color: var(--blue); color:#c9e0f8;">FreeCurrencyRates.com</a>
 </div>
-
 </div> 
-
+<div class="calendar"></div>
   <h3>Geography</h3>
 
   <figure>
@@ -252,6 +251,122 @@
  
 </ul>
       </div>
+<script>
+  'use strict';
 
+const tableBox = document.querySelector('.calendar');
+
+for (var i = 0; i < 12; i++) {
+  // create a table for month with thead & tbody
+  var table = document.createElement('table');
+  var thead = document.createElement('thead');
+  var tbody = document.createElement('tbody');
+
+  // get weeks for a given month
+  var calendar = createCalendar(2016, i);
+
+  // iterate weeks
+  for (var j = 0; j < calendar.length; j++) {
+    // create table row for every week
+    var tr = document.createElement('tr');
+    var week = calendar[j];
+
+    // iterate days
+    for (var k = 0; k < week.length; k++) {
+      // create table cell for every day
+      var td = document.createElement('td');
+      var day = week[k];
+
+      // set day of month as table cell text content
+      td.textContent = day.date.getDate();
+
+      // add before/after class
+      day.before && td.classList.add('before');
+      day.after && td.classList.add('after');
+
+      // mount table cell
+      tr.appendChild(td);
+    }
+    // mount table row
+    tbody.appendChild(tr);
+  }
+
+  // create thead
+  thead.innerHTML = '<tr><td>' + 'Su Mo Tu We Th Fr Sa'.split(' ').join('</td><td>') + '</td></tr>';
+
+  // mount thead & tbody
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  // mount table to body
+tableBox.appendChild(table);
+}
+
+function createCalendar(year, month) {
+  var results = [];
+
+  // find out first and last days of the month
+  var firstDate = new Date(year, month, 1);
+  var lastDate = new Date(year, month + 1, 0)
+
+  // calculate first sunday and last saturday
+  var firstSunday = getFirstSunday(firstDate);
+  var lastSaturday = getLastSaturday(lastDate);
+
+  // iterate days starting from first sunday
+  var iterator = new Date(firstSunday);
+  var i = 0;
+
+  // ..until last saturday
+  while (iterator <= lastSaturday) {
+    if (i++ % 7 === 0) {
+      // start new week when sunday
+      var week = [];
+      results.push(week);
+    }
+
+    // push day to week
+    week.push({
+      date: new Date(iterator),
+      before: iterator < firstDate, // add indicator if before current month
+      after: iterator > lastDate // add indicator if after current month
+    });
+
+    // iterate to next day
+    iterator.setDate(iterator.getDate() + 1);
+  }
+
+  return results;
+}
+
+function getFirstSunday(firstDate) {
+  var offset = firstDate.getDay();
+
+  var result = new Date(firstDate);
+  result.setDate(firstDate.getDate() - offset);
+
+  return result;
+}
+
+function getLastSaturday(lastDate) {
+  var offset = 6 - lastDate.getDay();
+
+  var result = new Date(lastDate);
+  result.setDate(lastDate.getDate() + offset);
+
+  return result;
+}
+
+function zoomCell(e) {
+let targetCell =  e.target;
+if(targetCell.tagName === "TD" && !(targetCell.parentNode.parentNode.tagName === 'THEAD')) {
+targetCell.classList.toggle('scale-cell');
+}
+}
+
+tableBox.addEventListener('click',zoomCell);
+
+
+</script>
 </body>
 </html>

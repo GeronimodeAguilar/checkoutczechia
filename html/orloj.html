@@ -24,7 +24,7 @@
                 <div class="card">
              </div>
                 </div>
-            <h2 class="header-title">Orloj clockwork</h2>    
+            <h2 class="header-title"></h2>    
   <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>  
     </header> 
     
@@ -282,7 +282,25 @@ document.addEventListener('mousemove', function(e) {
   let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
   card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 });
+ 
+/*simplest typing effect*/
+      // Global letiables
+  let textSimple = "Orloj clockwork";
+  let typeWriter;
+  let index = 0;
+  
+  // Typewriting effect
+  typeWriter = setInterval(function() {
+    document.querySelector(".header-title").textContent += textSimple[index];
+  
+    index += 1;
+  
+    if (index > textSimple.length -1) {
+      clearInterval(typeWriter);
+    }
+  
+  }, 250);
+  
       </script>
-
 </body>
 </html>
