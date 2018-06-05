@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/css/style.css">  
-  <title>checkCZechia</title>
+  <title>Prague</title>
   <script>
       window.onload = function() {
           let element = document.createElement("script");
@@ -21,7 +21,7 @@
 
     <header>
   <video class="headervideo" src="../video/prag-radio-tower.mp4" muted autoplay loop playsinline></video>    
-  <h2 class="header-title">Prague : center of EU</h2>    
+  <h2 class="header-title"><div id="messagesBox">Prag</div></h2>    
   <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>    
     </header> 
     
@@ -239,7 +239,69 @@
 </ul>
       </div>
 <script>
-/*gallery modal*/
+/*simple typing messages*/
+
+    let messagesContainer = document.getElementById('messagesBox');
+
+let things = ['History', 'Culture', 'Quisine', 'Nightlife', 'Prague'];
+let t = -1;
+let thing = '';
+let message = messagesContainer.innerHTML;
+let mode = 'write';
+let worddelay = 2000;
+
+function updateText(txt) {
+    messagesContainer.innerHTML = txt;
+}
+
+function tick() {
+
+    if(messagesContainer.innerHTML.length == 0) {
+        t++;
+        thing = things[t];
+        message = '';
+        mode = 'write';
+    }
+
+    switch(mode) {
+        case 'write' :
+            message += thing.slice(0, 1);
+            thing = thing.substr(1);
+
+            updateText(message);
+
+            if(thing.length === 0 && t === (things.length - 1)) {
+            	window.clearTimeout(timeout);
+            	return;
+            }
+
+            if(thing.length == 0){
+                mode = 'delete';
+                worddelay = 2000;
+            } else {
+                worddelay = 32 + Math.round(Math.random() * 40);
+            }
+
+            break;
+
+        case 'delete' :
+            message = message.slice(0, -1);
+            updateText(message);
+
+            if(message.length == 0)
+            {
+                mode = 'write';
+                worddelay = 2000;
+            } else {
+                worddelay = 32 + Math.round(Math.random() * 100);
+            }
+            break;
+    }
+
+    timeout = window.setTimeout(tick, worddelay);
+}
+
+let timeout = window.setTimeout(tick, worddelay);
 
 /*reveal on mouseover*/
 
