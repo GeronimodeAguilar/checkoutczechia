@@ -262,10 +262,75 @@ p {
   padding-top: 40px;
   position: absolute;
   bottom: 5%;
-  left: 45%;
+  left: 48%;
   transform: rotate(180deg);
 }
 
+/*four-squares animation*/
+
+
+.color-container {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+display: grid; 
+grid-template-columns: 20fr 1fr 8fr 1fr 20fr;
+grid-template-rows: 30fr 1fr 8fr 1fr;
+        width: 100vw;
+        height: 100vh;
+        background: none;
+        overflow: hidden;
+    }
+
+    .squareitem {
+      z-index: 2;
+      width: 0; 
+      height: 0;
+      border-top: 2em  solid var(--blue);
+      border-left: 1em  solid transparent; 
+      border-right: 1em solid transparent; 
+      background: none;
+      position: relative;
+      transition: transform 1.8s ease-in-out;
+      }
+
+    
+    .top-right {
+        grid-column: 4;
+        grid-row: 2;
+    }
+    
+    .top-right-expand {
+        transform: translateY(15px);
+    }
+
+    .top-left {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .top-left-expand {
+        transform: translateY(15px);
+    }
+    
+    .bottom-left {
+        grid-column: 2;
+        grid-row: 4;
+    }
+    
+    .bottom-left-expand {
+        transform: translateY(15px);
+    }
+    
+    .bottom-right {
+        grid-column: 4;
+        grid-row: 4;
+    }
+    
+    .bottom-right-expand {
+        transform: translateY(15px);
+    }
+    
 /* show tiles on buttonclick*/
 
 .unit {

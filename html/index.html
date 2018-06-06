@@ -15,7 +15,14 @@
     <header>
   <video class="headervideo" src="../video/prag-radio-tower.mp4" muted autoplay loop playsinline></video>    
   <h2 class="header-title">Welcome to Czech Republic</h2>    
+  <div class="color-container">
+      <div class="top-right squareitem"></div>
+      <div class="top-left squareitem"></div>
+      <div class="bottom-left squareitem"></div>
+      <div class="bottom-right squareitem"></div>
+        </div>
   <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>  
+
     </header> 
     
     <nav class="menu" id="navbox">
@@ -366,7 +373,13 @@ targetCell.classList.toggle('scale-cell');
 
 tableBox.addEventListener('click',zoomCell);
 
-
+function squareAnimation() {            
+                document.querySelector('.top-right').classList.toggle('top-right-expand');
+                document.querySelector('.top-left').classList.toggle('top-left-expand');
+                document.querySelector('.bottom-left').classList.toggle('bottom-left-expand');
+                document.querySelector('.bottom-right').classList.toggle('bottom-right-expand');
+            };
+setInterval(squareAnimation,2000);
 </script>
 </body>
 </html>
