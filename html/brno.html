@@ -130,6 +130,29 @@
         
       </div>   
 
+      <div class="drawer-wrap">
+
+        <div class="drawer open" id="drawer-01">
+          <div class="title">01</div>
+        </div>
+        <div class="drawer" id="drawer-02">
+          <div class="title">02</div>
+        </div>
+        <div class="drawer" id="drawer-03">
+          <div class="title">03</div>
+        </div>
+        <div class="drawer" id="drawer-04">
+          <div class="title">04</div>
+        </div>
+        <div class="drawer" id="drawer-05">
+          <div class="title">05</div>
+        </div>
+        <div class="drawer" id="drawer-06">
+          <div class="title">06</div>
+        </div>
+        
+        </div>    
+
       <div class="tile-container">  
         <div id="tile-header"></div>
              <div id="demoTiles" class="tiles">
@@ -375,6 +398,28 @@ function toggleEl() {
   });
 } 
 toggleEl();
+
+/*drawesrs panels*/
+
+const drawerBox = document.querySelector('.drawer-wrap');
+let drawers = document.querySelectorAll('.drawer');
+let titles =document.querySelectorAll('.title');
+function openPanel(e) {
+  drawers.forEach((pane) =>pane.classList.remove('open'));
+
+    if(e.target.parentElement.className === 'drawer') {
+       e.target.parentElement.classList.toggle('open');
+    } else {
+    if(e.target.firstElementChild === null) {
+       e.target.parentElement.classList.toggle('open');
+    } else {
+       e.target.classList.toggle('open');
+    }
+  }
+}    
+    
+drawerBox.addEventListener('click',openPanel);    
+
       </script>
 </body>
 </html>
