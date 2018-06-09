@@ -1013,6 +1013,81 @@ transition: all 0.5s ease-in-out;
 
 }
 
+/*Grid slider*/
+
+.grid-slider {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas: 
+      "big big big cube7"
+      "big big big cube6"
+      "big big big cube5"
+      "cube1 cube2 cube3 cube4"
+      ;
+  height: 100Vh;
+  width: 100%;
+}
+
+.grid-slider #big-pic {
+  height: 100%;
+  width: 100%;
+  grid-area: big;
+  animation-name: imageFade;
+  animation-duration: .4s;
+  animation-timing-function: ease-in-out;
+}
+
+.grid-slider #active-cube {
+  opacity: .9;
+  filter: blur(2px) brightness(1.20) contrast(120%)
+}
+
+@keyframes imageFade {
+  0% {
+      opacity: 0;
+      transform: skew(45deg, 45deg) scale(0.1);
+      transform-origin: bottom right;
+  }
+  25% {
+      opacity: 0.25
+  }
+  50% {
+      opacity: 0.5
+  }
+  75% {
+      opacity: 0.75
+  }
+  100% {
+      opacity: 1
+      transform: skew(0,0) scale(1); 
+  }
+}
+
+.cube {
+  height: 25vh;
+  width: 25vw;   
+  background: salmon;
+  cursor: pointer;
+      } 
+      
+#cube1 {
+    grid-area: cube1;
+} #cube2 {
+    grid-area: cube2;
+} #cube3 {
+    grid-area: cube3;
+} #cube4 {
+    grid-area: cube4;
+} #cube5 {
+    grid-area: cube5;
+} #cube6 {
+    grid-area: cube6;
+} #cube7 {
+    grid-area: cube7;
+}        
+
 /*Thumbnail slider*/
 
 .thumbnail-gallery-box{

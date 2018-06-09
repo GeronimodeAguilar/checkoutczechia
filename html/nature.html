@@ -88,6 +88,16 @@
         </ul>
       </nav>  
 
+      <div class="grid-slider">
+        <img class="cube" id="cube1" src="../img/cont/190.JPG" alt="">
+        <img class="cube" id="cube2" src="../img/cont/188.JPG" alt="">
+        <img class="cube" id="cube3" src="../img/cont/183.JPG" alt=""> 
+        <img class="cube" id="cube4" src="../img/cont/189.JPG" alt="">
+        <img class="cube" id="cube5" src="../img/cont/184.JPG" alt="">
+        <img class="cube" id="cube6" src="../img/cont/186.JPG" alt="">
+        <img class="cube" id="cube7" src="../img/cont/187.JPG" alt="">
+          </div>
+
   <figure>
     <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/vysehrad.jpg" alt="">
     <figcaption>Vysehrad</figcaption>
@@ -102,37 +112,8 @@
 
    <p class="hidden">The Czech Republic (/ˈtʃɛk rɪˈpʌblɪk/ (About this sound listen)[10] Czech: Česká republika, Czech pronunciation: [ˈtʃɛskaː ˈrɛpuˌblɪka] (About this sound listen)),[11] also known as Czechia[12] (/ˈtʃɛkiə/ (About this sound listen); Czech: Česko, pronounced [ˈtʃɛsko] (About this sound listen)), is a landlocked country in Central Europe bordered by Germany to the west, Austria to the south, Slovakia to the east and Poland to the northeast.[13] The Czech Republic covers an area of 78,866 square kilometres (30,450 sq mi) with a mostly temperate continental climate and oceanic climate. It is a unitary parliamentary republic, has 10.6 million inhabitants and the capital and largest city is Prague, with 1.3 million residents. The Czech Republic is a member of the European Union (EU), NATO, the OECD, the United Nations, the OSCE, and the Council of Europe.</p>
    
-  <h3>Stats</h3>   
-
-
-  <figure>
-    <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/buchlov-louky.jpg" alt="">
-    <figcaption>Chriby</figcaption>
-  </figure>
-
-
-        <p class="hidden">
-    It is a developed country[14] with an advanced,[15] high income[16] export-oriented social market economy based in services, manufacturing and innovation. The UNDP ranks the country 14th in inequality-adjusted human development.[17] The Czech Republic is a welfare state with a "continental" European social model, a universal health care system and tuition-free university education. It ranks as the 6th safest or most peaceful country and is one of the most non-religious countries in the world,[18] while achieving strong performance in democratic governance.</p>
-   
   
-  <h3>History</h3>
-
-  <figure>
-    <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/mahenovo-divadlo-brno.jpg" alt="">
-    <figcaption>Mahen Theatre</figcaption>
-  </figure>
-
-    <p class="hidden">
-    The Czech Republic includes the historical territories of Bohemia,[19] Moravia, and Czech Silesia. The Czech state was formed in the late 9th century as the Duchy of Bohemia under the Great Moravian Empire. After the fall of the Empire in 907, the centre of power transferred from Moravia to Bohemia under the Přemyslid dynasty. In 1002, the duchy was formally recognized as part of the Holy Roman Empire,[20][21] becoming the Kingdom of Bohemia in 1198 and reaching its greatest territorial extent in the 14th century. Besides Bohemia itself, the king of Bohemia ruled the lands of the Bohemian Crown, he had a vote in the election of the Holy Roman Emperor, and Prague was the imperial seat in periods between the 14th and 17th century. In the Hussite wars of the 15th century driven by the Protestant Bohemian Reformation, the kingdom faced economic embargoes and defeated five consecutive crusades proclaimed by the leaders of the Catholic Church.</p>
-
-    <figure>
-      <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/church-stare-mesto.jpg" alt="">
-      <figcaption>Catholic Church Stare Mesto</figcaption>
-    </figure>
-
-    <p class="hidden">
-    Following the Battle of Mohács in 1526, the whole Crown of Bohemia was gradually integrated into the Habsburg Monarchy alongside the Archduchy of Austria and the Kingdom of Hungary. The Protestant Bohemian Revolt (1618–20) against the Catholic Habsburgs led to the Thirty Years' War. After the Battle of the White Mountain, the Habsburgs consolidated their rule, eradicated Protestantism and reimposed Catholicism, and also adopted a policy of gradual Germanization. With the dissolution of the Holy Roman Empire in 1806, the Bohemian Kingdom became part of the Austrian Empire and the Czech language experienced a revival as a consequence of widespread romantic nationalism. In the 19th century, the Czech lands became the industrial powerhouse of the monarchy and were subsequently the core of the Republic of Czechoslovakia, which was formed in 1918 following the collapse of the Austro-Hungarian Empire after World War I.</p>
-
+   
     <figure>
       <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/corner-flag.jpg" alt="">
       <figcaption>Vysehrad</figcaption>
@@ -236,6 +217,73 @@
  
 </ul>
       </div>
+<script>
+   const models = (() => {
+  let currentImageSrc = "";
 
+  setCurrentImage = imgSrc => (currentImageSrc = imgSrc);
+  getCurrentImage = () => currentImageSrc;
+  return {
+    getCurrentImage,
+    setCurrentImage
+  };
+})();
+
+const controllers = (() => {
+  init = () => views.init();
+  setCurrentImage = imgSrc => {
+    models.setCurrentImage(imgSrc);
+    views.render();
+  };
+  getCurrentImage = () => models.getCurrentImage();
+  return {
+    init,
+    setCurrentImage,
+    getCurrentImage
+  };
+})();
+
+const views = (() => {
+  const images = document.querySelectorAll(".grid-slider img");
+  const slider = document.querySelector(".grid-slider");
+
+  init = () => {
+    controllers.setCurrentImage(images[0].getAttribute("src"));
+    images.forEach(img => {
+      img.addEventListener("click", ev => {
+        if (ev.target.id !== "big-pic") {
+          images.forEach(img => img.removeAttribute("id"));
+          controllers.setCurrentImage(ev.target.getAttribute("src"));
+        }
+      });
+    });
+  };
+
+  render = () => {
+    images.forEach(img => img.removeAttribute("id"));
+    const imgSrc = controllers.getCurrentImage();
+    const mainSlide = document.createElement("IMG");
+    const isMain = document.querySelector("#big-pic");
+    if (isMain) {
+      slider.removeChild(isMain);
+    }
+    mainSlide.setAttribute("src", imgSrc);
+    mainSlide.id = "big-pic";
+    slider.insertAdjacentElement("afterbegin", mainSlide);
+    images.forEach(
+      img =>
+        img.getAttribute("src") === imgSrc &&
+        img.setAttribute("id", "active-cube")
+    );
+  };
+
+  return {
+    init,
+    render
+  };
+})();
+
+controllers.init();
+</script>
 </body>
 </html>
