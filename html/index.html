@@ -192,6 +192,14 @@
 </div>
 
 <footer>
+    <div class="search-box">
+        <form id="searchItem" onsubmit="return false">
+          <input type="search" id="searchInput" name="search" autocomplete="on" placeholder="Enter search term here">
+          <button type="button" id="search-button" onclick="getArticle()">&#9755;</button>
+          <button type="button" class="search-close"> &#9747;</button>
+        </form>
+        <div class="search-result"></div>
+      </div>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2058314.3021129183!2d13.57809096500988!3d49.91064209129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b948fd7dd8243%3A0xf8661c75d3db586f!2sCzechia!5e0!3m2!1sen!2scz!4v1526812826093"></iframe>
     <a href="http://www.checkczechia.cz/"><img src="../img/lgo/mapxflag.png" alt="map"></a>
     <a href="https://www.tripadvisor.com/Tourism-g274684-Czech_Republic-Vacations.html">tripadvisor.com</a>
@@ -403,7 +411,6 @@ let tempDescription;
 let icon;
 const getApiUrl = (lat, lon) => 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=b9a27cb7ac119cdefa622ce5fd7c0546';
 const getIconUrl = code => `http://openweathermap.org/img/w/${code}.png`;
-console.log(getApiUrl);
 const geoSuccess = position => {
   startPos = position;
   lat = startPos.coords.latitude;
@@ -452,7 +459,7 @@ const getCelsius = tempKelvin => formatTemp(tempKelvin - 273);
 const getFahrenheit = tempKelvin => formatTemp(1.8 * (tempKelvin - 273) + 32);
 
 const handleToggleTemp = () => {
-  console.log('clicked');
+
   if(isCelsius) {
     setNodeContents('.temp', tempF + ' ºF');
   } else {
@@ -462,7 +469,6 @@ const handleToggleTemp = () => {
 }
 
 const handleWeather = (data) => {
-  // console.log(data);
   const obj = JSON.parse(data);
   city = obj.name;
   country = obj.sys.country;
@@ -479,12 +485,68 @@ const handleWeather = (data) => {
 }
 
 const weatherWidgetbox = document.querySelector('.weatherWidget');
-console.log(weatherWidgetbox);
 
 function getPosition() {
      navigator.geolocation.getCurrentPosition(geoSuccess);
 }
-weatherWidgetbox.addEventListener('click', getPosition)    
+weatherWidgetbox.addEventListener('click', getPosition)  
+  
+/*wiki search*/
+
+let result = document.querySelector(".search-result");
+let searchItem = document.getElementById("searchItem");
+let searchInput = document.getElementById("searchInput");
+let closeSearch = document.querySelector('.search-close');
+
+let wikiUrl = "https://en.wikipedia.org/w/api.php?action=query&generator=search&format=json&formatversion=2&utf8=1&origin=*&gsrnamespace=0&gsrlimit=10&prop=extracts&exsentences=1&exlimit=10&explaintext=1&exintro=1&gsrsearch="
+let linkUrl = "https://en.wikipedia.org/?curid=";
+
+searchInput.addEventListener("keyup", function(event) {
+	event.preventDefault();	
+	if (event.keyCode === 13) {
+		document.getElementById("search-button").click();
+	}
+});
+
+function getArticle() {	
+	result.innerHTML = "";
+	let text = searchItem.elements[0].value;
+	//to convert spaces to %20 for multiword search terms
+  let searchTerm = text.replace(/\s+/g,'%20');	
+	let searchUrl = wikiUrl + searchTerm;
+  	
+	let article = new XMLHttpRequest();
+	article.open('GET', searchUrl);	
+	article.onload = function() {
+	  let articleData = JSON.parse(article.responseText);
+		wikiInfo(articleData);
+    };
+	article.send();	
+}
+  
+function wikiInfo(data) {	
+	for (let i = 0; i < data.query.pages.length; i++) {
+		let url = linkUrl + data.query.pages[i].pageid;    
+		let wrapper = document.createElement("a");		
+		let div = document.createElement("div");    
+		div.setAttribute("class", "outputItem");
+		wrapper.setAttribute("href", url);
+		wrapper.setAttribute("target", "_blank");	
+        wrapper.style.textDecoration = 'none';
+		let divString = `<div class="result-title"> ${data.query.pages[i].title} </div> <p class="result-text">  ${data.query.pages[i].extract} </p>`;
+		div.innerHTML = divString;
+    wrapper.appendChild(div);
+		result.appendChild(wrapper);
+  }
+}
+
+function closeSearchResults(e) {
+let searchContent = document.querySelectorAll('.outputItem');
+searchContent.forEach(item => item.remove());
+
+}
+
+closeSearch.addEventListener('click', closeSearchResults);    
 
 </script>
 </body>

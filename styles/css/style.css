@@ -582,17 +582,137 @@ figcaption {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 5px;
   display: grid;
   grid-column: 1 / -1;
-  grid-gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2em;
+  grid-template: repeat(2, 1fr) / repeat(3, 1fr);
   justify-content: space-around;
 }   
 
 footer >* {
   place-self: center;
 } 
+
+/*Wiki search*/
+
+.search-box {	
+  grid-column: 1 / -1;
+	display: grid;
+    place-items: center;
+  text-align: center;	
+  justify-content: space-around;
+  width: 100%;
+}
+
+#searchItem {
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  gap: 1em;
+  margin: 2em;
+}
+
+input[type=search] {
+	background-color: hsla(211, 66%, 68%,1);
+	color: var(--blue);
+	padding: 10px 20px;
+	font-size: 1em;
+	font-weight: bold;
+	box-sizing:border-box;
+	border: 5px solid var(--blue);
+	border-radius: 50px;
+}
+
+input[type=search]:hover {
+	background-color: hsla(211, 86%, 88%,1);
+	color: var(--red);
+	border: 5px solid var(--red);
+}
+
+::placeholder {
+	font-weight: normal;
+}
+
+#search-button {
+  background-color: var(--blue);
+  border: none;
+	color: white;
+	cursor: pointer;  
+  font-size: 2em;
+  border-radius: 50%;
+}
+
+.search-close {
+  background-color: var(--blue);
+  border: none;
+	color: white;
+	cursor: pointer;  
+  font-size: 2em;
+  border-radius: 50%;
+}
+
+#search-button:hover {
+  background-color: var(--red);
+
+
+}
+
+.search-close:hover {
+  background-color: var(--red);
+ 
+}
+
+.search-result {
+	padding: 0px;
+    display: grid;
+    place-items: center;
+    gap: 1em;
+    background-color: hsla(211, 96%, 88%,1);
+    border-radius: 10px;
+}
+
+.outputItem {
+    width: 100vw;
+    height: auto;
+	border: solid 15px transparent;
+	border-radius: 10px;
+	cursor: pointer;
+	opacity: .99;
+  background-color: hsla(211, 76%, 78%,0.8);
+  padding: 0;
+  margin: 0;
+}
+
+div.outputItem:hover {
+	border: solid 15px var(--red);
+}
+    
+    
+    
+.result-title {
+    width: 100%;
+    color: var(--blue);
+    background-color: hsla(211, 76%, 78%,0.4);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 3px;
+    } 
+
+ div.outputItem:hover .result-title {
+    color: var(--red);
+    background-color: hsla(211, 76%, 78%,0.6);
+  
+      }     
+    
+.result-text{
+    color: var(--blue);
+    background: hsla(211, 76%, 88%,0.3);
+    width: 100%;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0px;
+    }   
 
 /*simplest css slider*/
 
