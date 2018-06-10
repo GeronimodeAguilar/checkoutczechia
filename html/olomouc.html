@@ -138,37 +138,35 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
         
         There are hundreds of concert halls, galleries, cinemas and music clubs in the city. It hosts music festivals including the Prague Spring International Music Festival, the Prague Autumn International Music Festival, the Prague International Organ Festival and the Prague International Jazz Festival. Film festivals include the Febiofest, the One World Film Festival and Echoes of the Karlovy Vary International Film Festival. The city also hosts the Prague Writers' Festival, the Prague Folklore Days, Prague Advent Choral Meeting the Summer Shakespeare Festival,[54] the Prague Fringe Festival, the World Roma Festival, as well as the hundreds of Vernissages and fashion shows.</p>  
   
-        <div class="thumbnail-gallery-box">
-                <input type="radio" name="thumbnail_switch" id="thumbnail-radio1" checked="checked"/>
-                <label class="thumbnail-label" for="thumbnail-radio1">
-                    <img class="label-thumbnail" src="../img/cont/178.jpg"/>
-                </label>
-                <img class="fullsize-picture" src="../img/cont/178.jpg" alt=""/>
-        
-                <input type="radio" name="thumbnail_switch" id="thumbnail-radio2" />
-                <label class="thumbnail-label" for="thumbnail-radio2">
-                        <img class="label-thumbnail" src="../img/cont/168.jpg"/>
-                    </label>
-                    <img class="fullsize-picture" src="../img/cont/168.jpg" alt=""/>
-                
-                <input type="radio" name="thumbnail_switch" id="thumbnail-radio3"/>
-                <label class="thumbnail-label" for="thumbnail-radio3">
-                        <img class="label-thumbnail" src="../img/cont/176.jpg"/>
-                    </label>
-                    <img class="fullsize-picture" src="../img/cont/176.jpg" alt=""/>
-                
-                <input type="radio" name="thumbnail_switch" id="thumbnail-radio4"/>
-                <label class="thumbnail-label" for="thumbnail-radio4">
-                        <img class="label-thumbnail" src="../img/cont/179.jpg"/>
-                    </label>
-                    <img class="fullsize-picture" src="../img/cont/179.jpg" alt=""/>
-                
-                <input type="radio" name="thumbnail_switch" id="thumbnail-radio5"/>
-                <label class="thumbnail-label" for="thumbnail-radio5">
-                        <img class="label-thumbnail" src="../img/cont/174.jpg"/>
-                    </label>
-                    <img class="fullsize-picture" src="../img/cont/174.jpg" alt=""/>
-            </div>     
+        <div id="showcase">
+              
+          <div class="auto-slide fade-pic">
+            <img class="auto-pic" src="../img/cont/67.jpg">
+          </div>
+  
+          <div class="auto-slide fade-pic">
+            <img class="auto-pic" src="../img/cont/66.jpg">
+          </div>     
+  
+          <div class="auto-slide fade-pic">
+            <img class="auto-pic" src="../img/cont/69.jpg">
+          </div>  
+          
+          <div class="auto-slide fade-pic">
+            <img class="auto-pic" src="../img/cont/68.jpg">
+          </div>  
+     
+            <div id="auto-left">&#9664;</div>
+            <div id="auto-right">&#9654;</div>
+  
+        <div id="dot-box">
+          <span class="auto-dot">1</span> 
+          <span class="auto-dot">2</span> 
+          <span class="auto-dot">3</span> 
+          <span class="auto-dot">4</span> 
+        </div>
+  
+    </div>
 
 <footer>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2058314.3021129183!2d13.57809096500988!3d49.91064209129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b948fd7dd8243%3A0xf8661c75d3db586f!2sCzechia!5e0!3m2!1sen!2scz!4v1526812826093"></iframe>
@@ -278,6 +276,138 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
             }, interval(text[n - 1]));
           } 
         }
-          </script>  
+
+/*auto arrow slider*/
+    
+  
+  let autoImg = document.querySelectorAll('.auto-slide');
+  let allDots = document.querySelectorAll('.auto-dot');
+  let arrowLeft = document.querySelector('#auto-left');
+  let arrowRight = document.querySelector('#auto-right');
+  
+  let changeSeconds = 5000;
+  let timeInterval = setInterval(auto, changeSeconds);
+  let currentPic = 0;
+  
+  // Skips the first fade animation after page loads 
+  // Note: If the CSS animation plays at x seconds, the timeout should be set longer than x seconds. I would add at least 0.5 more seconds just to be safe 
+  // Note: This function will disable if the content inside the timeout function was added on any event handler
+  function delay() {
+    setTimeout(function () {
+      document.body.className = "";
+    }, 1000);
+  }
+  
+  // Init slider
+  function reset() {
+    for (let i = 0; i < autoImg.length; i++) {
+      autoImg[0].style.display = 'none';
+      allDots[0].id = '';
+    }
+  }
+  
+  // Automate slider
+  function auto() {
+    currentPic = (currentPic + 1) % allDots.length;
+    start();
+  }
+  
+  // Start slider
+  function start() {
+    reset();
+    for (let i = 0; i < allDots.length; i++) {
+      if (currentPic === i) {
+        autoImg[i].style.display = 'block';
+        allDots[i].id = 'active-auto';
+      } else {
+        autoImg[i].style.display = 'none';
+        allDots[i].id = '';
+      }
+    }
+  }
+  
+  // Manual slider
+  let _loop = function _loop(i) {
+    allDots[i].addEventListener('click', function (e) {
+      document.body.className = "";
+      if (currentPic === i || e.target.className !== 'dot') {
+        return;
+      } else {
+        clearInterval(timeInterval);
+        timeInterval = setInterval(auto, changeSeconds);
+      }
+      currentPic = i;
+      start();
+    });
+  };
+  
+  for (let i = 0; i < allDots.length; i++) {
+    _loop(i);
+  }
+  
+  // Left arrow click
+  arrowLeft.addEventListener('click', function () {
+    document.body.className = "";
+    if (currentPic === 0) {
+      currentPic = allDots.length - 1;
+    } else {
+      currentPic--;
+    }
+    start();
+  });
+  
+  // arrowRight arrow click
+  arrowRight.addEventListener('click', function () {
+    document.body.className = "";
+    if (currentPic === allDots.length - 1) {
+      currentPic = 0;
+    } else {
+      currentPic++;
+    }
+    start();
+  });
+  
+  // Stop automatic slide when hovered
+  for (let i = 0; i < autoImg.length; i++) {
+    autoImg[i].addEventListener('mouseover', function () {
+      clearInterval(timeInterval);
+    });
+    start();
+  };
+  
+  // Start automatic slide when not hovered
+  for (let _i = 0; _i < autoImg.length; _i++) {
+    autoImg[_i].addEventListener('mouseout', function () {
+      clearInterval(timeInterval);
+      timeInterval = setInterval(auto, changeSeconds);
+    });
+    start();
+  };
+  
+  // Stop automatic slider when arrowLeft arrow hovered
+  arrowLeft.addEventListener('mouseenter', function () {
+    clearInterval(timeInterval);
+  });
+  
+  // Stop automatic slider when arrowRight arrow hovered
+  arrowRight.addEventListener('mouseenter', function () {
+    clearInterval(timeInterval);
+  });
+  
+  // Stop automatic slider when arrowLeft arrow hovered
+  arrowLeft.addEventListener('mouseleave', function () {
+    clearInterval(timeInterval);
+    timeInterval = setInterval(auto, changeSeconds);
+  });
+  
+  // Stop automatic slider when arrowRight arrow hovered
+  arrowRight.addEventListener('mouseleave', function () {
+    clearInterval(timeInterval);
+    timeInterval = setInterval(auto, changeSeconds);
+  });
+  
+  delay();
+  start();
+      </script>   
 </body>
 </html>
