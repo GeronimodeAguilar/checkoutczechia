@@ -141,21 +141,28 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
         <div id="showcase">
               
           <div class="auto-slide fade-pic">
+            <p class="auto-caption">one</p>
             <img class="auto-pic" src="../img/cont/67.jpg">
           </div>
   
           <div class="auto-slide fade-pic">
+            <p class="auto-caption">two</p> 
             <img class="auto-pic" src="../img/cont/66.jpg">
           </div>     
   
           <div class="auto-slide fade-pic">
+            <p class="auto-caption">three</p>
             <img class="auto-pic" src="../img/cont/69.jpg">
           </div>  
           
           <div class="auto-slide fade-pic">
+            <p class="auto-caption">four</p>
             <img class="auto-pic" src="../img/cont/68.jpg">
           </div>  
-     
+
+
+
+    
             <div id="auto-left">&#9664;</div>
             <div id="auto-right">&#9654;</div>
   
@@ -317,7 +324,7 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
     reset();
     for (let i = 0; i < allDots.length; i++) {
       if (currentPic === i) {
-        autoImg[i].style.display = 'block';
+        autoImg[i].style.display = 'grid';
         allDots[i].id = 'active-auto';
       } else {
         autoImg[i].style.display = 'none';
@@ -330,7 +337,7 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
   let _loop = function _loop(i) {
     allDots[i].addEventListener('click', function (e) {
       document.body.className = "";
-      if (currentPic === i || e.target.className !== 'dot') {
+      if (currentPic === i || e.target.className !== 'auto-dot') {
         return;
       } else {
         clearInterval(timeInterval);

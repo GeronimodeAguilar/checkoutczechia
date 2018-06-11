@@ -222,7 +222,7 @@ img.sliderimg + img.sliderimg {
 /*javascript typing text animation*/
 
 p {
-  grid-column: 2 / -2;
+  grid-column: 2;
   background: linear-gradient( to top left ,hsla(211, 80%, 80%,1), whitesmoke, hsla(358, 85%, 80%,1));
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-weight: 500;
@@ -681,6 +681,7 @@ input[type=search]:hover {
   background-color: hsla(211, 76%, 78%,0.8);
   padding: 0;
   margin: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,.3);
 }
 
 div.outputItem:hover {
@@ -788,6 +789,7 @@ background-color: hsla(211, 76%, 28%,1);
 box-shadow: 0px 0px 24px rgba(0,0,0,.5);
 transition: all .9s ease-in-out;
  overflow: hidden;
+ cursor: pointer;
  transform: scaleX(1.01) skewX(-5deg) translateX(-1em);
 }
 
@@ -818,6 +820,7 @@ transition: all .9s ease-in-out;
 .drawer.open {
  width: 70vw;
  transform: scale(1.1) skewX(0deg) translateX(0);
+ cursor: default;
 }
 
 /*ANIMATION*/
@@ -1345,12 +1348,13 @@ z-index: 8;
  .auto-slide{
   display: none;
   overflow: hidden;
+  grid-template: 1fr 20fr / 1fr;
 }
 
  .auto-pic{
   grid-column: 1 / -1;
   grid-row: 1 / -1;     
-  display: grid;
+  display: block;
   height: 100vh;
   width: 100%;
 }
@@ -1375,14 +1379,12 @@ z-index: 8;
  #auto-right{
   font-size: 2em;
   font-weight: 900;
-  background: var(--dark);
-  color: var(--light);
   padding: 0.5rem;
   cursor: pointer;
   transition: 0.5s ease;
   z-index: 9;
-  background: #333;
-  color: #DDD;
+  background-color: var(--blue) ;
+  color: whitesmoke;
 }
 
  #auto-left{
@@ -1410,7 +1412,7 @@ z-index: 8;
   place-content: center;   
   gap: 1rem;
   padding: 1em;
-  background-color: var(--lighter);
+  background-color: var(--blue);
   background: none;
   width: auto;
   z-index: 9;   
@@ -1420,17 +1422,38 @@ z-index: 8;
   cursor: pointer;
   height: 2em;
   width: 2em;
-  background-color: gray;
+  background-color: var(--blue);
+  color: whitesmoke;
   border-radius: 0%;
   display: block;
   transition: background-color 0.5s ease;
+  text-align: center;
+  line-height: 160%;
+  font-size: 1em;
+  font-weight: 900;
 }
 
  #active-auto,
  .auto-dot:hover{
+  color: var(--red);
   background-color: white;
 }
 
+p.auto-caption {
+  align-self: start;
+  justify-self: center;
+  grid-column: 1;
+  grid-row: 1;
+  background:  transparent;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 900;
+  font-size: 3em;
+  color: whitesmoke;
+  padding: 10px;
+  margin: 0;
+  border-radius: 10px;
+  z-index: 8;
+}
 
 /*css slider*/
 img.css-pic {
@@ -1523,18 +1546,11 @@ label {
 
 /*Pure JavaScript BackGround Image Slider*/
 
-.background-slider-box {
+.background-slider {
   width:100%;
   height:100vh;
   margin: 0;
-}
-.slider-outer {
-   height:100% !important;
   overflow:hidden;
-}
-.background-slider {
-     width: 100%;
-    height: 100%;
 }
 
 .slide-image{
@@ -1543,26 +1559,34 @@ label {
    display:block;
     color: transparent;
     background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -webkit-background-size: cover;
     background-position: 50% 50%;
     background-repeat: none;
-        display: grid;
-    place-items: center;
-    justify-content: space-around;	
     overflow: hidden;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;  
 }
-.background-slider .slide-item{
-  float:left;
+.background-slide{
+    float:left;
     padding: 0;
     margin: 0;
     display: grid;
-
+    grid-template: 20fr 1fr 20fr / 1fr;
 }
-.clear{
-  clear:both;
+
+.tilted-text {
+    color: hsla(211, 76%, 28%,0.2);  
+    background-color: white;  
+    font-size: 10rem;
+    font-family:  "Georgia";
+    box-shadow: 0 50px 100px rgba(50,50,93,.2), 0 15px 35px rgba(50,50,93,.3), 0 5px 15px rgba(0,0,0,.3); 
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    place-self: center;
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0 1rem 0;
+    margin: 0;
+    z-index: 9;
+    transform: skew(15deg,15deg) rotate(-40deg);
 }
 
 
