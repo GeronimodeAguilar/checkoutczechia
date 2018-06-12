@@ -180,6 +180,35 @@ img.sliderimg + img.sliderimg {
   opacity: 0;
  }
 
+/*Canvas moving pictures*/
+
+#moving-canvas {
+  margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--blue);
+}
+    .framePicture1 {
+  position: absolute; 			
+        display: block;
+        background:  no-repeat center/100% url("../../img/cont/24.jpg");
+}
+    .framePicture2 {
+  position: absolute; 			
+        display: block;
+        background:  no-repeat center/100% url("../../img/cont/25.jpg");
+}
+    .framePicture3 {
+  position: absolute; 			
+        display: block;
+        background:  no-repeat center/100% url("../../img/cont/26.jpg");
+}
+    .framePicture4 {
+  position: absolute; 			
+        display: block;
+        background:  no-repeat center/100% url("../../img/cont/27.jpg");
+}
+
  /*random stacked images*/
 
  @keyframes show-photo {
