@@ -2012,9 +2012,99 @@ span.imgcaption {
   border: 10px solid var(--blue);
 }
 
-/*calendar*/
+/*month calendar*/
 
-.calendar {
+#month-calendar {
+  width: 100%;
+  height:100%;
+  padding: 5px;
+  border: 1px solid var(--blue);
+  background: #FFFFFF;
+  color: var(--blue);
+
+}
+#month-calendar .calendar-navigation {
+  padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 12fr 1fr;
+    place-items: center;
+    justify-content: space-around;	
+  border: 2px solid var(--blue);
+}
+#month-calendar .calendar-navigation button {
+  background: var(--red);
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  padding: 5px 8px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.click-calendar {
+  border: 1px solid var(--blue);
+  background: #F4F4F4;
+  width: 100%;
+  height: auto;
+}
+.calendar-cell {
+  border: 1px solid var(--blue);
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+  transform:  scale(1);  
+}
+.normal {
+  color: var(--blue);
+}
+
+.picked {
+  background: var(--blue);
+}
+#month {
+  display: inline-block;
+}  
+    
+.calendar-cell:hover {
+        background: var(--red);
+        color: whitesmoke;
+      transform:  scale(1.2);  
+    z-index: 8;
+    
+}   
+.highlight-cell { 
+  background: var(--red);   
+  color: whitesmoke; 
+    cursor: pointer;    
+}   
+.pick-date {
+  display: grid;
+  grid-template-columns: 3fr 9fr 1fr;
+  place-items: center;
+  justify-content: space-between;	  
+  border: 1px solid var(--red);
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;    
+}   
+.save-date {
+  color: white;
+  background: var(--red);
+}    
+.reset-dates {
+  background: var(--red);
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  padding: 5px 8px;
+  font-weight: 600;
+  border-radius: 3px;   
+  cursor: pointer;
+    }    
+/* simple-calendar*/
+
+.simple-calendar {
   grid-column: 1 / -1;
   height: auto;
   width: 100%;
@@ -2024,35 +2114,35 @@ span.imgcaption {
   background: whitesmoke;
 }
 
-table {
+.simple-table {
   display: inline-block;
   vertical-align: top;
   margin: 1rem;
 }
 
-td {
+.simple-column {
   text-align: center;
   line-height: 1.75rem;
   width: 1.75rem;
 }
 
-thead td {
+thead .simple-column {
   color: #999;
   font-size: .75rem;
   text-transform: uppercase;
 }
 
-tbody td {
+tbody .simple-column {
   font-size: .875rem;
 }
 
-tbody td:hover {
+tbody .simple-column:hover {
   background-color: #333;
   color: #fff;
   cursor: pointer;
 }
 
-td.before, td.after {
+.simple-column.before, .simple-column.after {
   color: #999;
 }
 

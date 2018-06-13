@@ -291,11 +291,11 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
   let allDots = document.querySelectorAll('.auto-dot');
   let arrowLeft = document.querySelector('#auto-left');
   let arrowRight = document.querySelector('#auto-right');
-  
+  let autoArrowCarrusel = document.querySelector('#showcase');
   let changeSeconds = 5000;
   let timeInterval = setInterval(auto, changeSeconds);
   let currentPic = 0;
-  
+  console.log(autoArrowCarrusel);
   // Skips the first fade animation after page loads 
   // Note: If the CSS animation plays at x seconds, the timeout should be set longer than x seconds. I would add at least 0.5 more seconds just to be safe 
   // Note: This function will disable if the content inside the timeout function was added on any event handler
@@ -412,6 +412,31 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
     clearInterval(timeInterval);
     timeInterval = setInterval(auto, changeSeconds);
   });
+
+function handleKey(e) {
+  if(e.key === 'ArrowLeft') {
+    document.body.className = "";
+    if (currentPic === 0) {
+      currentPic = allDots.length - 1;
+    } else {
+      currentPic--;
+    }
+    start();
+          console.log(e.key);
+        }
+  if(e.key === 'ArrowRight') {
+    document.body.className = "";
+    if (currentPic === allDots.length - 1) {
+      currentPic = 0;
+    } else {
+      currentPic++;
+    }
+    start();
+          console.log(e.key);
+        }
+}  
+
+document.addEventListener('keydown', handleKey);
   
   delay();
   start();

@@ -117,7 +117,7 @@
 <a id='gcw_siteF2iGzWPq4' href='https://freecurrencyrates.com/en/' style="background-color: var(--blue); color:#c9e0f8;">FreeCurrencyRates.com</a>
 </div>
 </div> 
-<div class="calendar"></div>
+<div class="simple-calendar"></div>
   <h3>Geography</h3>
 
   <figure>
@@ -278,14 +278,14 @@
 <script>
   'use strict';
 
-const tableBox = document.querySelector('.calendar');
+const tableBox = document.querySelector('.simple-calendar');
 
 for (var i = 0; i < 12; i++) {
   // create a table for month with thead & tbody
   var table = document.createElement('table');
   var thead = document.createElement('thead');
   var tbody = document.createElement('tbody');
-
+table.classList.add('simple-table');
   // get weeks for a given month
   var calendar = createCalendar(2016, i);
 
@@ -299,6 +299,7 @@ for (var i = 0; i < 12; i++) {
     for (var k = 0; k < week.length; k++) {
       // create table cell for every day
       var td = document.createElement('td');
+      td.classList.add('simple-column');
       var day = week[k];
 
       // set day of month as table cell text content
@@ -316,7 +317,7 @@ for (var i = 0; i < 12; i++) {
   }
 
   // create thead
-  thead.innerHTML = '<tr><td>' + 'Su Mo Tu We Th Fr Sa'.split(' ').join('</td><td>') + '</td></tr>';
+  thead.innerHTML = '<tr><td class="simple-column">' + 'Su Mo Tu We Th Fr Sa'.split(' ').join('</td><td class="simple-column">') + '</td></tr>';
 
   // mount thead & tbody
   table.appendChild(thead);

@@ -187,8 +187,17 @@
 
 <footer>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2058314.3021129183!2d13.57809096500988!3d49.91064209129525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b948fd7dd8243%3A0xf8661c75d3db586f!2sCzechia!5e0!3m2!1sen!2scz!4v1526812826093"></iframe>
-    <a href="http://www.checkczechia.cz/"><img src="../img/lgo/mapxflag.png" alt="map"></a>
-    <a href="https://www.tripadvisor.com/Tourism-g274684-Czech_Republic-Vacations.html">tripadvisor.com</a>
+    <div id="month-calendar">
+      <div class="calendar-navigation">
+          <button id="prev">&#9668</button>
+          <div><span id="month"></span>
+            <span id="year"></span></div>
+          <button id="next">&#9658</button>
+        </div>
+      <table class="click-calendar" id="cal"></table>
+      <div class="pick-date">Dates:<span class="save-date"></span> <button class="reset-dates">&#9986</button> </div>
+      </div> 
+      <a href="http://www.checkczechia.cz/"><img src="../img/lgo/mapxflag.png" alt="map"></a>      
     
 </footer> 
 
@@ -316,6 +325,115 @@ TxtRotate.prototype.tick = function() {
     that.tick();
   }, delta);
 };
+
+/*month calendar*/
+
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+let dateObj = new Date();
+let month = dateObj.getMonth();
+let currMonth = dateObj.getMonth();
+let year = dateObj.getFullYear();
+let currYear = dateObj.getFullYear();
+let table = _('cal');
+let dateBox = document.querySelector('.pick-date');
+let saveDates = document.querySelector('.save-date');
+let resetButton = document.querySelector('.reset-dates');
+_('month').innerHTML = months[month];
+_('year').innerHTML = year;
+_('prev').addEventListener('click', () => trackMonth('prev'));
+_('next').addEventListener('click', () => trackMonth('next'));
+
+function _(id) {
+  return document.getElementById(id);
+}
+
+function trackMonth(dir) {
+  if (dir == 'prev') month -= 1;
+  if (dir == 'next') month += 1;
+  if (month > 11) {
+    month = 0;
+    year += 1;
+  }
+  if (month < 0) {
+    month = 11;
+    year -= 1;
+  }
+  _('month').innerHTML = months[month];
+  _('year').innerHTML = year;
+
+  calender(month, year);
+}
+
+function calender(month, year) {
+
+  let today = dateObj.getDate();
+  let firstDay = new Date(year, month, 1);
+  let startDay = firstDay.getDay();
+  let weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  let monthLength = new Date(year, month + 1, 0).getDate();
+  let html = '';
+
+  // DAYS OF WEEK HEADER
+  html += '<tr>';
+  for (let i = 0; i < weekDays.length; i++) {
+    html += `<td class="table-head calendar-cell">${weekDays[i]}</td>`;
+  }
+  html += '</tr>';
+
+  // CALENDAR PART
+  var count = 0;
+  if (startDay !== 0) {
+    html += `<tr><td class="calendar-cell" colspan="${startDay}"></td>`;
+    count = startDay;
+  }
+  for (var day = 1; day <= monthLength; day++) {
+
+    if (count % 7 === 0) {
+      html += "<tr>";
+    }
+      
+    if (count < today && month == currMonth && year == currYear) {
+      html += "<td class='calendar-cell closed-cell'>" + day + "</td>";
+    } else {
+      html += "<td class='calendar-cell normal'>" + day + "</td>";
+    }
+
+    count++;
+    if (count % 7 === 0) {
+      html += "</tr>";
+    }
+  }
+
+  var blankCells = 7 - count % 7;
+  if (blankCells < 7) {
+    html += `<td class="calendar-cell" colspan="${blankCells}"></td></tr>`;
+  }
+
+  table.innerHTML = html;
+
+}
+      
+function zoomCell(e) {
+let targetCell =  e.target;
+let pickMonth = document.querySelector('#month');  
+let pickYear = document.querySelector('#year');    
+if(targetCell.tagName === "TD" && !targetCell.classList.contains('table-head')) {
+targetCell.classList.toggle('highlight-cell');
+saveDates.innerHTML += ` ${pickMonth.innerHTML} ${targetCell.innerHTML} ${pickYear.innerHTML} ,`  
+}
+}
+
+function resetPicked() {
+    let allCells = document.querySelectorAll('.highlight-cell');
+    allCells.forEach((item) => item.classList.toggle('highlight-cell'))
+    saveDates.innerHTML = ''
+}      
+      
+table.addEventListener('click',zoomCell);      
+resetButton.addEventListener('click', resetPicked);  
+      
+calender(month, year);
 
 </script>
 </body>
