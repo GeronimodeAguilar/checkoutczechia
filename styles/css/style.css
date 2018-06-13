@@ -134,22 +134,25 @@ header {
 }
 
 .logo-box {
+  grid-column: 1;
+  grid-row: 1;
   perspective: 1000px;
   height: 100vh;
   display: grid;
   place-items: center;
   place-content: space-around;
-  background: no-repeat center/100% url("../../img/bkg/orloj-closeup.jpg");
+  z-index: 6;
+ /* background: no-repeat center/100% url("../../img/bkg/orloj-closeup.jpg");*/
 }
 
 .card {
-  width: 700px;
-  height: 700px;
+  width: 100vw;
+  height: 100vh;
   position: relative;
-  background: no-repeat center/100% url("../../img/bkg/orloj-art.png");
+  background: no-repeat center/45% url("../../img/bkg/orloj-art.png");
   border-radius: 3px;
-    z-index: 7;
-    }
+  z-index: 7;
+}
         
 .card:after {
     content: '';
@@ -162,6 +165,51 @@ header {
     box-shadow: 0 30px 20px rgba(0, 0, 0, .3);
   }
 
+ /*moving backgroud animation*/
+
+.animated-background {
+  display: grid;
+  grid: 1fr / 1fr;
+  background-color: var(--blue);
+}
+
+.back-ground {
+  grid-column: 1;
+  grid-row: 1;
+  height: 100vh;
+  width: 100vw;
+  background-image:url("../../img/bkg/orloj-closeup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: background-animation 36s ease-in-out 0s infinite;
+  z-index: 5;
+}
+
+
+@keyframes background-animation {
+  0% {
+    filter: brightness(100%)  contrast(100%);
+    transform: skew(0deg,0deg)  translate3d(0, 0, 0) scale(0.8) rotate(0deg);
+  }
+  25% {
+    filter: brightness(105%) contrast(125%);
+    transform: skew(2deg,-2deg)  translate3d(3vw, 0, 0) scale(0.9) rotate(-2deg);
+  }
+  50% {
+    filter: brightness(110%)  contrast(125%);
+    transform: skew(4deg,-4deg)  translate3d(0, 0, 0) scale(1) rotate(4deg);
+  }
+  75% {
+    filter: brightness(105%)  contrast(125%);
+    transform: skew(2deg,-2deg)  translate3d(-3vw, 0, 0) scale(0.9) rotate(-2deg);
+  }
+  100% {
+    filter: brightness(100%)  contrast(100%);
+    transform: skew(0deg,0deg)  translate3d(0, 0, 0) scale(0.8) rotate(0deg);
+  }
+}
+ 
 
 .carrusel {
   overflow-x: hidden;
@@ -741,8 +789,42 @@ div.outputItem:hover {
     width: 100%;
     font-size: 1em;
     font-weight: 500;
-    padding: 0px;
+    padding: 10px;
     }   
+
+/*autocoplete search*/
+
+ul.suggestions {
+  display: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .4);
+  max-height: 400px;
+  overflow-y: auto;
+}
+ul.has-suggestions {
+	padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: 1em;
+    background-color: hsla(211, 96%, 88%,1);
+    border-radius: 15px;
+    list-style-type: none;
+}
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  color: var(--blue);
+  background-color: hsla(211, 96%, 88%,1);
+  border-radius: 10px;
+}
+.suggestion-item:hover {
+  width: 100%;
+  color: white;
+  background-color: var(--red);
+}
 
 /*simplest css slider*/
 
