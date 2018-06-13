@@ -85,6 +85,26 @@
         </ul>
       </nav>      
 
+<div class="basic-slider">
+        <div class="basic-slide basic-active"><img src="../img/cont/28.jpg" alt="" class="basic-pic"><span class="basic-caption">123</span></div>
+        <div class="basic-slide"><img src="../img/cont/29.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/37.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/30.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/35.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/31.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/39.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/32.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/40.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/33.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/41.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/34.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/42.jpg" alt="" class="basic-pic"><span class="basic-caption">789</span></div>
+        <div class="basic-slide"><img src="../img/cont/35.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <div class="basic-slide"><img src="../img/cont/36.jpg" alt="" class="basic-pic"><span class="basic-caption">456</span></div>
+        <button class="basic-previous">previous</button>
+        <button class="basic-next">next</button>
+</div>  
+
   <figure>
     <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/vysehrad.jpg" alt="">
     <figcaption>Vysehrad</figcaption>
@@ -322,6 +342,31 @@
             framePicture3.draw(pageWidth / 20, pageHeight /20);
     		framePicture4.draw(pageWidth /2, pageHeight - (pageHeight /2));	
       
-      </script>
+/*basic slider*/
+
+var previous = document.querySelector(".basic-previous");
+var next = document.querySelector(".basic-next");
+var slides = document.querySelectorAll(".basic-slide");
+var current = 0;
+
+// Code that moves to the next slide
+next.addEventListener("click", function () {
+  slides[current].classList.remove("basic-active");
+  current ++;
+  if (current === slides.length)
+    current = 0;
+  slides[current].classList.add("basic-active");
+});
+
+// Code that moves to the previous slide
+previous.addEventListener("click", function () {
+  slides[current].classList.remove("basic-active");
+  current --;
+  if (current < 0)
+    current = (slides.length - 1);
+  slides[current].classList.add("basic-active");
+});
+
+</script>
 </body>
 </html>
