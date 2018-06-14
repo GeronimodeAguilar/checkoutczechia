@@ -103,13 +103,37 @@
         </ul>
       </nav>  
 
+   
       <h3>Olomouc</h3>
-
+<div class="panorama-animation-box"></div>
       <p class="hidden">   
 Center of religius institutions throughout centuries. Home of the Arcibishup. Mythical murder location of  Vaclav king of Bohemia.
 
-<div class="panorama-animation-box"></div>
-  
+
+<div class="c-zoom">
+          <div class="c-zoom__thumbnails-list">
+            
+             <div class="c-zoom__thumbnail-item">
+                <a href="#x" class="c-zoom__thumbnail-link">
+                  <img  src="../img/cont/60.jpg" class="c-zoom__thumbnail"/>
+                </a>        
+             </div>
+            
+             <div class="c-zoom__thumbnail-item">
+                <a href="#x" class="c-zoom__thumbnail-link">
+                  <img  src="../img/cont/71.jpg" class="c-zoom__thumbnail"/>
+                </a>        
+             </div>
+            
+             <div class="c-zoom__thumbnail-item">
+                <a href="#x" class="c-zoom__thumbnail-link">
+                  <img  src="../img/cont/73.jpg" class="c-zoom__thumbnail"/>
+                </a>        
+             </div>
+        
+          </div>
+    <div class="c-zoom__zoomed-image"></div>       
+        </div>  
   <h3>History</h3>
 
   <figure>
@@ -295,7 +319,6 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
   let changeSeconds = 5000;
   let timeInterval = setInterval(auto, changeSeconds);
   let currentPic = 0;
-  console.log(autoArrowCarrusel);
   // Skips the first fade animation after page loads 
   // Note: If the CSS animation plays at x seconds, the timeout should be set longer than x seconds. I would add at least 0.5 more seconds just to be safe 
   // Note: This function will disable if the content inside the timeout function was added on any event handler
@@ -422,7 +445,6 @@ function handleKey(e) {
       currentPic--;
     }
     start();
-          console.log(e.key);
         }
   if(e.key === 'ArrowRight') {
     document.body.className = "";
@@ -432,7 +454,6 @@ function handleKey(e) {
       currentPic++;
     }
     start();
-          console.log(e.key);
         }
 }  
 
@@ -440,6 +461,76 @@ document.addEventListener('keydown', handleKey);
   
   delay();
   start();
+
+  /*zoom thumbnail*/
+
+   const thumbContainer = document.querySelector(".c-zoom");
+  const thumbnailsList = thumbContainer.querySelector(".c-zoom__thumbnails-list");
+  const zoomedImageContainer = thumbContainer.querySelector(".c-zoom__zoomed-image");
+  const thumbnailLinks = Array.from(thumbContainer.querySelectorAll(".c-zoom__thumbnail-link"));
+  
+  const THUMBNAIL_IMG_CLASS = "c-zoom__thumbnail";
+  const THUMBNAIL_LINK_CLASS = "c-zoom__thumbnail-link";
+  
+  let activeIndex = 0;
+  
+  zoomedImageContainer.style.backgroundImage = "url(" + thumbnailsList.querySelector("." + THUMBNAIL_IMG_CLASS).src + ")";
+
+  function thumbnailOnClick(e) {
+    let currentClicked = e.target;
+    currentClicked = currentClicked.classList.contains(THUMBNAIL_LINK_CLASS) ?
+                     currentClicked.firstElementChild : currentClicked;
+    
+    if(!currentClicked.classList.contains(THUMBNAIL_IMG_CLASS)) { return; }
+
+    zoomedImageContainer.style.backgroundImage = "url(" + currentClicked.src + ")";
+
+    //e.preventDefault(); // preventing click on the anchor <a>
+  };
+  
+  
+  function onMouseEnter(e) { 
+    zoomedImageContainer.style.backgroundSize = "150%";
+  };
+  
+  function onMouseLeave(e) {
+    zoomedImageContainer.style.backgroundSize = "cover";
+    zoomedImageContainer.style.backgroundPosition = "center";
+  };
+  
+  function onMouseMove(e) {
+    const zoomedElem = e.target;
+    
+    let mouseX = e.clientX || e.changedTouches[0].pageX;
+    let mouseY = e.clientY || e.changedTouches[0].pageY;
+    
+    let moveX = Math.round(100 / (zoomedElem.clientWidth / mouseX));
+    let moveY = Math.round(100 / (zoomedElem.clientHeight / mouseY));
+
+    requestAnimationFrame(function() { setZoomedImagePosition(moveX, moveY) });
+  };
+  
+  /*
+  * Set Zoomed image's background position
+  * @param {Number} x - X value for the background position.
+  * @param {Number} y - Y value for the background position.
+  */
+  function setZoomedImagePosition(x, y) {
+    zoomedImageContainer.style.backgroundPosition = x + "% " + y + "%"; 
+  };
+
+  thumbnailsList.addEventListener("click", thumbnailOnClick);
+  
+  zoomedImageContainer.addEventListener("mouseenter", onMouseEnter);
+  zoomedImageContainer.addEventListener("mouseleave", onMouseLeave);
+  zoomedImageContainer.addEventListener("mousemove", onMouseMove);
+  
+  zoomedImageContainer.addEventListener("touchstart", onMouseEnter);
+  zoomedImageContainer.addEventListener("touchmove", onMouseMove);
+   
+  zoomedImageContainer.addEventListener("touchend", onMouseLeave);
+  zoomedImageContainer.addEventListener("touchcancel", onMouseLeave);    
+
       </script>   
 </body>
 </html>

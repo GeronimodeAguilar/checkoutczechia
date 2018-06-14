@@ -1385,7 +1385,78 @@ transition: all 0.5s ease-in-out;
     grid-area: cube6;
 } #cube7 {
     grid-area: cube7;
-}        
+}    
+
+/*zoom thumbnail*/
+
+.c-zoom {
+  grid-column: 2;
+  display: grid;
+    grid: 1fr 3fr / 1fr;
+  margin: 0;
+      height: 100vh;
+}
+
+.c-zoom__thumbnails-list {
+    display: grid;
+    grid: 1fr / repeat(3,1fr);
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-zoom__thumbnail-item { 
+    overflow: hidden;
+}
+
+.c-zoom__thumbnail-link {
+  display: block;
+  padding: 0;
+}
+
+.c-zoom__thumbnail-link:focus {
+  background: var(--blue);
+}
+
+.c-zoom__thumbnail {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+  .c-zoom__zoomed-image {
+    position: relative;
+    display: inherit;
+    flex: 1;
+    flex-basis: 150%;
+    background-color: hsla(211, 76%, 28%,1);
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: move;
+    filter:  grayscale(50%);  
+  }
+  
+  .c-zoom__zoomed-image::before {
+      content: "Hover Over";
+      position: absolute;
+      left: 0; top: 0;
+      display: grid;
+      place-items: center;
+      width: 100%; 
+      height: 100%;
+      font-size: 4em;
+      color: white;
+      background: hsla(211, 76%, 28%,0.1);
+  }
+
+  .c-zoom__zoomed-image:hover::before {
+    content: none;
+  }
+    
+  .c-zoom__zoomed-image:hover {
+    content: none;
+          filter:  grayscale(0);  
+  }  
 
 /*Thumbnail slider*/
 
