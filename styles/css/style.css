@@ -22,6 +22,7 @@ body {
   letter-spacing: -1px;
   margin: 0;
   padding: 0;
+  /*  font-size: calc(20px + (30 - 20) * (100vw - 300px) / (700 - 300) );*/ 
 }
 
 .wrapsite {
@@ -131,6 +132,93 @@ header {
   to {
     background-position: -1000px 0;
   }
+}
+
+/*Css-only moving title*/
+
+.animate-text-box {
+grid-column: 1 / -1;  
+grid-row: 1/ -1;
+position: relative;
+display: grid;
+grid: 1fr 1fr / 1fr 1fr;  
+width: 100vw;  
+min-height: 99vh;
+background: no-repeat center/100% url("../../img/bkg/gateway-to-the-cz.jpg");  
+  background-size: cover;
+background-color:  var(--blue);
+background-attachment: fixed;
+//background-blend-mode: luminosity;
+perspective: 1500px;
+}
+
+.hidden-transform-area {
+width: 100%;
+height: 100%;
+opacity: 0;
+z-index: 1;
+}
+
+.hidden-transform-area:hover {
+transform: translateZ(500px);
+}
+
+.left-top-cube {
+grid-area: 1 / 1 / 1 / 1;     
+background: blue;
+}
+
+.right-top-cube {
+grid-area: 1 / 2 / 1 / 2;     
+background: yellow;
+}
+
+.right-bottom-cube {
+grid-area: 2 / 1 / 2 / 1;     
+background: green;
+}
+
+.left-bottom-cube {
+grid-area: 2 / 2 / 2 / 2;     
+background: orange;
+}
+
+.main-title {
+color: aliceblue;
+grid-column: 1 / -1;   
+grid-row: 1 / -1;   
+place-self: center;
+user-select: none;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, .7);
+transition-property: transform, transform-origin;
+transition-duration: .9s;
+transition-timing-function: ease-in-out;
+}
+
+.left-top-cube:hover ~ .main-title {
+transform-origin: right bottom;
+transform: rotateX(5deg) rotateY(-5deg) translateZ(0);
+}
+
+.right-top-cube:hover ~ .main-title {
+transform-origin: left bottom;
+transform: rotateX(5deg) rotateY(5deg) translateZ(0);
+}
+
+.right-bottom-cube:hover ~ .main-title {
+transform-origin: left top;
+transform: rotateX(-5deg) rotateY(5deg) translateZ(0);
+}
+
+.left-bottom-cube:hover ~ .main-title {
+transform-origin: right top;
+transform: rotateX(-5deg) rotateY(-5deg) translateZ(0);
+}
+
+.css-card {
+  width: 70vw;
+  height: 70vh;
 }
 
 .logo-box {
