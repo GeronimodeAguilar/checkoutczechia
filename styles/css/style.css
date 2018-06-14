@@ -2604,6 +2604,18 @@ animation: fade-in 1.4s;
 	}
 }
 
+/*mouse reveal Img*/
+
+.mouse-reveal-box {
+  grid-column: 1 / -1;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(circle at calc(var(--mouse-x, 1) * 100%) calc(var(--mouse-y, 0.5) * 100%),
+   transparent 20%, var(--blue) 30%), url("../../img/bkg/prague-night-pano.jpg");
+    background-size: cover;
+} 
+
+
 /* Quote effect*/
 
 blockquote {

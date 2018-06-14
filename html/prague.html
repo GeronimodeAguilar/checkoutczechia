@@ -134,11 +134,9 @@
     <p class="hidden">
         The city is traditionally one of the cultural centres of Europe, hosting many cultural events. Some of the significant cultural institutions include the National Theatre (Národní Divadlo) and the Estates Theatre (Stavovské or Tylovo or Nosticovo divadlo), where the premières of Mozart's Don Giovanni and La clemenza di Tito were held. Other major cultural institutions are the Rudolfinum which is home to the Czech Philharmonic Orchestra and the Municipal House which is home to the Prague Symphony Orchestra. The Prague State Opera (Státní opera) performs at the Smetana Theatre.</p>
 
-    <figure>
-      <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/118.jpg" alt="">
-      <figcaption>Vysehrad</figcaption>
-    </figure>
-          
+
+    <div class="mouse-reveal-box"></div>  
+
     <p class="hidden">
         The city has many world-class museums, including the National Museum (Národní muzeum), the Museum of the Capital City of Prague, the Jewish Museum in Prague, the Alfons Mucha Museum, the African-Prague Museum, the Museum of Decorative Arts in Prague, the Náprstek Museum (Náprstkovo Muzeum), the Josef Sudek Gallery and The Josef Sudek Studio, the National Library and the National Gallery, which manages the largest collection of art in the Czech Republic.
         
@@ -302,6 +300,19 @@ function tick() {
 }
 
 let timeout = window.setTimeout(tick, worddelay);
+
+/*mouse reveal Img*/
+
+var mouseRevealBox = document.querySelector(".mouse-reveal-box");
+
+mouseRevealBox.addEventListener("mousemove", function (e) {
+  var xVal = e.clientX / mouseRevealBox.clientWidth;
+  var yVal = e.clientY / mouseRevealBox.clientHeight;
+
+  mouseRevealBox.style.setProperty("--mouse-x", xVal);
+  mouseRevealBox.style.setProperty("--mouse-y", yVal);
+});
+
 
 /*reveal on mouseover*/
 
