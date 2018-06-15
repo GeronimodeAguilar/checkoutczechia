@@ -144,24 +144,36 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
     <p class="hidden">
         During the thousand years of its existence, the city grew from a settlement stretching from Prague Castle in the north to the fort of Vyšehrad in the south, becoming the capital of a modern European country, the Czech Republic, a member state of the European Union..</p>
 
-    <figure>
-      <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/156.jpg" alt="">
-      <figcaption>Catholic Church Stare Mesto</figcaption>
-    </figure>
-
-    <p class="hidden">
-        The city is traditionally one of the cultural centres of Europe, hosting many cultural events. Some of the significant cultural institutions include the National Theatre (Národní Divadlo) and the Estates Theatre (Stavovské or Tylovo or Nosticovo divadlo), where the premières of Mozart's Don Giovanni and La clemenza di Tito were held. Other major cultural institutions are the Rudolfinum which is home to the Czech Philharmonic Orchestra and the Municipal House which is home to the Prague Symphony Orchestra. The Prague State Opera (Státní opera) performs at the Smetana Theatre.</p>
-
-    <figure>
-      <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/118.jpg" alt="">
-      <figcaption>Vysehrad</figcaption>
-    </figure>
-          
-    <p class="hidden">
-        The city has many world-class museums, including the National Museum (Národní muzeum), the Museum of the Capital City of Prague, the Jewish Museum in Prague, the Alfons Mucha Museum, the African-Prague Museum, the Museum of Decorative Arts in Prague, the Náprstek Museum (Náprstkovo Muzeum), the Josef Sudek Gallery and The Josef Sudek Studio, the National Library and the National Gallery, which manages the largest collection of art in the Czech Republic.
+        <div class="gallery-list" id="gallery-list-wrap">
+            <div class="list__item"><img src="../img/cont/77.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/78.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/79.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/80.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/81.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/82.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/83.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/84.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/85.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/86.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/87.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/88.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/89.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/90.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/74.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/75.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/76.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/97.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/91.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/92.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/93.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/94.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/95.jpg" alt="" class="list-pic"></div>
+            <div class="list__item"><img src="../img/cont/96.jpg" alt="" class="list-pic"></div>
+            </div>
+            <div class="butt-wrap">
+              <button id="activate-gallery-button" class="activate-gallery">CLICK ME</button>
+            </div> 
         
-        There are hundreds of concert halls, galleries, cinemas and music clubs in the city. It hosts music festivals including the Prague Spring International Music Festival, the Prague Autumn International Music Festival, the Prague International Organ Festival and the Prague International Jazz Festival. Film festivals include the Febiofest, the One World Film Festival and Echoes of the Karlovy Vary International Film Festival. The city also hosts the Prague Writers' Festival, the Prague Folklore Days, Prague Advent Choral Meeting the Summer Shakespeare Festival,[54] the Prague Fringe Festival, the World Roma Festival, as well as the hundreds of Vernissages and fashion shows.</p>  
-  
         <div id="showcase">
               
           <div class="auto-slide fade-pic">
@@ -307,6 +319,35 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
             }, interval(text[n - 1]));
           } 
         }
+
+/*change-class-iteartion-gallery*/
+
+    let goButton = document.getElementById("activate-gallery-button");
+goButton.addEventListener("click", function(e) {
+    showUp();
+});
+
+
+function showUp(elements, speed, addingClass) {
+  // default
+  defaults = {
+    speed: speed || 250,
+    elements: elements || ".list__item",
+    addingClass: addingClass || "expand"
+    }
+  
+   function addClass (listItemS, speed, addingClass) {
+      return setTimeout(function() {
+        listItemS.classList.toggle(addingClass);
+      }, speed * i);
+   };
+  
+     let list = document.querySelectorAll(defaults.elements);
+     for (var i = 0; i < list.length; i++) {
+        let listItems = list[i];
+        addClass(listItems, defaults.speed, defaults.addingClass);
+    }
+};
 
 /*auto arrow slider*/
     

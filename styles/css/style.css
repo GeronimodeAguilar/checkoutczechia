@@ -1695,7 +1695,55 @@ z-index: 8;
   border-radius: 1em;
 }
 
-/*Direction Aware Hover Effects */
+/*change-class-iteartion-gallery*/
+
+.list__item.expand {
+  width: 20vw;
+height: 20vw;
+}
+
+.gallery-list {
+grid-column: 1 / -1;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+place-content: space-around;	
+gap: 1em;    
+text-align: center;
+margin: 0px;
+padding: 0;
+}
+
+.list__item {
+  display: grid;
+  place-items: center;
+width: 0vw;
+height: 0vh;
+background-color: MediumSeaGreen;
+transition: all 0.9s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+color: white;
+overflow: hidden;
+}
+      
+.list-pic {
+width: 100%;
+height: 100%;
+      }       
+
+.activate-gallery {
+  grid-column: 1 / -1;
+text-align: center;
+display: inline-block;
+background-color: var(--blue);
+border: none; 
+color: white; 
+cursor: pointer;
+font-size: 3em;
+transition: all 200ms ease-in-out;
+width: 100%;
+height: 5%;
+}
+
+/*Direction Aware Hover Effects Gallery*/
 
 .c-gallery {
   grid-column: 1 / -1;
