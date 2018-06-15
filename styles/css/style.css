@@ -155,8 +155,26 @@ background: no-repeat center/100% url("../../img/bkg/gateway-to-the-cz.jpg");
   background-size: cover;
 background-color:  var(--blue);
 background-attachment: fixed;
-//background-blend-mode: luminosity;
 perspective: 1500px;
+animation: rotate-logo 30s linear infinite;
+}
+
+@keyframes rotate-logo {
+    0% { transform: rotate(0) scale(1);
+      filter: contrast(100%)    
+    }
+    
+    25% { transform: rotate(1deg) scale(1.1);}
+    
+    50% { transform: rotate(0) scale(1);
+          filter: contrast(150%);
+    }
+
+    75% { transform: rotate(-1deg) scale(1.1);}
+
+    100% { transform: rotate(0) scale(1);
+      filter: contrast(100%)    
+    }
 }
 
 .hidden-transform-area {
