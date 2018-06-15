@@ -96,6 +96,13 @@ header {
   overflow: hidden;
 }
 
+.scroll-indicator {
+  grid-column: 1 / -1;
+  height: 1vh;
+  margin: 0;
+  background-color: var(--red);
+}
+
 .headervideo {
   max-width: 1280px;
   z-index: 1;
@@ -1669,6 +1676,77 @@ z-index: 8;
   color: whitesmoke;
   border-radius: 1em;
 }
+
+/*Background-Segments-Effect-edit*/
+
+.segment-bg {
+  display: grid;
+  grid: repeat(10, 1fr) / repeat(10, 1fr); 
+  grid-column: 1 / -1;    
+  height: 100vh;
+  width: 100vw;
+  transform-style: preserve-3d;
+  perspective: 70px;
+  overflow: hidden;
+}
+
+.segment-bg, 
+.segment-bg__item:after {
+  background-image: url('../../img/bkg/olomouc-alianz.jpg');
+  background-attachment: fixed;
+  background-position: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.segment-bg__item--left-top,
+.segment-bg__item--left-center,
+.segment-bg__item--left-bottom {
+  position: absolute;
+  height: 40vh;
+  width: 40vw;
+  animation: hover-peaces 5s ease-out forwards;
+}
+
+.segment-bg__item--left-top {
+grid-area: 5 / 2 / 7 / 4;
+}
+
+.segment-bg__item--left-center {
+grid-area: 7 / 6 / 9 / 8;
+}
+
+.segment-bg__item--left-bottom {
+grid-area: 2 / 5 / 4 / 7;
+}
+
+.segment-bg__item--left-top:after,
+.segment-bg__item--left-center:after,
+.segment-bg__item--left-bottom:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes hover-peaces { 
+
+  0% {
+    transform: translateZ(0);
+    box-shadow: none;
+  }
+  
+  50% {
+    transform: translateZ(5px);
+    box-shadow: none;
+   }
+  
+  100% {
+    transform: translateZ(10px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, .7);
+  }
+
+} 
 
 /*Auto arrow slider*/
 #showcase{

@@ -83,6 +83,7 @@
             </div>
           </li>
         </ul>
+        <div class="scroll-indicator"></div>
       </nav>  
       
 <div class="info-plugins">
@@ -279,7 +280,18 @@
 </ul>
       </div>
 <script>
-  'use strict';
+  'use strict'
+
+/*scroll indicator*/
+
+function indicateScroll() {
+  let scrollIndicator = document.querySelector(".scroll-indicator");
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (window.pageYOffset / height) * 100;
+scrollIndicator.style.width = scrolled + "%";
+}
+
+window.addEventListener('scroll', indicateScroll ); 
 
 const tableBox = document.querySelector('.simple-calendar');
 
