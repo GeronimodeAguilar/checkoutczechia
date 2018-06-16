@@ -98,12 +98,36 @@
         </ul>
       </nav>  
 
-  <figure>
-    <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/vysehrad.jpg" alt="">
-    <figcaption>Vysehrad</figcaption>
-  </figure>
-
-  <h3>Geography</h3>
+      <div class="stacked-wrapper">
+        <div class="stacked-box">
+          
+          <figure class="card-stack first-card">
+            <img src="../img/bkg/olomouc-street.jpg" class="card-stack__image" />
+            <figcaption class="card-stack__caption">Peak</figcaption>
+          </figure> 
+          
+          <figure class="card-stack second-card">
+            <img src="../img/bkg/velehrad-chapel.jpg" class="card-stack__image" />
+            <figcaption class="card-stack__caption">Ontario</figcaption>
+          </figure>
+          
+          <figure class="card-stack third-card">
+            <img src="../img/bkg/cross-velehrad.jpg" class="card-stack__image" />
+            <figcaption class="card-stack__caption">Peak</figcaption>
+          </figure>
+          
+              <figure class="card-stack fourth-card">
+            <img src="../img/bkg/trees-chapel.jpg" class="card-stack__image" />
+            <figcaption class="card-stack__caption">Peak</figcaption>
+          </figure> 
+          
+          <figure class="card-stack fifth-card">
+            <img src="../img/bkg/vankovka-skybridge.jpg" class="card-stack__image" />
+            <figcaption class="card-stack__caption">Ontario</figcaption>
+          </figure>
+      
+      </div>
+    </div>
 
   <figure>
     <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/zlin-TGM-statue.jpg" alt="">
@@ -263,5 +287,37 @@
 </ul>
       </div>
 
+      <div class="modal-wrap-closed">
+        <button class="close-img-modal">&#10006;</button>
+         <img src="../img/cont/163.jpg" alt="" class="modal-hidden-pic">
+     </div>
+     
+     <script>
+     const stackedBox = document.querySelector('.stacked-box');
+     const hiddenModalPic = document.querySelector('.modal-hidden-pic');    
+     let cards = document.querySelectorAll('.card-stack');
+     let closeModalButton = document.querySelector('.close-img-modal');
+     let modalWrap = document.querySelector('.modal-wrap-closed');    
+         
+         
+     function fullSizeCard(e) {
+     if(e.target.classList.contains('card-stack__image')) {  
+     modalWrap.classList.toggle('modal-wrap');
+     modalWrap.style.display = 'grid';    
+     hiddenModalPic.src = e.target.src;  
+     hiddenModalPic.classList.add('modal-full-pic')    
+     }
+     }  
+         
+     function closeFullModal(e) {
+         e.target.parentElement.classList.toggle('modal-wrap');
+         modalWrap.style.display = 'none';
+         hiddenModalPic.classList.remove('modal-full-pic')   
+     }    
+         
+     stackedBox.addEventListener('click', fullSizeCard);          
+     closeModalButton.addEventListener('click', closeFullModal);    
+       
+          </script>  
 </body>
 </html>

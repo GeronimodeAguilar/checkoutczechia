@@ -431,7 +431,7 @@ p {
   background: linear-gradient( to right , white 50%, var(--red) 50%);
   border-radius: 10px;
   border: 5px solid var(--blue);
-  z-index: 99;
+  z-index: 6;
   cursor: pointer;
   font-size: 3em;
   font-weight: 900;
@@ -586,7 +586,7 @@ a.toggle {
   padding: 2px;
   border-radius: 10px;
   border: 5px solid var(--blue);
-  z-index: 99;
+  z-index: 9;
 }
 
 .toggle-content {
@@ -605,11 +605,12 @@ a.toggle {
   right: 0;
   position: fixed;
   background: no-repeat center/100% url("../../img/bkg/flag-fabric.svg");
-z-index: 11;
+z-index: 8;
 padding: 0;
 margin: 0;
 display: grid;
-height: 100%;
+width: 100vw;
+height: 100vh;  
 }
 
 .mobile-menu {
@@ -696,7 +697,7 @@ nav {
   grid-column: 1 / -1;
   transition:all 0.7s;
   position: relative;
-  z-index: 9;
+  z-index: 6;
 }
 
 body.fixed-nav nav {
@@ -1636,6 +1637,144 @@ padding: 0px;
 border-radius: 0px;
 z-index: 8;
 }
+
+/*postcards gallery*/
+
+.stacked-wrapper {
+  display: grid;
+    place-items: center;
+      width: 100%;
+  height: 100%;
+        }        
+        
+.stacked-box {
+  grid-column: 1 / -1;
+  position: relative;
+  width: 60vw;
+  display: grid;
+  place-self: center;
+  height: 60vh;
+}
+
+
+.stacked-wrapper {
+  grid-column: 1 / -1;
+  display: grid;
+    place-items: center;
+      width: 100vw;
+  height: 100vh;
+        }  
+
+.card-stack {
+  width: 65vw;
+  height: 65vh;
+  display: grid;
+  grid: repeat(10, 6vh)/ repeat(10, 6vw);
+  position: absolute;
+  padding: 1em;
+  background: hsla(211, 76%, 88%,1);;
+  border: 1px solid var(--blue);
+  border-radius: .1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+  transform-origin: center 70vw;
+  transition: transform .4s ease-in-out;
+  cursor: pointer;
+}
+
+.card-stack__caption {
+grid-area: 1 / 9 / 10/ 10;
+transform: rotate(90deg) translate(25vh,13vw);
+text-align: center;
+text-align: center;
+font-size: 2em;
+font-weight: 900;
+padding: 0px;
+color: white;
+background-color: var(--blue);
+width: 66vh;
+height: 10vh;
+border-radius: 10px 10px 0 0;
+}
+
+.card-stack__image {
+  grid-area: 1 / 1 / 10 / 10; 
+  width: 60vw;
+  height: 60vh;
+}
+
+.card-stack.first-card {
+  transform: rotate(2deg);
+}
+        
+.card-stack.second-card {
+  transform: rotate(1deg);
+}
+
+.card-stack.fourth-card {
+  transform: rotate(-1deg);
+}
+    
+.card-stack.fifth-card {
+  transform: rotate(-2deg);
+}        
+
+.stacked-box:hover .card-stack.first-card{
+  transform: rotate(20deg);
+}
+        
+.stacked-box:hover .card-stack.second-card {
+  transform: rotate(10deg);
+}
+
+.stacked-box:hover .card-stack.fourth-card{
+  transform: rotate(-10deg);
+}
+        
+.stacked-box:hover .card-stack.fifth-card {
+  transform: rotate(-20deg);
+}        
+
+.card-stack:hover {
+  z-index: 1;
+}
+
+.modal-wrap {
+  width: 100vw;
+  height: 100vh;  
+  display: grid;
+  grid: repeat(10, 1fr) / repeat(10, 1fr);
+  z-index: 19;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+      
+.modal-wrap-closed {
+  display: none;
+}        
+      
+.close-img-modal {
+grid-area: 2 / 9 / 2 / 9;
+background: red;
+  color: snow;
+  border: none;
+outline: none;
+padding: 0em;
+  font-size: 4em;
+font-weight: 900;
+border-radius: 20%;
+cursor: pointer;      
+  z-index: 11;
+}
+
+.modal-full-pic {
+  grid-area: 1 / 1 / 10 / 10;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}     
 
 /*random effects image gallery*/
 
