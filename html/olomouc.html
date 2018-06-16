@@ -170,9 +170,6 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
             <div class="list__item"><img src="../img/cont/95.jpg" alt="" class="list-pic"></div>
             <div class="list__item"><img src="../img/cont/96.jpg" alt="" class="list-pic"></div>
             </div>
-            <div class="butt-wrap">
-              <button id="activate-gallery-button" class="activate-gallery">CLICK ME</button>
-            </div> 
         
         <div id="showcase">
               
@@ -322,32 +319,33 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
 
 /*change-class-iteartion-gallery*/
 
-    let goButton = document.getElementById("activate-gallery-button");
-goButton.addEventListener("click", function(e) {
-    showUp();
-});
-
+let iteartionGallery = document.querySelector('.gallery-list');
 
 function showUp(elements, speed, addingClass) {
-  // default
-  defaults = {
-    speed: speed || 250,
-    elements: elements || ".list__item",
-    addingClass: addingClass || "expand"
-    }
   
-   function addClass (listItemS, speed, addingClass) {
+   function addClass (listItemS) {
       return setTimeout(function() {
-        listItemS.classList.toggle(addingClass);
-      }, speed * i);
+        listItemS.classList.add('expand');
+      }, 200 * i);
    };
   
-     let list = document.querySelectorAll(defaults.elements);
+     let list = document.querySelectorAll('.list__item');
      for (var i = 0; i < list.length; i++) {
         let listItems = list[i];
-        addClass(listItems, defaults.speed, defaults.addingClass);
+        addClass(listItems);
     }
 };
+
+function activateGalleryIteration(e) {
+  if(iteartionGallery.getBoundingClientRect().top < 400) {
+    showUp();
+    window.removeEventListener('scroll', activateGalleryIteration);
+  }
+}
+
+window.addEventListener('scroll', activateGalleryIteration);
+
+
 
 /*auto arrow slider*/
     
