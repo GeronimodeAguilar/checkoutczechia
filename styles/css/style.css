@@ -16,13 +16,12 @@ html {
 }
 
 body {
-  background: /*url("../../img/bkg/flag-fabric.svg"),*/
-    linear-gradient(45deg , var(--red), var(--blue),white);
+  background: linear-gradient(45deg , hsla(358, 83%, 86%,1), white, hsla(211, 86%, 88%,1));
   background-size: 100%;
   letter-spacing: -1px;
   margin: 0;
   padding: 0;
-  /*  font-size: calc(20px + (30 - 20) * (100vw - 300px) / (700 - 300) );*/ 
+  /*  font-size: calc(20px + (30 - 20) * (100vw - 300px) / (700 - 300) );*/ /*url("../../img/bkg/flag-fabric.svg"),*/
 }
 
 .wrapsite {
@@ -36,6 +35,16 @@ body {
     overflow: hidden;
 }
 
+p {
+  grid-column: 2;
+  background: linear-gradient( to top left ,hsla(358, 90%, 95%,1), whitesmoke, hsla(211, 90%, 90%,1));
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: hsla(211, 76%, 20%,1);
+  padding: 20px;
+  border-radius: 10px;
+}
 
 h1,
 h2,
@@ -160,20 +169,19 @@ animation: rotate-logo 30s linear infinite;
 }
 
 @keyframes rotate-logo {
-    0% { transform: rotate(0) scale(1);
-      filter: contrast(100%)    
+    0% { transform: rotate(0) scale(1);  
     }
     
-    25% { transform: rotate(1deg) scale(1.1);}
+    25% { transform: rotate(1deg) scale(1.1);
+    }
     
     50% { transform: rotate(0) scale(1);
-          filter: contrast(150%);
     }
 
     75% { transform: rotate(-1deg) scale(1.1);}
 
     100% { transform: rotate(0) scale(1);
-      filter: contrast(100%)    
+
     }
 }
 
@@ -410,17 +418,6 @@ img.sliderimg + img.sliderimg {
 }
 
 /*javascript typing text animation*/
-
-p {
-  grid-column: 2;
-  background: linear-gradient( to top left ,hsla(211, 80%, 80%,1), whitesmoke, hsla(358, 85%, 80%,1));
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-weight: 500;
-  font-size: 1em;
-  color: var(--blue);
-  padding: 20px;
-  border-radius: 10px;
-}
 
 .toTop {
   display: none;
