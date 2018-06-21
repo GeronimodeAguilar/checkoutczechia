@@ -36,7 +36,7 @@
           <img src="../img/cont/220.jpg" id="gridpic9" alt="" class="grid-image">
           <img src="../img/cont/213.jpg" id="gridpic10" alt="" class="grid-image">
       
-            <blockquote contenteditable="true">Brno : Moravian metropolis</blockquote>    
+            <blockquote class="header-title" contenteditable="true">Brno : Moravian metropolis</blockquote>    
       </div>       
       
      
@@ -689,6 +689,10 @@
       <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/corner-flag.jpg" alt="">
       <figcaption>Vysehrad</figcaption>
     </figure>
+
+    <div class="loupe-box">
+      <img class="loupe-pic" src="../img/cont/248.jpg"/>
+      </div>
           
     <p class="hidden">
     Czechoslovakia remained the only democracy in this part of Europe in the interwar period.[22] However, the Czech part of Czechoslovakia was occupied by Germany in World War II, while the Slovak region became the Slovak Republic; Czechoslovakia was liberated in 1945 by the armies of the Soviet Union and the United States. The Czech country lost the majority of its German-speaking inhabitants after they were expelled following the war. The Communist Party of Czechoslovakia won the 1946 elections and after the 1948 coup d'état, Czechoslovakia became a one-party communist state under Soviet influence. In 1968, increasing dissatisfaction with the regime culminated in a reform movement known as the Prague Spring, which ended in a Soviet-led invasion. Czechoslovakia remained occupied until the 1989 Velvet Revolution, when the communist regime collapsed and market economy was reintroduced. On 1 January 1993, Czechoslovakia peacefully dissolved, with its constituent states becoming the independent states of the Czech Republic and Slovakia. The Czech Republic joined NATO in 1999 and the EU in 2004.</p>  
@@ -931,6 +935,59 @@ function openPanel(e) {
 }    
     
 drawerBox.addEventListener('click',openPanel);    
+
+
+/* Magnifying Glass*/
+
+const loupeBox = document.querySelector('.loupe-pic')
+        const magnification = 3;
+        const magnifierSize = '200px';
+
+        creeLoupe = function(e) {    
+        const imgTarget = e.target;
+        targetStyle = imgTarget.style;
+        let loupe =  document.createElement('div');
+        document.body.appendChild(loupe);
+        styleLoupe = loupe.style,
+        bBox = loupeBox.getBoundingClientRect(),
+        bodyElt = document.body,
+        imagePos = {
+            top: bBox.top + pageYOffset,
+            left: bBox.left + window.pageXOffset
+        },
+        magnifyOffset = parseInt( magnifierSize ) / 2,
+        rightSide = +(imagePos.left + imgTarget.width),
+        bottomSide = +(imagePos.top + imgTarget.height),
+        moveLoupe = function(e) {
+          if ( e.pageX < +(imagePos.left - magnifyOffset / 99) 
+            || e.pageX > +(rightSide + magnifyOffset / 99) 
+            || e.pageY < +(imagePos.top - magnifyOffset / 99) 
+            || e.pageY > +(bottomSide + magnifyOffset / 99)) {
+                let loupeGlass = document.querySelector('.magnify');
+                document.removeEventListener('mousemove', moveLoupe);
+                if(document.querySelector('.magnify')) loupeGlass.remove();
+          } else {
+          
+            styleLoupe.left = e.pageX - magnifyOffset + 'px';
+            styleLoupe.top = e.pageY - magnifyOffset + 'px';
+            styleLoupe.backgroundPosition = [ - ((e.pageX - imagePos.left) * magnification - magnifyOffset), 'px ', -((e.pageY - imagePos.top) * magnification - magnifyOffset), "px"].join('');
+          }
+        };        
+      
+      loupe.classList.add('magnify');
+      
+      styleLoupe.backgroundSize = imgTarget.width * magnification + 'px ' + imgTarget.height * magnification + "px";
+      styleLoupe.backgroundImage = 'url(' + imgTarget.src + ')';
+      styleLoupe.width = magnifierSize;
+      styleLoupe.height = magnifierSize;
+
+      document.addEventListener('mousemove', moveLoupe);
+
+      return loupe;
+      }
+
+      loupeBox.addEventListener('mouseover', creeLoupe);
+
 
       </script>
 </body>
