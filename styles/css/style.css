@@ -116,6 +116,16 @@ header {
   overflow: hidden;
 }
 
+header.template {
+  display: grid;
+  grid: repeat(10, 10vh) / repeat(10, 10vw);
+  background: no-repeat center/100% url("../../img/bkg/charles-bridge-blue_compressed.jpg");
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .scroll-indicator {
   grid-column: 1 / -1;
   height: 1vh;
@@ -464,71 +474,28 @@ img.sliderimg + img.sliderimg {
   transform: rotate(180deg);
 }
 
-/*four-squares animation*/
+.down-flag {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  grid-area: 8 / 5 / 10 / 6;
+  background-color: transparent;
+  z-index: 8;
+  cursor: pointer;
+  transform: translateY(0vh);
+  transition: all 2.9s ease-in-out;
+  opacity: 0.6;
+  border-radius: 5px;
+  border: 1px solid hsla(0, 0%, 100%,0.6);
+  background-color: transparent;
+}
 
+.down-flag-move {
+  transform: translateY(3vh);
+  opacity: 0.9;
+}
 
-.color-container {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-display: grid; 
-grid-template-columns: 20fr 1fr 8fr 1fr 20fr;
-grid-template-rows: 30fr 1fr 8fr 1fr;
-        width: 100vw;
-        height: 100vh;
-        background: none;
-        overflow: hidden;
-    }
-
-    .squareitem {
-      z-index: 2;
-      width: 0; 
-      height: 0;
-      border-top: 2em  solid var(--blue);
-      border-left: 1em  solid transparent; 
-      border-right: 1em solid transparent; 
-      background: none;
-      position: relative;
-      transition: transform 1.8s ease-in-out;
-      }
-
-    
-    .top-right {
-        grid-column: 4;
-        grid-row: 2;
-    }
-    
-    .top-right-expand {
-        transform: translateY(15px);
-    }
-
-    .top-left {
-        grid-column: 2;
-        grid-row: 2;
-    }
-    
-    .top-left-expand {
-        transform: translateY(15px);
-    }
-    
-    .bottom-left {
-        grid-column: 2;
-        grid-row: 4;
-    }
-    
-    .bottom-left-expand {
-        transform: translateY(15px);
-    }
-    
-    .bottom-right {
-        grid-column: 4;
-        grid-row: 4;
-    }
-    
-    .bottom-right-expand {
-        transform: translateY(15px);
-    }
-    
 /* show tiles on buttonclick*/
 
 .unit {
@@ -1645,6 +1612,130 @@ padding: 0px;
 border-radius: 0px;
 z-index: 8;
 }
+
+/* picture album */
+
+.album-cover-box {
+  grid-column: 1 / -1;
+  height: 100vh;
+  width: 100vw;
+      display: grid;
+      grid: repeat(10, 10vh) / 100vw;
+      place-items: center;
+  }    
+  
+.album-display {
+grid-area: 1 / 1 / 10 / 1;
+perspective: 1700px;
+transform-style: preserve-3d;
+overflow: hidden;
+overscroll-behavior: none;
+}
+
+.album-list { 
+margin: 0;
+padding: 0;
+}
+
+.picture-album {
+display: flex;
+transform: translateY(20%) translateZ(-100vh) rotateX(-6deg) rotateY(90deg);
+transform-style: preserve-3d;
+transition: transform .45s easy-in-out;
+}
+
+
+/*  
+Songs List Item
+===========================*/
+.album-list__item {
+
+}
+
+.picture-album-item {
+flex-shrink: 0;
+transform-origin: 50% 100%;
+transform: rotateY(-90deg);
+backface-visibility: hidden;
+transition: transform .3s cubic-bezier(.17,.67,.83,.67);
+}
+
+.picture-album-item.is-active {
+}
+
+/*  
+Songs List Cover
+===========================*/
+.album-list__cover {
+max-width: 100%;
+}
+
+
+.picture-album-cover {
+    width: 100vw;
+  height: 100vh;    
+}
+
+
+/*  
+Player Buttons
+===========================*/
+.album__buttons {
+width: 100vw;    
+grid-area: 5 / 1 / 5 / 1;
+display: grid;
+grid: 1fr / 1fr 10fr 1fr;
+place-items: center;    
+transform: translateY(200%);
+text-align: center;
+user-select: none;
+}
+
+
+/*  
+Player Button
+===========================*/
+.album__button {
+width: 4em;
+height: 4em;
+border: none;
+background: none;
+cursor: pointer;
+}
+
+.album__button:focus {
+/*outline: none;*/
+}
+
+.album__button-direction {
+}
+
+.album__button-direction::before,
+.album__button-direction::after {
+content: "";
+display: inline-block;
+border: 15px solid transparent;
+border-left-color: var(--red);
+filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .2));
+}
+
+.album__button-direction::before {
+transform: translate(-2px, 3px);
+}
+
+.album__button-direction:after {
+transform: translate(11px, -30px);
+}
+
+.album__button-direction--next {
+ grid-area: 1 / 3 / 1 / 3;    
+}
+
+.album__button-direction--prev {
+transform: rotate(-180deg); 
+grid-area: 1 / 1 / 1 / 1;             
+}
+
 
 /*postcards gallery*/
 
@@ -3220,7 +3311,7 @@ animation: fade-in 1.4s;
 
 .loupe-box{
   grid-column: 2;
-  position: relative;        
+          
       }        
       
   img.loupe-pic{

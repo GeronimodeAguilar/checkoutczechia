@@ -135,21 +135,60 @@
   
   <h3>History</h3>
 
-  <figure>
-    <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/168.jpg" alt="">
-    <figcaption>Mahen Theatre</figcaption>
-  </figure>
+  <div class="album-cover-box">
 
-    <p class="hidden">
-        During the thousand years of its existence, the city grew from a settlement stretching from Prague Castle in the north to the fort of Vyšehrad in the south, becoming the capital of a modern European country, the Czech Republic, a member state of the European Union..</p>
-
-    <figure>
-      <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/156.jpg" alt="">
-      <figcaption>Catholic Church Stare Mesto</figcaption>
-    </figure>
-
-    <p class="hidden">
-        The city is traditionally one of the cultural centres of Europe, hosting many cultural events. Some of the significant cultural institutions include the National Theatre (Národní Divadlo) and the Estates Theatre (Stavovské or Tylovo or Nosticovo divadlo), where the premières of Mozart's Don Giovanni and La clemenza di Tito were held. Other major cultural institutions are the Rudolfinum which is home to the Czech Philharmonic Orchestra and the Municipal House which is home to the Prague Symphony Orchestra. The Prague State Opera (Státní opera) performs at the Smetana Theatre.</p>
+      <div class="album-display">
+      
+          <div class="album-list picture-album" id="picture-conteiner">
+          <div class="album-list__item picture-album-item jsListItem" data-index="0">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/150.jpg" alt=""/>
+          </div>
+                
+          <div class="album-list__item picture-album-item jsListItem" data-index="1">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/151.jpg" alt=""/>
+          </div>       
+                    
+          <div class="album-list__item picture-album-item jsListItem" data-index="2">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/152.jpg" alt=""/>
+          </div> 
+                
+          <div class="album-list__item picture-album-item jsListItem" data-index="3">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/153.jpg" alt=""/>
+          </div>   
+                    
+          <div class="album-list__item picture-album-item jsListItem" data-index="4">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/154.jpg" alt=""/>
+          </div>         
+                
+          <div class="album-list__item picture-album-item jsListItem" data-index="5">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/155.jpg" alt=""/>
+          </div>       
+                    
+          <div class="album-list__item picture-album-item jsListItem" data-index="6">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/156.jpg" alt=""/>
+          </div>         
+                
+          <div class="album-list__item picture-album-item jsListItem" data-index="7">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/157.jpg" alt=""/>
+          </div>       
+                    
+          <div class="album-list__item picture-album-item jsListItem" data-index="8">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/158.jpg" alt=""/>
+          </div>         
+                
+          <div class="album-list__item picture-album-item jsListItem" data-index="9">
+                 <img class="album-list__cover picture-album-cover" src="../img/cont/159.jpg" alt=""/>
+          </div>
+        </div>            
+      </div>          
+      
+                <!--Controllers-->
+         <div class="album__buttons">
+            <button class="album__button album__button-direction album__button-direction--prev" id="btn-prev"></button>
+            <button class="album__button album__button-direction album__button-direction--next" id="btn-next"></button>
+         </div>
+         
+      </div>
 
     <figure>
       <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/118.jpg" alt="">
@@ -313,6 +352,242 @@ imageGalery.removeEventListener('mouseover', showOnLoad);
     }
     imageGalery.addEventListener('mouseover', showOnLoad);
     imageGalery.addEventListener('click', openModalImg);
+
+/*picture album*/
+
+ const pictureConteiner = document.getElementById("picture-conteiner");
+    let albumListItems = null;
+  
+    const btnsController = document.querySelector(".album__buttons");  
+    const btnNext = btnsController.querySelector("#btn-next");
+    const btnPrev = btnsController.querySelector("#btn-prev");
+  
+    let listItemWidth = null;
+
+    let listOffsetDimension = null;
+   
+    const LIST_ITEM_CLASS = "jsListItem";
+    const LIST_ITEM_ACTIVE_CLASS = "is-active";
+    const LIST_ITEM_HIDDEN_CLASS = "is-hidden";
+  
+    let currentActiveListItem = null;
+  
+    let isUserAction = false; // is this particular action was made by the user interaction (e.g. mouse move, keyboard click, etc...)
+    let isUserAdjusting = false; // when user adjust track position manually
+  
+    let albumCounter = 0;
+
+
+    
+    // Setup
+    document.addEventListener("DOMContentLoaded", onDomContentLoaded);
+    
+    btnsController.addEventListener("click", onBtnsControllerClick);
+  
+    pictureConteiner.addEventListener("wheel", actThenThrottleEvents(onMouseWheelMove, 150));
+  
+    ///pictureConteiner.addEventListener("touchstart", onMouseWheelMove);
+  
+ /*============================*\
+           EVENTS
+ /*============================*/
+  /// add touch events to the songList
+  swipeDetect(pictureConteiner, onpictureConteinerTouch);
+  
+  
+  function onpictureConteinerTouch (swipedir) {
+    let btnToTrigger;
+    
+    if(swipedir === "down") {
+      btnToTrigger = btnNext;
+    } else if (swipedir === "up") {
+      btnToTrigger = btnPrev;
+    }
+    
+    if(btnToTrigger)
+      btnToTrigger.click();
+  };
+  
+  
+  function onMouseWheelMove (e) {
+    //debugger;
+    const direction = e.deltaY;
+    const btnToTrigger = direction >= 0 ? btnNext : btnPrev;
+    
+    btnToTrigger.click();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  };
+
+
+   function onDomContentLoaded(e) {
+ 
+     albumListItems = pictureConteiner.querySelectorAll(".album-list__item");
+     const firstListItem = albumListItems[0];
+     
+     firstListItem.classList.add(LIST_ITEM_ACTIVE_CLASS);
+     
+     /// set initial value of the currentActiveListItem
+     currentActiveListItem = firstListItem;
+     
+     const listItemStyle = window.getComputedStyle(firstListItem);
+     const listItemMarginLeft = parseInt(listItemStyle.marginLeft);
+     const listItemMarginRight = parseInt(listItemStyle.marginRight);
+     
+     const listItemTransform = listItemStyle.transform;
+ 
+     albumListItems.forEach(function (listItem) {
+       listItem.style.transform = listItemTransform;
+     });
+
+     listItemWidth = firstListItem.offsetWidth + listItemMarginLeft + listItemMarginRight;
+     listOffsetDimension = listItemWidth; // initial value
+
+   };
+ 
+    function onBtnsControllerClick (e) {
+        const currentClickedElem = e.target;
+        const currentClickedElemID = currentClickedElem.id;
+ 
+        let newActiveListItem;  
+    
+        if(currentClickedElemID === "btn-next" || currentClickedElemID === "btn-prev") {
+      
+            if(currentClickedElemID === "btn-next") {
+                albumCounter += 1;
+            } else {
+                albumCounter -= 1;
+            }
+      
+            if(albumCounter >= albumListItems.length) {
+                albumCounter = albumListItems.length - 1;
+                //listOffsetDimension = ((albumListItems.length - 1) * listItemWidth) * -1; // start of the list 
+              return;
+            } else if (albumCounter < 0) {
+                albumCounter = 0;
+                return;
+            } 
+      
+           // set new active list item (the next one on the list)
+            newActiveListItem = albumListItems[albumCounter];
+            
+            /**/ 
+        };
+        //debugger;
+        switch(currentClickedElemID) {
+            case "btn-next":
+     
+              currentActiveListItem.classList.remove(LIST_ITEM_ACTIVE_CLASS);
+            
+              currentActiveListItem.style.transform += " rotateX(-90deg)";
+            
+              moveListItems(listOffsetDimension, albumListItems);
+
+              newActiveListItem.classList.add(LIST_ITEM_ACTIVE_CLASS);
+            
+              currentActiveListItem = newActiveListItem;
+                break;
+            case "btn-prev":
+                         
+                currentActiveListItem.classList.remove(LIST_ITEM_ACTIVE_CLASS);
+            
+                // newActiveListItem.classList.remove(LIST_ITEM_HIDDEN_CLASS);
+            
+                newActiveListItem.style.transform = newActiveListItem.style.transform.replace(/rotateX\(([^)])+\)/, "");
+            
+                newActiveListItem.classList.add(LIST_ITEM_ACTIVE_CLASS);
+            
+                moveListItems(-listOffsetDimension, albumListItems);
+
+            
+                currentActiveListItem = newActiveListItem;
+                break;
+            default:
+                break;
+        };
+    
+    };
+
+    function moveListItems (distance, listItems, excludeSelector) {
+      listItems.forEach(function(listItem, i) {
+        ///debugger;
+        if(!listItem.matches(excludeSelector))
+            moveListItem(distance, listItem);
+      });
+    };
+ 
+    function moveListItem (distance, listItem) {
+        const prevDistanceValue = listItem.style.transform.match(/(?:translateZ\()(-?(\d)+)(?=px\))/); // gets number (with the  
+      let currentTransformValue = listItem.style.transform;
+ 
+        if(prevDistanceValue) {
+            distance += parseFloat(prevDistanceValue[1]);
+            currentTransformValue = currentTransformValue.replace(/translateZ\(([^)])+\)/, "translateZ(" + distance + "px)");
+        } else {
+          currentTransformValue += " translateZ(" + distance + "px)";
+        }
+       
+      listItem.style.transform = currentTransformValue;
+    };
+ 
+    function actThenThrottleEvents(listener, delay) {
+      var timeout;
+      return function(e) {
+        if (!timeout) { // no timer running
+          listener(e); // run the function
+          timeout = setTimeout( function() { timeout = null }, 
+            delay); // start a timer that turns itself off when it's done
+        }  
+        //else, do nothing (we're in a throttling stage)
+      }
+    };
+ 
+    function swipeDetect (el, callback){
+
+      var touchsurface = el,
+      swipedir,
+      startX,
+      startY,
+      distX,
+      distY,
+      threshold = 100, //required min distance traveled to be considered swipe (prev val: 150)
+      restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+      allowedTime = 300, // maximum time allowed to travel that distance
+      elapsedTime,
+      startTime,
+      handleswipe = callback || function(swipedir){}
+ 
+      touchsurface.addEventListener('touchstart', function(e){
+          var touchobj = e.changedTouches[0];
+          swipedir = 'none';
+          startX = touchobj.pageX;
+          startY = touchobj.pageY;
+          startTime = new Date().getTime(); // record time when finger first makes contact with surface
+          e.preventDefault();
+      }, false)
+
+      touchsurface.addEventListener('touchmove', function(e){
+          e.preventDefault(); // prevent scrolling when inside HTML Element
+      }, false)
+
+      touchsurface.addEventListener('touchend', function(e){
+          var touchobj = e.changedTouches[0];
+          distX = touchobj.pageX - startX; // get horizontal dist traveled by finger while in contact with surface
+          distY = touchobj.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+          elapsedTime = new Date().getTime() - startTime; // get time elapsed
+          if (elapsedTime <= allowedTime) { // first condition for swipe met
+              if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                  swipedir = (distX < 0) ? 'left' : 'right'; // if dist traveled is negative, it indicates left swipe
+              }
+              else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                  swipedir = (distY < 0) ? 'up' : 'down'; // if dist traveled is negative, it indicates up swipe
+              }
+          }
+          handleswipe(swipedir);
+          e.preventDefault();
+      }, false)
+  };
+ 
     </script>
 </body>
 </html>
