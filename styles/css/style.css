@@ -76,9 +76,25 @@ h2.header-title {
   font-family:  "Georgia";
   box-shadow: 0 50px 100px rgba(50,50,93,.2), 0 15px 35px rgba(50,50,93,.3), 0 5px 15px rgba(0,0,0,.2); 
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  text-align: center;
   place-self: center;
   z-index: 9;
   }
+
+.template-title {
+    grid-area: 4 / 1 / 6 / 10;
+    position: absolute; 
+    color: white;  
+    background-color: hsla(211, 76%, 28%,0.7); 
+    font-size: 3.5rem;
+    font-family:  "Georgia";
+    box-shadow: 0 50px 100px rgba(50,50,93,.2), 0 15px 35px rgba(50,50,93,.3), 0 5px 15px rgba(0,0,0,.2); 
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    text-align: center;
+    place-self: center;
+    z-index: 9;
+    }
+  
 
 h3 {
   grid-column: 2 / -2;
@@ -484,16 +500,16 @@ img.sliderimg + img.sliderimg {
   z-index: 8;
   cursor: pointer;
   transform: translateY(0vh);
-  transition: all 2.9s ease-in-out;
-  opacity: 0.6;
+  transition: all .9s ease-in;
+  opacity: 0.3;
   border-radius: 5px;
   border: 1px solid hsla(0, 0%, 100%,0.6);
   background-color: transparent;
 }
 
 .down-flag-move {
-  transform: translateY(3vh);
-  opacity: 0.9;
+  transform: translateY(2vh);
+  opacity: 0.8;
 }
 
 /* show tiles on buttonclick*/
@@ -990,7 +1006,7 @@ overflow: hidden;
 .basic-previous, .basic-next {
 height: 4rem;
 border: 0;
-z-index: 8;
+z-index: 5;
 color: aliceblue;
 background: transparent;
 font-size: 3em;
@@ -1335,45 +1351,57 @@ p.text-accordion {
   transition: all 0.35s ease 0.15s;
 }
 
-/*javascript accordion*/
+/*javascript accordion*/ 
 
 .accordionWrapper{
   display: grid;
   grid-column: 2;
   grid-auto-columns: 1fr;
-  background:var(--blue);
+  background: hsla(211, 76%, 88%,0.3);
   width:100%;
   box-shadow: 0 1.5em 85px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  border: 5px solid var(--red); 
+  border: 5px solid var(--blue); 
   border-radius: 10px;
 }
 
 p.accordion-text {
   background: hsla(211, 76%, 88%,1);
-  color: #0b2c50;
-  padding: 5px;
+  color: var(--blue);
+  padding: 10px;
+  border-radius: 0px;
 }
       
-.accordionItem{
+.accordionItem {
   position: relative;
   display:block;
   width:100%;
-  border: 5px solid var(--red); 
+  border: 5px solid hsla(211, 76%, 78%,0.6); 
   padding: 0px;
+  background: hsla(211, 56%, 58%,1);
+  overflow: hidden;
 }
 
 .close-accord .accordionItemHeading {
   cursor:pointer;
 }
 
-.accordionItemHeading{
+.accordionItemHeading {
   padding:5px;
-  background: var(--blue);
+  background: hsla(211, 56%, 58%,1);
   color:whitesmoke;
   width:100%;
   height: auto;
-  border-radius: none;
+  border: none;
+  font-weight: 800;
+  text-align: center;
+  border-radius: 0px;
+  transition:all .2s ease-in-out;
+}
+
+.accordionItemHeading:hover {
+  background: var(--red);
+  transform: scale(2);
 }
 .close-accord .accordionItemContent{
   height:0px;
@@ -1385,7 +1413,6 @@ p.accordion-text {
 
 .open-acccord .accordionItemContent{
   padding: 5px;
-  background-color : var(--blue);
   width: 100%;
     height: 100%;
   display:block;
@@ -1641,15 +1668,7 @@ padding: 0;
 display: flex;
 transform: translateY(20%) translateZ(-100vh) rotateX(-6deg) rotateY(90deg);
 transform-style: preserve-3d;
-transition: transform .45s easy-in-out;
-}
-
-
-/*  
-Songs List Item
-===========================*/
-.album-list__item {
-
+transition: transform .45s ease-in-out;
 }
 
 .picture-album-item {
@@ -1660,26 +1679,15 @@ backface-visibility: hidden;
 transition: transform .3s cubic-bezier(.17,.67,.83,.67);
 }
 
-.picture-album-item.is-active {
-}
-
-/*  
-Songs List Cover
-===========================*/
 .album-list__cover {
 max-width: 100%;
 }
-
 
 .picture-album-cover {
     width: 100vw;
   height: 100vh;    
 }
 
-
-/*  
-Player Buttons
-===========================*/
 .album__buttons {
 width: 100vw;    
 grid-area: 5 / 1 / 5 / 1;
@@ -1691,23 +1699,12 @@ text-align: center;
 user-select: none;
 }
 
-
-/*  
-Player Button
-===========================*/
 .album__button {
 width: 4em;
 height: 4em;
 border: none;
 background: none;
 cursor: pointer;
-}
-
-.album__button:focus {
-/*outline: none;*/
-}
-
-.album__button-direction {
 }
 
 .album__button-direction::before,
@@ -1735,7 +1732,6 @@ transform: translate(11px, -30px);
 transform: rotate(-180deg); 
 grid-area: 1 / 1 / 1 / 1;             
 }
-
 
 /*postcards gallery*/
 
@@ -1990,6 +1986,7 @@ blockquote {
 /*collage css grid gallery*/
 
 .gridwrap {
+  grid-area:  1 / 1 / 10 / 10 ;
   padding: 0;
   margin: 0;
   display: grid;

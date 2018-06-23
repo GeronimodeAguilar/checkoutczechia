@@ -20,6 +20,7 @@
     <div class="wrapsite">
 
     <header class="template">
+        <div class="gridwrap">
             <p class="grid-text" id="gridtext1">Culture</p>
             <p class="grid-text" id="gridtext2">History</p>
             <p class="grid-text" id="gridtext3">Shopping</p>
@@ -33,8 +34,9 @@
             <img src="../img/cont/221.jpg" id="gridpic8" alt="" class="grid-image">
             <img src="../img/cont/220.jpg" id="gridpic9" alt="" class="grid-image">
             <img src="../img/cont/213.jpg" id="gridpic10" alt="" class="grid-image">    
-  <h2 class="header-title">Welcome to Czech Republic</h2>    
-    <img src="../img/bkg/czech-republic-flag640-vertical.png" class="down-flag down-arrow" id="scrol-down">
+        </div>    
+  <h2 class="template-title">Welcome to Czech Republic</h2>    
+    <img src="../img/bkg/czech-republic-flag640-vertical.png" class="down-flag down-arrow">
     </header> 
     
     <nav class="menu" id="navbox">
@@ -143,7 +145,7 @@
 
         <div class="accordionWrapper">
             <div class="accordionItem close-accord">
-                  <h2 class="accordionItemHeading ripple">By bus</h2>
+                  <h4 class="accordionItemHeading ripple">By bus</h2>
                   <div class="accordionItemContent">
                     <p class="accordion-text">From Prague, and other nearby cities or towns of Bohemia, getting to Český Krumlov by public bus is easier, faster, and cheaper than by train.</p>
     
@@ -174,7 +176,7 @@
                 </div>
             
                 <div class="accordionItem close-accord">
-                  <h2 class="accordionItemHeading ripple">By foot</h2>
+                  <h4 class="accordionItemHeading ripple">By foot</h2>
                   <div class="accordionItemContent">
                     <p class="accordion-text">
                         Ambling around the town's crooked ulices is the best way to get lost in Český Krumlov's 750 years of history. Bring solid walking shoes for the uneven cobblestones. </p>
@@ -185,7 +187,7 @@
                 </div>
                    
                     <div class="accordionItem close-accord">
-                  <h2 class="accordionItemHeading ripple">By bike</h2>
+                  <h4 class="accordionItemHeading ripple">By bike</h2>
                   <div class="accordionItemContent">
                     <p class="accordion-text">Many good biking paths lead you to and from Český Krumlov, but you're not encouraged to ride through the streets once you get here. Park and lock your bike and enjoy not pedaling for a while. </p>
              
@@ -892,19 +894,19 @@ scrollIndicator.style.width = scrolled + "%";
 
 window.addEventListener('scroll', indicateScroll ); 
 
-let arrowDown = document.querySelector('#scrol-down');
+let arrowDown = document.querySelector('.down-flag');
 
 function squareAnimation() {            
          arrowDown.classList.toggle('down-flag-move');
             };
-setInterval(squareAnimation,3000);
+setInterval(squareAnimation,1000);
 
 /*basic slider*/
 
-var previous = document.querySelector(".basic-previous");
-var next = document.querySelector(".basic-next");
-var slides = document.querySelectorAll(".basic-slide");
-var current = 0;
+let previous = document.querySelector(".basic-previous");
+let next = document.querySelector(".basic-next");
+let slides = document.querySelectorAll(".basic-slide");
+let current = 0;
 
 // Code that moves to the next slide
 next.addEventListener("click", function () {
@@ -1138,7 +1140,7 @@ const galleries = document.querySelectorAll(".js-gallery");
   };
 
    function actThenThrottleEvents(listener, delay) {
-     var timeout;
+     let timeout;
      return function(e) {
        if (!timeout) { // no timer running
          listener(e); // run the function
@@ -1315,12 +1317,12 @@ function calender(month, year) {
   html += '</tr>';
 
   // CALENDAR PART
-  var count = 0;
+  let count = 0;
   if (startDay !== 0) {
     html += `<tr><td class="calendar-cell" colspan="${startDay}"></td>`;
     count = startDay;
   }
-  for (var day = 1; day <= monthLength; day++) {
+  for (let day = 1; day <= monthLength; day++) {
 
     if (count % 7 === 0) {
       html += "<tr>";
@@ -1338,7 +1340,7 @@ function calender(month, year) {
     }
   }
 
-  var blankCells = 7 - count % 7;
+  let blankCells = 7 - count % 7;
   if (blankCells < 7) {
     html += `<td class="calendar-cell" colspan="${blankCells}"></td></tr>`;
   }
