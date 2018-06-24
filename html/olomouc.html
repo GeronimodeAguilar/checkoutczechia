@@ -236,10 +236,7 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
         </div>
       </div>
     </div>    
-
-    <button class="toTop" id="tiptop">&#9650;</button>
-
-        <a class="toggle" href="#example" id="burger">☰</a>
+   
       <div class="toggle-content" id="example">
 <ul class="mobile-menu">
 <li class="sub-list"> <h4>Geography</h4>
@@ -284,8 +281,19 @@ Center of religius institutions throughout centuries. Home of the Arcibishup. My
  
 </ul>
       </div>
+
+      <button class="toTop" id="tiptop">&#9650;</button>
+
+      <a class="toggle" href="#example" id="burger">☰</a>
+
+      <div class="modal-wrap-closed">
+        <button class="close-img-modal">&#10006;</button>
+         <img src="" alt="" class="modal-hidden-pic">
+     </div>   
+     
+     
       <script>
-        const message = `Olomouc : religious institution throughout history`;
+        const message = `Olomouc : religious center throughout history`;
         const textContainer = document.querySelector('.textfield');
         let n;
         
@@ -345,7 +353,33 @@ function activateGalleryIteration(e) {
 
 window.addEventListener('scroll', activateGalleryIteration);
 
+/*fullscreenPicture*/     
 
+     const stackedBox = document.querySelector('.gallery-list');
+     const hiddenModalPic = document.querySelector('.modal-hidden-pic');    
+     let cards = document.querySelectorAll('.list__item');
+     let closeModalButton = document.querySelector('.close-img-modal');
+     let modalWrap = document.querySelector('.modal-wrap-closed');    
+         
+         
+     function fullSizeCard(e) {
+     if(e.target.classList.contains('list-pic')) {  
+     modalWrap.classList.toggle('modal-wrap');
+     modalWrap.style.display = 'grid';    
+     hiddenModalPic.src = e.target.src;  
+     hiddenModalPic.classList.add('modal-full-pic')    
+     }
+     }  
+
+     function closeFullModal(e) {
+         e.target.parentElement.classList.toggle('modal-wrap');
+         modalWrap.style.display = 'none';
+         hiddenModalPic.classList.remove('modal-full-pic')   
+     }    
+         
+     stackedBox.addEventListener('click', fullSizeCard);          
+     closeModalButton.addEventListener('click', closeFullModal);    
+       
 
 /*auto arrow slider*/
     
