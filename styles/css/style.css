@@ -79,6 +79,8 @@ h2.header-title {
   text-align: center;
   place-self: center;
   z-index: 9;
+  transition: all .2s linear;
+  user-select: none;
   }
 
 .template-title {
@@ -96,8 +98,8 @@ h2.header-title {
       
   span.flying-letter {
             place-self: center;   
-  }
-    }
+}
+
   
 
 h3 {
@@ -146,6 +148,51 @@ header.template {
   overflow: hidden;
 }
 
+.bold-text-box{
+  grid-area: 1 / 1 / 10 / 10;    
+  height:100vh;
+  width:100vw;
+  color:rgba(255,255,255,.0);
+  background-color: var(--blue);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.bold-text{
+      height:100vh;
+  width:100vw;
+  background: no-repeat center/100% url('../../img/cont/45.jpg');
+  -webkit-background-clip:text;
+  text-transform: uppercase;
+    text-align: center;
+      font-size: 50vh;
+  font-weight: 900;
+  font-family: Arial;
+  animation: ground 9s infinite ease-in-out alternate
+}
+
+@keyframes ground {
+  0%{
+    background-position: 0vh 0vh
+  }
+  20%{
+    background-position: 2vh 2vh
+  }
+  40%{
+    background-position: 4vh 4vh
+  }
+  60%{
+    background-position: 1vh 1vh
+  }
+  80%{
+    background-position: -4vh -4vh
+  }
+    100%{
+    background-position: -2vh -2vh
+  }
+}
+
 .scroll-indicator {
   grid-column: 1 / -1;
   height: 1vh;
@@ -190,6 +237,42 @@ header.template {
     background-position: -1000px 0;
   }
 }
+
+/* mousemove logo and title*/
+
+.parallax-container {
+  place-self: center;
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  border: 20px solid #fff;  
+  box-sizing: border-box;
+  transition: all .9s linear;
+  z-index: 2;
+}
+    
+h2.parallax-title {
+  position: absolute;
+  top: 3vh;
+  left: 4vw;
+  color: white;  
+  background-color: hsla(211, 76%, 28%,0.8); 
+  font-size: 3.5rem;
+  font-family:  "Georgia";
+  z-index: 4;
+  transition: all .3s linear;
+  user-select: none;
+  }
+
+.parallax-card {
+  position: absolute;
+  top: 4vh;
+  left: 5vw;
+    width: 40vw;
+    height: 40vh;
+    z-index: 3;
+    transition: all .6s linear;
+  }
 
 /*Css-only moving title*/
 
@@ -515,6 +598,57 @@ img.sliderimg + img.sliderimg {
   transform: translateY(2vh);
   opacity: 0.8;
 }
+
+/* links grid*/
+
+.links-grid {
+  grid-column: 2;
+  display: grid;
+  grid: repeat(10,10vh) / repeat(10,10vw);
+  width: 100vw;
+  height: 100vh;
+}
+.grid-link {
+  display: grid;
+  grid: repeat(5,10vh) / repeat(5,10vw);
+  text-decoration: none;
+  overflow: hidden;
+}
+.grid-link:hover {
+      transform: scale(1.4);
+      transition: all .9s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+      z-index: 4;
+
+}
+.link-pic {
+  grid-area: 1 / 1 / 5 / 5;
+  width: 100%;
+  height: 100%;
+} 
+
+.link-title {
+  grid-area: 3 / 2 / 4 / 4;
+  font-size: 2rem;
+  color: aliceblue;
+  background: skyblue;
+  padding: 1rem;
+  text-align: center;
+  z-index: 2;
+}
+
+#link-square1 {
+  grid-area: 1 / 1 / 5 / 5;            
+} 
+#link-square2 {
+  grid-area: 1 / 6 / 5 / 10;            
+}
+#link-square3 {
+  grid-area: 6 / 1 / 10 / 5;            
+} 
+#link-square4 {
+  grid-area: 6 / 6 / 10 / 10;            
+}
+
 
 /* show tiles on buttonclick*/
 
@@ -2006,6 +2140,12 @@ blockquote {
   height: 100%;
 }
 
+.grid-image:hover {
+   transform: scale(1.1);
+   transition: all 1.9s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+   z-index: 4;
+}
+
 .grid-text {
   text-align: center;
   display: grid;
@@ -2332,7 +2472,7 @@ blockquote {
   position: absolute;
   height: 40vh;
   width: 40vw;
-  animation: hover-peaces 5s ease-out forwards;
+  animation: hover-peaces 20s ease-out forwards;
 }
 
 .segment-bg__item--left-top {

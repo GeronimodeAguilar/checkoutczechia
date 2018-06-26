@@ -35,7 +35,7 @@
             <img src="../img/cont/220.jpg" id="gridpic9" alt="" class="grid-image">
             <img src="../img/cont/213.jpg" id="gridpic10" alt="" class="grid-image">    
         </div>    
-  <h2 class="header-title template-title">Welcome to Czech Republic</h2>    
+  <h2 class="header-title">Welcome to Czech Republic</h2>    
     <img src="../img/bkg/czech-republic-flag640-vertical.png" class="down-flag down-arrow">
     </header> 
     
@@ -122,6 +122,17 @@
             <img class="panel-picture" src="../img/cont/163.jpg" alt=""/>
           </div>      
         </div> 
+
+        <div class="links-grid">
+            <a href="#" class="grid-link" id="link-square1"><span class="link-title">Wikipedia</span><img src="../img/cont/161.jpg" alt="" class="link-pic"></a>
+    
+            <a href="#" class="grid-link" id="link-square2"><span class="link-title">Wikipedia</span><img src="../img/cont/166.jpg" alt="" class="link-pic"></a>
+    
+            <a href="#" class="grid-link" id="link-square3"><span class="link-title">Wikipedia</span><img src="../img/cont/169.jpg" alt="" class="link-pic"></a>
+    
+            <a href="#" class="grid-link" id="link-square4"><span class="link-title">Wikipedia</span><img src="../img/cont/171.jpg" alt="" class="link-pic"></a>
+            
+        </div>        
 
         <div class="basic-slider">
             <div class="basic-slide basic-active"><img src="../img/cont/28.jpg" alt="" class="basic-pic"><span class="basic-caption">123</span></div>
@@ -1100,92 +1111,6 @@ document.addEventListener('keydown', handleKey);
   
   delay();
   start();
-
-/*moving text*/
-
-function getTextNodes(node) {
-  var childTextNodes = [];
-
-  if (!node.hasChildNodes()) {
-    return;
-  }
-
-  var childNodes = node.childNodes;
-  for (var i = 0; i < childNodes.length; i++) {
-    if (childNodes[i].nodeType == Node.TEXT_NODE) {
-      childTextNodes.push(childNodes[i]);
-    } else if (childNodes[i].nodeType == Node.ELEMENT_NODE) {
-      Array.prototype.push.apply(childTextNodes, getTextNodes(childNodes[i]));
-    }
-  }
-
-  return childTextNodes;
-}
-
-/**
- * given a text node, wrap each character in the
- * given tag.
- */
-function wrapEachCharacter(textNode, tag) {
-  var text = textNode.nodeValue;
-  var parent = textNode.parentNode;
-
-  var characters = text.split('');
-  var elements = [];
-  var i = 0;
-  characters.forEach(function(character) {
-    i++;
-    var element = document.createElement(tag);
-      element.className = 'flying-letter'; 
-    var characterNode = document.createTextNode(character);
-
-    element.appendChild(characterNode);
-
-    parent.insertBefore(element, textNode);
-  });
-
-  parent.removeChild(textNode);
-}
-
-var str = document.querySelector(".template-title");
-
-var allTextNodes = getTextNodes(str);
-
-// wrap each character in each text node thus gathered.
-allTextNodes.forEach(function(textNode) {
-
-  wrapEachCharacter(textNode, 'span');
-
-});
-
-var spans = str.children;
-var spanList = [];
-
-for (var i = 0; i < spans.length; i++) {
-  spanList.push(spans[i]);
-}
-    
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-document.onscroll = function() {
-  var i = 0;
-  spanList.forEach(function(span) {
-    i++;
-    var dsoctop = document.onscroll.all ? iebody.scrollTop : pageYOffset;
-    
-    if( i % 2 ) {
-        span.style.webkitTransform = "translateY(" + dsoctop/5 * i/5 + "px)";
-    } else if( i % 5 ) {
-        span.style.webkitTransform = "translateY(" + -dsoctop/7 * i/7 + "px)";
-    } else {
-        span.style.webkitTransform = "translateY(" + -dsoctop/10 * i/10 + "px)";
-    }
-
-  });
-}    
-
 
 /*Direction Aware Hover Effects */
 
