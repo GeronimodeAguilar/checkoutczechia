@@ -123,14 +123,25 @@
           </div>      
         </div> 
 
+        <section class="toggle-list">
+          <span class="list-part" id="span-title1">Prag</span>
+          <div class="part-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat molestias quam dolor iusto vero similique.</div>
+          <span class="list-part" id="span-title2">Brno</span>
+          <div class="part-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat molestias quam dolor iusto vero similique.</div>
+          <span class="list-part" id="span-title3">Olomouc</span>
+          <div class="part-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat molestias quam dolor iusto vero similique.</div>
+          <span class="list-part" id="span-title4">Zlin</span>
+          <div class="part-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat molestias quam dolor iusto vero similique.</div>
+      </section>
+
         <div class="links-grid">
-            <a href="#" class="grid-link" id="link-square1"><span class="link-title">Wikipedia</span><img src="../img/cont/161.jpg" alt="" class="link-pic"></a>
+            <a href="http://www.czechtourism.com" class="grid-link" id="link-square1"><span class="link-title">czechtourism.com</span><img src="../img/cont/234.jpg" alt="" class="link-pic"></a>
     
-            <a href="#" class="grid-link" id="link-square2"><span class="link-title">Wikipedia</span><img src="../img/cont/166.jpg" alt="" class="link-pic"></a>
+            <a href="https://www.amazingczechia.com/" class="grid-link" id="link-square2"><span class="link-title">amazingczechia</span><img src="../img/cont/301.jpg" alt="" class="link-pic"></a>
     
-            <a href="#" class="grid-link" id="link-square3"><span class="link-title">Wikipedia</span><img src="../img/cont/169.jpg" alt="" class="link-pic"></a>
+            <a href="https://en.wikipedia.org/wiki/Czech_Republic" class="grid-link" id="link-square3"><span class="link-title">Wikipedia</span><img src="../img/cont/75.jpg" alt="" class="link-pic"></a>
     
-            <a href="#" class="grid-link" id="link-square4"><span class="link-title">Wikipedia</span><img src="../img/cont/171.jpg" alt="" class="link-pic"></a>
+            <a href="http://www.czech.cz/en" class="grid-link" id="link-square4"><span class="link-title">Czech Radio</span><img src="../img/cont/223.jpg" alt="" class="link-pic"></a>
             
         </div>        
 
@@ -893,6 +904,23 @@
       </div>
 <script>
   'use strict'
+
+/*knockout text*/
+
+    let listSpans = document.querySelectorAll(".list-part");
+
+function toggleSpan(e) {
+        if (e.target.classList.contains('active')) {
+            e.target.classList.remove("active");
+        } else {
+            for (var i = 0; i < listSpans.length; i++) {
+                listSpans[i].classList.remove("active");
+            }
+            e.target.classList.add("active");
+        }
+}
+ 
+listSpans.forEach((span) => span.addEventListener('click', toggleSpan));  
 
 /*scroll indicator*/
 

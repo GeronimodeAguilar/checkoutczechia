@@ -193,6 +193,80 @@ header.template {
   }
 }
 
+/* knockout text */
+
+.toggle-list {
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  background-color: var(--blue);
+      }        
+      
+.list-part {
+  background-color: var(--blue);
+  text-align: center;
+  line-height: 7rem;
+  display: grid;
+  font-size: 30vh;
+  color:#FFF;
+  cursor: pointer;
+  width: 100%;
+  height: 20vh;
+  text-transform: uppercase;
+  font-weight: 900;
+  overflow: hidden;
+}
+
+.part-content {
+      display: grid;
+  place-items: center;
+  font-size: 1rem;
+   transition: all .3s linear;
+  overflow: hidden;
+  height: 0;
+  width: 100%;
+  background: hsla(211, 76%, 88%,1);
+  color: var(--blue);
+}
+
+.list-part.active + .part-content  {
+  height: 25vh;
+  width: 100%;
+
+}
+
+#span-title1 {
+  background: no-repeat center/100% url("../../img/cont/119.jpg");
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#span-title2 {
+  background: no-repeat center/100% url("../../img/cont/12.jpg");
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#span-title3 {
+  background: no-repeat center/100% url("../../img/cont/72.jpg");
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#span-title4 {
+  background: no-repeat center/100% url("../../img/cont/33.jpg");
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 .scroll-indicator {
   grid-column: 1 / -1;
   height: 1vh;
@@ -599,6 +673,11 @@ img.sliderimg + img.sliderimg {
   opacity: 0.8;
 }
 
+.down-flag:hover {
+  opacity: 1;
+  transform: translateY(10vh);
+}
+
 /* links grid*/
 
 .links-grid {
@@ -607,33 +686,36 @@ img.sliderimg + img.sliderimg {
   grid: repeat(10,10vh) / repeat(10,10vw);
   width: 100vw;
   height: 100vh;
+  background: no-repeat center/100% url("../../img/bkg/olomouc-street.jpg");
 }
 .grid-link {
   display: grid;
-  grid: repeat(5,10vh) / repeat(5,10vw);
+  grid: repeat(10,5vh) / repeat(10,5vw);
   text-decoration: none;
   overflow: hidden;
+  transform: skew(5deg,5deg);
 }
 .grid-link:hover {
-      transform: scale(1.4);
-      transition: all .9s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+      transform: scale(1.3) skew(0);
+      transition: all .7s cubic-bezier(0.680, -0.550, 0.265, 1.550);
       z-index: 4;
 
 }
 .link-pic {
-  grid-area: 1 / 1 / 5 / 5;
+  grid-area: 3 / 3 / 10 / 10;
   width: 100%;
   height: 100%;
 } 
 
 .link-title {
-  grid-area: 3 / 2 / 4 / 4;
+  grid-area: 4 / 3 / 7 / 9;
   font-size: 2rem;
   color: aliceblue;
-  background: skyblue;
+  background: hsla(211, 76%, 28%,0.6);
   padding: 1rem;
   text-align: center;
   z-index: 2;
+  border-radius: 20%;
 }
 
 #link-square1 {
@@ -2142,7 +2224,7 @@ blockquote {
 
 .grid-image:hover {
    transform: scale(1.1);
-   transition: all 1.9s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+   transition: all .8s cubic-bezier(0.680, -0.550, 0.265, 1.550);
    z-index: 4;
 }
 
