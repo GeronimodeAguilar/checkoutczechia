@@ -121,17 +121,28 @@
    <p class="hidden">
       Prague has been a political, cultural and economic centre of central Europe complete with a rich history. Founded during the Romanesque and flourishing by the Gothic, Renaissance and Baroque eras, Prague was the capital of the kingdom of Bohemia and the main residence of several Holy Roman Emperors, most notably of Charles IV (r. 1346–1378).[9] It was an important city to the Habsburg Monarchy and its Austro-Hungarian Empire. The city played major roles in the Bohemian and Protestant Reformation, the Thirty Years' War and in 20th-century history as the capital of Czechoslovakia, during both World Wars and the post-war Communist era.</p>
   <h3>Stats</h3>   
+  
+  <div class="thumbs-box">
 
-
-  <figure>
-    <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/115.jpg" alt="">
-    <figcaption>Chriby</figcaption>
-  </figure>
-
-
-        <p class="hidden">
-            Prague (/prɑːɡ/; Czech: Praha [ˈpraɦa] (About this sound listen), German: Prag) is the capital and largest city in the Czech Republic, the 14th largest city in the European Union[7] and also the historical capital of Bohemia. Situated in the north-west of the country on the Vltava river, the city is home to about 1.3 million people, while its larger urban zone is estimated to have a population of 2.6 million.[8] The city has a temperate climate, with warm summers and chilly winters.</p>
-   
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/31.jpg"/></span></div>
+    
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/17.jpg"/></span></div>
+        
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/28.jpg"/></span></div>
+    
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/23.jpg"/></span></div>
+            
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/84.jpg"/></span></div>
+    
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/41.jpg"/></span></div>
+       
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/45.jpg"/></span></div>
+    
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/71.jpg"/></span></div>
+            
+    <div class="thumbnail" href="#thumb"><span class="thumb-cont"><img class="thumb-image" src="../img/cont/22.jpg"/></span></div>
+              
+    </div>   
   
   <h3>History</h3>
 
@@ -321,6 +332,26 @@ ${yWalk}px ${xWalk * -1}px 0 hsla(358, 83%, 46%,1)
 }    
     
 hero.addEventListener('mousemove', shadow);    
+
+/* grid9 gallery */
+
+let thumbs = document.querySelectorAll('.thumbnail');
+let openThumbnail = document.querySelector('.openthumb');    
+let arrayOfThumb = [...thumbs];
+ 
+function openThumb(e) {
+    let parentThumb = e.target.parentElement.parentElement;
+    arrayOfThumb.forEach(thumb => thumb.classList.remove('openthumb'));   
+    parentThumb.className = 'openthumb';
+
+    function closeThumb(e) {
+e.target.parentElement.parentElement.classList.toggle('openthumb');
+    }
+        parentThumb.addEventListener('click', closeThumb); 
+    }    
+   
+arrayOfThumb.forEach(thumb => thumb.addEventListener('click', openThumb));    
+    
 
 /*random stacked images*/
 

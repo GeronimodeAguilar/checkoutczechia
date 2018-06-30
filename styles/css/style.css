@@ -23,12 +23,23 @@ body {
   padding: 0;
   /*  font-size: calc(20px + (30 - 20) * (100vw - 300px) / (700 - 300) );*/ /*url("../../img/bkg/flag-fabric.svg"),*/
 }
+/*
+.pattern {
+  grid-column: 1 / -1;
+  grid-row: 17;
+	width: 100%;
+	height: 30vh;
+  background: linear-gradient(45deg , hsla(358, 63%, 66%,1), hsla(211, 49%, 58%,1));
+	transform: skewY(-5deg);
+    z-index: -1;
+}*/
 
 .wrapsite {
     margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
+    grid-auto-flow: row;
     place-items: center;
     justify-content: space-around;	
     width: 100%;
@@ -669,13 +680,13 @@ img.sliderimg + img.sliderimg {
 }
 
 .down-flag-move {
-  transform: translateY(2vh);
+  transform: translateY(2vh) scale(1);
   opacity: 0.8;
 }
 
 .down-flag:hover {
   opacity: 1;
-  transform: translateY(10vh);
+  transform: translateY(10vh) scaleY(2);
 }
 
 /* links grid*/
@@ -2000,7 +2011,6 @@ grid-area: 1 / 1 / 1 / 1;
 grid-area: 1 / 9 / 10/ 10;
 transform: rotate(90deg) translate(25vh,13vw);
 text-align: center;
-text-align: center;
 font-size: 2em;
 font-weight: 900;
 padding: 0px;
@@ -2202,7 +2212,141 @@ blockquote {
     will-change: opacity, filter;
     opacity: 0;
     filter: blur(0px);
-  }      
+  }   
+  
+/* grid9 gallery*/  
+
+  .thumbs-box {
+    grid-column: 1 / -1;
+    display: grid;
+    grid: repeat(3, 1fr) / repeat(3, 1fr);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}        
+
+.thumbnail{
+width: 33.33vw;
+height: 33.33vh; 
+}
+
+.openthumb {
+grid-area: 1 / 1 / 3 / 3;
+width: 100vw;
+height: 100vh; 
+background-color: transparent;
+z-index: 50;
+}        
+        
+.openthumb .thumb-image {
+width: 100vw;
+height: 100vh; 
+transition: all 0.7s ease-in-out; 
+}            
+
+.thumb-cont {
+width: 100%;
+height: 100%; 
+overflow: hidden;
+} 
+
+.openthumb .thumb-cont {
+width: 100%;
+height: 100%; 
+overflow: hidden;
+}         
+
+.thumb-image {
+width: 33.33vw;
+height: 33.33vh; 
+transition: all 0.7s ease-in-out; 
+cursor: pointer;
+}
+
+/*grid image gallery hover effects*/
+
+.hover-gallery {
+  grid-column: 1 / -1;
+  display: grid;
+  grid: 50vh / 50vw 50vw;
+  grid-auto-columns: 50vw;
+  grid-auto-rows: 50vh;
+  gap: 5vh 5vw;
+          place-items: space-evenly;
+  width: 100vw;
+}
+
+.hover-container {
+  display: grid;
+  grid: repeat(10, 1fr) /repeat(10, 1fr);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1vh solid hsla(211, 76%, 28%,0.7);
+}    
+
+.hover-picture {
+  grid-area: 2 / 2 / 10 / 10;                 
+  width: 40vw;
+  height: 40vh;
+  transition: all .8s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  z-index: 2;
+}
+
+.hover-container:hover .hover-picture {
+  grid-area: 1 / 1 / 11 / 11;
+  width: 50vw;
+  height: 50vh;
+  border: none;
+}
+
+.back-effect {
+  grid-area: 1 / 1 / 11 / 11;
+  background-color: hsla(211, 76%, 28%,0.2);
+  width: 0; 
+  height: 0; 
+  border-top: 50vh solid hsla(211, 76%, 28%,0.4); 
+  border-right: 50vw solid transparent; 
+  z-index: 0;
+}
+
+.front-effect {
+  grid-area: 1 / 1 / 11 / 11;
+  background-color: hsla(211, 76%, 28%,0.0);
+  width: 0; 
+  height: 0; 
+  border-top: none; 
+  border-right: none; 
+  border-bottom: 50vh solid hsla(211, 76%, 28%,0.7); 
+  border-left: 50vw solid transparent; 
+  z-index: 1;
+      }
+
+.hover-container:hover .front-effect {
+  border-top: 50vh solid hsla(211, 76%, 28%,0.5); 
+  border-right: 50vw solid transparent; 
+  border-bottom: none;
+  border-left: none;
+  z-index: 3;
+}    
+
+.hover-text {
+  transition: all 0.7s ease-in-out; 
+  grid-area: 9 / 2 / 9 / 10;
+  width: 100%;
+  height: 40%;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  transform: translateY(4vh);
+  z-index: 4;
+}    
+
+.hover-container:hover .hover-text {
+  font-size: 2.5rem;
+  background-color: hsla(211, 76%, 28%,0.0); 
+  transform: translateY(-30vh);
+}
 
 /*collage css grid gallery*/
 
@@ -2717,6 +2861,65 @@ p.auto-caption {
   z-index: 8;
 }
 
+/* css image accordion */
+
+.accordian {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+width: 100vw; 
+  height: 100vh;
+overflow: hidden;
+  padding: 0;
+margin: 0;
+}
+
+
+.accordian-item {
+width: 10vw;
+  height: 100vh;
+transition: all .7s cubic-bezier(.9,.3,.1,.7);
+}
+
+.accordian:hover .accordian-item {width: 10vw;}
+
+.accordian .accordian-item:hover {width: 25vw;}
+
+.accordian .accordian-item img {
+display: block;
+}
+      
+.accordian-img {
+  width: auto;
+  height: 100vh;            
+}        
+      
+.image_title {
+  width: 0vw;
+  height: 0vh;
+  text-align: center;
+transition: all .7s cubic-bezier(.9,.3,.1,.7);
+}
+      
+.image_title .accordian-link {
+  font-size: 2em;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 0px;
+  color: white;
+}        
+      
+.accordian-item:hover .image_title {
+  background-color: firebrick;
+  width: 25vw;
+  height: 10vh;
+}
+      
+.accordian-item:hover .accordian-img {
+  height: 90vh;
+  width: 25vw;    
+}        
+       
 /*css slider*/
 img.css-pic {
   width: 100vw;
