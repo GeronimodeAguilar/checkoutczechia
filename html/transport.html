@@ -117,13 +117,27 @@
 
   <h3>Geography</h3>
 
-  <figure>
-    <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/zlin-TGM-statue.jpg" alt="">
-    <figcaption>TGM statue</figcaption>
-  </figure>
+  <div class="photo-cardbox">
+    <div class="photo-card" id="photocard1"><img class="card-photo" src="../img/cont/242.jpg"></div>
+    <div class="photo-card" id="photocard2"><img class="card-photo" src="../img/cont/210.jpg"></div>
+    <div class="photo-card" id="photocard3"><img class="card-photo" src="../img/cont/71.jpg"></div>
+    <div class="photo-card" id="photocard4"><img class="card-photo" src="../img/cont/77.jpg"></div>
+    <div class="photo-card" id="photocard5"><img class="card-photo" src="../img/cont/65.jpg"></div>
+    <div class="photo-card" id="photocard6"><img class="card-photo" src="../img/cont/62.jpg"></div>
+    <div class="photo-card" id="photocard7"><img class="card-photo" src="../img/cont/58.jpg"></div>
+    <div class="photo-card" id="photocard8"><img class="card-photo" src="../img/cont/98.jpg"></div>
+    <div class="photo-card" id="photocard9"><img class="card-photo" src="../img/cont/59.jpg"></div>
+    <div class="photo-card" id="photocard10"><img class="card-photo" src="../img/cont/89.jpg"></div>
+    <div class="photo-card" id="photocard11"><img class="card-photo" src="../img/cont/244.jpg"></div>
+    <div class="photo-card" id="photocard12"><img class="card-photo" src="../img/cont/315.jpg"></div>
+    <div class="photo-card" id="photocard13"><img class="card-photo" src="../img/cont/83.jpg"></div>
+    <div class="photo-card" id="photocard14"><img class="card-photo" src="../img/cont/312.jpg"></div>
+    <div class="photo-card" id="photocard15"><img class="card-photo" src="../img/cont/65.jpg"></div>
+    <div class="photo-card" id="photocard16"><img class="card-photo" src="../img/cont/97.jpg"></div>
+    <div class="photo-card" id="photocard17"><img class="card-photo" src="../img/cont/221.jpg"></div>
+    <div class="photo-card" id="photocard18"><img class="card-photo" src="../img/cont/246.jpg"></div>
+</div>
 
-   <p class="hidden">The Czech Republic (/ˈtʃɛk rɪˈpʌblɪk/ (About this sound listen)[10] Czech: Česká republika, Czech pronunciation: [ˈtʃɛskaː ˈrɛpuˌblɪka] (About this sound listen)),[11] also known as Czechia[12] (/ˈtʃɛkiə/ (About this sound listen); Czech: Česko, pronounced [ˈtʃɛsko] (About this sound listen)), is a landlocked country in Central Europe bordered by Germany to the west, Austria to the south, Slovakia to the east and Poland to the northeast.[13] The Czech Republic covers an area of 78,866 square kilometres (30,450 sq mi) with a mostly temperate continental climate and oceanic climate. It is a unitary parliamentary republic, has 10.6 million inhabitants and the capital and largest city is Prague, with 1.3 million residents. The Czech Republic is a member of the European Union (EU), NATO, the OECD, the United Nations, the OSCE, and the Council of Europe.</p>
-   
   <h3>Stats</h3>   
 
 
@@ -294,6 +308,63 @@
 </ul>
       </div>
 <script>
+
+  /*flexbox rotate gallery*/
+
+   let photoCardBox = document.querySelector('.photo-cardbox');
+    let photoPics = document.querySelectorAll('.card-photo');
+    let photoCards = document.querySelectorAll('.photo-card');
+    let cardArr = [...photoCards];
+    let photoArr = [...photoPics];
+    let evenArr = [];
+    let unEvenArr = [];
+    let randomNumber = 0;
+ 
+function getRandomInt(min,max) {
+  return Math.floor(Math.random() * (max - min +1)) + min;
+}    
+    
+function filterEven(item,index) {
+
+  if ( index % 2 == 0 ) {
+      evenArr.push(item);
+  } else {
+  unEvenArr.push(item);
+  }
+}
+    
+function styleEven(element) {
+    element.style.transform = `rotate(${getRandomInt(1,9)}deg)`;
+}
+    
+function styleUnEven(element) {
+    element.style.transform = `rotate(${getRandomInt(-9,-1)}deg)`;
+} 
+     
+function mouseOnElement(e) {
+    let trgt = e.target;
+    let parent =trgt.parentElement;
+    
+function rotateBack(e) {
+     parent.style.transform = `rotate(${getRandomInt(-9,9)}deg) scale(1)`; 
+    parent.classList.remove('open-card');
+    trgt.classList.remove('open-photo'); 
+};      
+    if(parent.classList.contains('photo-card')) {
+        parent.classList.add('open-card');
+        parent.style.transform = `rotate(0) scale(1.5)`
+         trgt.addEventListener('mouseout', rotateBack);
+    }
+    if( trgt.classList.contains('card-photo')) {
+        trgt.classList.add('open-photo');   
+    };
+};    
+cardArr.forEach((item,index) => filterEven(item, index));    
+evenArr.forEach((item) => styleEven(item));
+unEvenArr.forEach((item) => styleUnEven(item));
+photoCardBox.addEventListener('mouseover', mouseOnElement);    
+
+
 /*textshadow*/
 
 const hero = document.querySelector('header');

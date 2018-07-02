@@ -2337,16 +2337,57 @@ cursor: pointer;
   height: 40%;
   font-size: 2rem;
   text-align: center;
-  color: white;
+  color:transparent;
   transform: translateY(4vh);
   z-index: 4;
 }    
 
 .hover-container:hover .hover-text {
   font-size: 2.5rem;
+  color: white;
   background-color: hsla(211, 76%, 28%,0.0); 
   transform: translateY(-30vh);
 }
+
+/*flexbox rotate gallery*/
+
+.photo-cardbox {
+  grid-column: 1 / -1;
+  margin: 0;
+  width: 100vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+       
+.card-photo {
+  cursor: pointer;
+  height: 30vh;
+  width: 30vw;
+  z-index: 1;
+  transition: all 1.0s ease;
+  box-shadow: 1vw 1vh 1em #444;
+}
+
+.photo-card{
+  margin:  4vh 0;
+  border: 1vw ridge white;
+  width: 30vw;
+  height: 30vh;
+  transition: all .8s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  overflow: hidden;
+} 
+       
+.open-card {
+  z-index: 2;  
+  border: 1px solid transparent;
+} 
+      
+.open-photo {
+  border: none;
+  height: 40vh;
+  width: 40vw;
+}  
 
 /*collage css grid gallery*/
 
