@@ -139,15 +139,10 @@
   <h3>Stats</h3>   
 
 
-  <figure>
-    <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/buchlov-louky.jpg" alt="">
-    <figcaption>Chriby</figcaption>
-  </figure>
-
-
-        <p class="hidden">
-    It is a developed country[14] with an advanced,[15] high income[16] export-oriented social market economy based in services, manufacturing and innovation. The UNDP ranks the country 14th in inequality-adjusted human development.[17] The Czech Republic is a welfare state with a "continental" European social model, a universal health care system and tuition-free university education. It ranks as the 6th safest or most peaceful country and is one of the most non-religious countries in the world,[18] while achieving strong performance in democratic governance.</p>
-   
+  <div class="split-box">
+      <div class="split-picture"><img class="left-split-image" src="../img/cont/235.jpg"/></div>
+      <img class="right-split-image" src="../img/cont/235.jpg"/>
+      </div>
   
   <h3>History</h3>
 
@@ -159,13 +154,10 @@
     <p class="hidden">
     The Czech Republic includes the historical territories of Bohemia,[19] Moravia, and Czech Silesia. The Czech state was formed in the late 9th century as the Duchy of Bohemia under the Great Moravian Empire. After the fall of the Empire in 907, the centre of power transferred from Moravia to Bohemia under the Přemyslid dynasty. In 1002, the duchy was formally recognized as part of the Holy Roman Empire,[20][21] becoming the Kingdom of Bohemia in 1198 and reaching its greatest territorial extent in the 14th century. Besides Bohemia itself, the king of Bohemia ruled the lands of the Bohemian Crown, he had a vote in the election of the Holy Roman Emperor, and Prague was the imperial seat in periods between the 14th and 17th century. In the Hussite wars of the 15th century driven by the Protestant Bohemian Reformation, the kingdom faced economic embargoes and defeated five consecutive crusades proclaimed by the leaders of the Catholic Church.</p>
 
-    <figure>
-      <img class="contentimg align-left slide-in"  id="pic" src="../img/cont/church-stare-mesto.jpg" alt="">
-      <figcaption>Catholic Church Stare Mesto</figcaption>
-    </figure>
-
-    <p class="hidden">
-    Following the Battle of Mohács in 1526, the whole Crown of Bohemia was gradually integrated into the Habsburg Monarchy alongside the Archduchy of Austria and the Kingdom of Hungary. The Protestant Bohemian Revolt (1618–20) against the Catholic Habsburgs led to the Thirty Years' War. After the Battle of the White Mountain, the Habsburgs consolidated their rule, eradicated Protestantism and reimposed Catholicism, and also adopted a policy of gradual Germanization. With the dissolution of the Holy Roman Empire in 1806, the Bohemian Kingdom became part of the Austrian Empire and the Czech language experienced a revival as a consequence of widespread romantic nationalism. In the 19th century, the Czech lands became the industrial powerhouse of the monarchy and were subsequently the core of the Republic of Czechoslovakia, which was formed in 1918 following the collapse of the Austro-Hungarian Empire after World War I.</p>
+    <div class="horizon-split-box">
+        <div class="horizon-split-picture"><img class="top-split-image" src="../img/cont/71.jpg"/></div>
+        <img class="bottom-split-image" src="../img/cont/71.jpg"/>
+        </div>
 
     <figure>
       <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/corner-flag.jpg" alt="">
@@ -293,6 +285,29 @@
      </div>
      
      <script>
+     
+    /* split image onMousemove */ 
+
+    let splitContainer = document.querySelector('.split-box');   
+    let splitPic = document.querySelector('.split-picture');
+    
+    function resizeOnMouse (e) {
+        splitPic.style.width = e.clientX - splitContainer.offsetLeft + 'px';console.log(e);
+    }
+
+    splitContainer.addEventListener('mousemove',resizeOnMouse);
+
+ let horizonContainer = document.querySelector('.horizon-split-box');   
+    let horizonPic = document.querySelector('.horizon-split-picture');
+    
+    function horizonOnMouse (e) {
+        let scrollPosition = window.pageYOffset - horizonContainer.offsetTop;
+        let horizonHeight = horizonContainer.offsetHeight;
+        horizonPic.style.height = scrollPosition  + horizonHeight / 2 + 'px';
+    }
+
+    window.addEventListener('scroll',horizonOnMouse);    
+
      const stackedBox = document.querySelector('.stacked-box');
      const hiddenModalPic = document.querySelector('.modal-hidden-pic');    
      let cards = document.querySelectorAll('.card-stack');
