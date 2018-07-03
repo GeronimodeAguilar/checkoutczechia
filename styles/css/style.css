@@ -558,6 +558,122 @@ img.sliderimg + img.sliderimg {
   opacity: 0;
  }
 
+/*rotating carusssel of pictures*/
+
+.carrusel-wheel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid: 5vh 90vh 5vh / 5vw 90vw 5vw;
+  place-items:center;
+  height: 100vh;
+  width: 100vw;
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.wheel-pic {
+  width: 100vw;
+  height: 100vh;
+}
+
+.wheel-element {
+  grid-area: 2 / 2 / 2 / 2;
+  margin: 0;
+  width: 100%;
+  height: 80vh;
+  opacity: 0;
+  overflow: hidden;
+      transition: all .6s linear;
+}
+
+.carrusel-wheel .wheel-text {
+  position: absolute;
+  color: #444;
+  font-size: .7em;
+  letter-spacing: .1em;
+  word-spacing: .1em;
+  text-align: center;
+  line-height: 1.25em;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid #fff;
+  box-shadow: 1px 1px 5px 2px #777;
+  width: 18.5em;
+  height: 1.25em;
+  top: 155px;
+  left: 5px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.carrusel-wheel:hover .wheel-text {
+  opacity: 1;
+}
+
+.wheel-element:nth-of-type(1) {
+  animation: bild1 72s linear infinite;
+}
+
+.wheel-element:nth-of-type(2) {
+  animation: bild1 72s -12s linear infinite;
+}
+
+.wheel-element:nth-of-type(3) {
+  animation: bild1 72s -16s linear infinite;
+}
+
+.wheel-element:nth-of-type(4) {
+  animation: bild1 72s -24s linear infinite;
+}
+
+.wheel-element:nth-of-type(5) {
+  animation: bild1 72s -32s linear infinite;
+}
+
+.wheel-element:nth-of-type(6) {
+  animation: bild1 72s -40s linear infinite;
+}
+
+.wheel-element:nth-of-type(7) {
+  animation: bild1 72s -48s linear infinite;
+}
+
+.wheel-element:nth-of-type(8) {
+  animation: bild1 72s -56s linear infinite;
+}
+
+.wheel-element:nth-of-type(9) {
+  animation: bild1 72s -64s linear infinite;
+}
+
+@keyframes bild1 {
+    0%    {opacity:  1; z-index:5;
+           transform:rotateY(0deg) translateZ(315px);}
+   11.11% {opacity: .9; z-index:4;
+           transform:rotateY(40deg) translateZ(315px);}
+   22.22% {opacity: .7; z-index:3;
+           transform:rotateY(80deg) translateZ(315px);}
+   33.33% {opacity: .5; z-index:2;
+           transform:rotateY(120deg) translateZ(315px);}
+   44.44% {opacity: .3; z-index:1;
+           transform:rotateY(160deg) translateZ(315px);}
+   55.56% {opacity: .3; z-index:1;
+           transform:rotateY(200deg) translateZ(315px);}
+   66.67% {opacity: .5; z-index:2;
+           transform:rotateY(240deg) translateZ(315px);}
+   77.78% {opacity: .7; z-index:3;
+           transform:rotateY(280deg) translateZ(315px);}
+   88.89% {opacity: .9; z-index:4;
+           transform:rotateY(320deg) translateZ(315px);}
+  100%    {opacity:  1; z-index:5;
+           transform:rotateY(360deg) translateZ(315px);}
+}
+
+.carrusel-wheel:hover .wheel-element {
+  animation-play-state: paused;
+}
+
 /*Canvas moving pictures*/
 
 #moving-canvas {
