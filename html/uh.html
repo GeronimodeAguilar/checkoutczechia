@@ -231,6 +231,46 @@
     </div>
 
 </div>
+
+<div class="carrusel-rotation">
+  <figure class="carrusel-plate">
+<img src="../img/cont/28.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>   
+   <figure class="carrusel-plate">
+<img src="../img/cont/2.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>    
+  <figure class="carrusel-plate">
+<img src="../img/cont/61.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>
+  <figure class="carrusel-plate">
+<img src="../img/cont/29.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>   
+   <figure class="carrusel-plate">
+<img src="../img/cont/91.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>    
+  <figure class="carrusel-plate">
+<img src="../img/cont/84.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>
+  <figure class="carrusel-plate">
+<img src="../img/cont/39.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>   
+   <figure class="carrusel-plate">
+<img src="../img/cont/34.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>    
+  <figure class="carrusel-plate">
+<img src="../img/cont/32.jpg" alt="" class="carrusel-pictur">
+      <figcaption class="carrusel-text">Text word sound letter</figcaption>
+  </figure>
+ 
+</div>    
   
   <h3>History</h3>
 
@@ -943,6 +983,50 @@ function parallaxed(e) {
     
 window.addEventListener('mousemove', parallaxed);
 
+/*rotate carrussel wheel*/
+
+    let wheelBox = document.querySelector('.carrusel-rotation');
+    let wheelItem = document.querySelectorAll('.carrusel-plate');
+    let degrees = -40;
+    let isDown = false;
+    
+   function positionItem(item,degrees,pointerPosition) {
+        let rotationData = degrees + pointerPosition;    
+        if (rotationData > 75 && rotationData < 265) { 
+             item.style.zIndex = -1;
+        }
+        item.style.transform = `rotateY(${rotationData}deg) translateZ(315px)`;
+        }  
+         
+    
+    function rotateWheel(e) {
+
+    let pointerPosition = Math.floor(((-wheelBox.clientWidth /2) + e.clientX) / 3.6 );
+  wheelItem.forEach(function(item) {
+       if(degrees < 320) {
+          degrees += 40;
+      } else if (degrees > 320 && degrees <360) { 
+          degrees = 40;
+      }else {
+          degrees = 0;
+      }
+       item.style.zIndex = 3;
+       if(isDown){(positionItem(item,degrees,pointerPosition))};
+      });          
+
+    }
+    
+    function addMouseDown() { 
+        isDown = true;
+        wheelBox.addEventListener('mousemove', rotateWheel);
+    }
+   
+        function removeMouseDown(){
+        isDown = false;
+    } 
+    
+    wheelBox.addEventListener('mouseover', addMouseDown );
+    wheelBox.addEventListener('mouseout', removeMouseDown );
 
 /*basic slider*/
 
