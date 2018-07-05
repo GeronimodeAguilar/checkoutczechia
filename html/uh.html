@@ -985,24 +985,27 @@ window.addEventListener('mousemove', parallaxed);
 
 /*rotate carrussel wheel*/
 
-    let wheelBox = document.querySelector('.carrusel-rotation');
+       let wheelBox = document.querySelector('.carrusel-rotation');
     let wheelItem = document.querySelectorAll('.carrusel-plate');
     let degrees = -40;
     let isDown = false;
     
-   function positionItem(item,degrees,pointerPosition) {
+    function removeMouseDown(){
+        isDown = false;
+    } 
+    
+    function positionItem(item,degrees,pointerPosition) {
         let rotationData = degrees + pointerPosition;    
-        if (rotationData > 75 && rotationData < 265) { 
+        if (rotationData > 65 && rotationData < 275) { 
              item.style.zIndex = -1;
         }
-        item.style.transform = `rotateY(${rotationData}deg) translateZ(315px)`;
-        }  
-         
+        item.style.transform = `rotateY(${rotationData}deg) translateZ(${ document.documentElement.clientWidth / 3 + 'px'})`;
+     } 
     
     function rotateWheel(e) {
-
+    if(!isDown) return;
     let pointerPosition = Math.floor(((-wheelBox.clientWidth /2) + e.clientX) / 3.6 );
-  wheelItem.forEach(function(item) {
+    wheelItem.forEach(function(item) {
        if(degrees < 320) {
           degrees += 40;
       } else if (degrees > 320 && degrees <360) { 
@@ -1011,22 +1014,36 @@ window.addEventListener('mousemove', parallaxed);
           degrees = 0;
       }
        item.style.zIndex = 3;
-       if(isDown){(positionItem(item,degrees,pointerPosition))};
+       positionItem(item,degrees,pointerPosition);
+       item.style.transition = 'none';
       });          
-
     }
     
-    function addMouseDown() { 
+    function addMouseDown(e) { 
         isDown = true;
-        wheelBox.addEventListener('mousemove', rotateWheel);
+        window.addEventListener('mousemove', rotateWheel);
+        window.addEventListener('mouseup', removeMouseDown);
+                e.preventDefault();
+    }
+
+    function initialRotation(e) {
+      let pointerPosition = Math.floor(((-wheelBox.clientWidth /2) + e.clientX) / 3.6 );
+    wheelItem.forEach(function(item) {
+       if(degrees < 320) {
+          degrees += 40;
+      } else if (degrees > 320 && degrees <360) { 
+          degrees = 40;
+      }else {
+          degrees = 0;
+      }
+       item.style.zIndex = 3;
+       positionItem(item,degrees,pointerPosition);
+      });          
+      wheelBox.removeEventListener('mouseover',initialRotation)
     }
    
-        function removeMouseDown(){
-        isDown = false;
-    } 
-    
-    wheelBox.addEventListener('mouseover', addMouseDown );
-    wheelBox.addEventListener('mouseout', removeMouseDown );
+    wheelBox.addEventListener('mousedown', addMouseDown);
+    wheelBox.addEventListener('mouseover',initialRotation)
 
 /*basic slider*/
 
