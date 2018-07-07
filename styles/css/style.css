@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background: linear-gradient(45deg , hsla(358, 83%, 86%,1), white, hsla(211, 86%, 88%,1));
+  background: linear-gradient(45deg , hsla(358, 90%, 90%,1), white, hsla(211, 90%, 90%,1));
   background-size: 100%;
   letter-spacing: -1px;
   margin: 0;
@@ -2725,6 +2725,96 @@ cursor: pointer;
   height: 40vh;
   width: 40vw;
 }  
+
+/*hexagon grid css gallery*/
+
+.hexagon_grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid: repeat(5, 1fr) / repeat(8, 1fr);    
+  place-items: center;
+  place-content: space-evenly;
+  width: 100vw;
+  height: 100vh;    
+  overflow: hidden;
+  }    
+
+.hexa_wrapp {
+overflow: hidden;
+transform: rotate(120deg);
+transition: all .7s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+  
+.hex1 {
+transform: rotate(-60deg);
+overflow: hidden;
+width: 100%;
+height: 100%;
+}
+  
+.hex2 {
+display: grid;
+grid: 1fr / 1fr;
+place-items: center;    
+transform: rotate(-60deg);
+overflow: hidden;
+width: 100%;
+height: 100%;
+}
+
+.hexagon-picture {
+grid-area: 1 / 1 / 1 / 1;      
+width: 33vw;
+height: 33vh;  
+transition: all .7s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+  
+.hexa_wrapp:hover .hexagon-picture {
+filter:hue-rotate(150deg);
+transform: scale(1.1);
+} 
+  
+.hexagon-title {
+grid-area: 1 / 1 / 1 / 1;  
+font-size: 1rem;
+color: aliceblue;
+background: hsla(211, 76%, 28%,0.6);
+padding: 0.5rem;
+text-align: center;
+z-index: 2;
+border: 1vmin solid transparent;
+border-radius: 10%;   
+opacity: 0;
+transition: all .9s ease-in-out;    
+}   
+  
+.hexa_wrapp:hover .hexagon-title {
+background: hsla(211, 76%, 28%,0.9);
+border: 1vmin solid white;     
+opacity: 1;
+}       
+
+.hexa_wrapp:hover  {
+  transform: scale(1.5) rotate(120deg);
+}
+  
+#hexagon1 {
+  grid-area: 1 / 1 / 3 / 3;  
+}  #hexagon2 {
+  grid-area: 1 / 4 / 3 / 6;  
+}  #hexagon3 {
+  grid-area: 1 / 7 / 3 / 9;  
+}  #hexagon4 {
+  grid-area: 3 / 2 / 4 / 5;  
+}  #hexagon5 {
+  grid-area: 3 / 6 / 4 / 7;  
+}  #hexagon6 {
+  grid-area: 4 / 1 / 6 / 3;  
+}  #hexagon7 {
+  grid-area: 4 / 4 / 6 / 6;  
+}  #hexagon8 {
+  grid-area: 4 / 7 / 6 / 9;  
+} 
 
 /*collage css grid gallery*/
 
