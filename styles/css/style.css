@@ -159,6 +159,8 @@ header.template {
   overflow: hidden;
 }
 
+/* knockout text */
+
 .bold-text-box{
   grid-area: 1 / 1 / 10 / 10;    
   height:100vh;
@@ -183,6 +185,56 @@ header.template {
   animation: ground 9s infinite ease-in-out alternate
 }
 
+.big-word-box{ 
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:  space-evenly;
+align-content: space-around ;
+grid-area: 1 / 1 / 10 / 10;    
+height:100vh;
+width:100vw;
+color:transparent;
+background-color: dodgerblue;
+  background-image: url('../../img/bkg/flag-horizontal-original.svg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;       
+background-clip: text;
+-webkit-background-clip: text;     
+animation: ground 30s infinite ease-in-out alternate;    
+}
+
+.big-letter{
+height:25vh;
+width:22vw;
+text-align: center;
+font-size: 40vmin;
+font-weight: 900;
+font-family: Arial;
+line-height: 1em;    
+}
+
+@keyframes ground {
+0%{
+  background-position: 0vmin 0vmin
+}
+20%{
+  background-position: -10vmin 10vmin
+}
+40%{
+  background-position: -20vmin -20vmin
+}
+60%{
+  background-position: -30vmin 30vmin
+}
+80%{
+  background-position: -20vmin -20vmin
+}
+  100%{
+  background-position: -10vmin 10vmin
+}
+} 
+
 @keyframes ground {
   0%{
     background-position: 0vh 0vh
@@ -203,8 +255,6 @@ header.template {
     background-position: -2vh -2vh
   }
 }
-
-/* knockout text */
 
 .toggle-list {
   grid-column: 1 / -1;
@@ -2685,6 +2735,117 @@ cursor: pointer;
   background-color: hsla(211, 76%, 28%,0.0); 
   transform: translateY(-30vh);
 }
+
+/*3square hover gallery*/
+
+.square-hover-wrap {
+  grid-column: 2;
+  display:grid;
+  grid: repeat(2, 1fr) / repeat(3, 1fr);
+  place-items: center;
+  place-content: space-around;
+  gap: 3em;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+      
+.square-hover-box {
+  display:grid;
+  grid: 1fr / 1fr;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  border: 5px solid #eee;
+  box-shadow: 1px 1px 5px 2px #777;
+}
+
+.square-hover-box img {
+  opacity: .9;
+  grid-area: 1 / 1 / 1 / 1; 
+}
+
+.square-hover-caption {
+  display:grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1 / 1 / 1; 
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: aliceblue;
+  z-index: 2;
+}
+
+.hover-border  {
+  grid-area: 1 / 1 / 1 / 1; 
+      place-self: center;
+  width: calc(80% + 1vmax);
+  height: calc(80% + 1vmax);
+  border: solid 1vmin white;
+  color: aliceblue;
+  z-index: 2;
+      transition: all .7s ease-in-out;
+}
+
+.square-hover-title {
+      grid-area: 1 / 1 / 1 / 1; 
+  place-self:  center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: -1px 0 var(--blue), 0 1px var(--blue), 1px 0 var(--blue), 0 -1px var(--blue);
+}
+
+.hover-content-text {
+      grid-area: 1 / 1 / 1 / 1; 
+  place-self: center;
+      width: 70%;
+  height: auto;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--blue); 
+}
+
+.square-hover-pic {
+  width: calc(100% + 10vw);
+  transform: translate3d(-5vw,0,0);
+  transition: opacity .4s, transform 3s;
+}
+
+.square-hover-box:hover .square-hover-pic {
+  opacity: .5;
+  transform: translate3d(0,0,0);
+}
+
+
+.hover-content-text {
+  opacity: 0;
+  transition: .5s;
+}
+
+.hover-content-text {
+  border-bottom: 1vmax solid #fff;
+  text-align: center;
+  transform: translate3d(100%,0,0) scale(1.2);
+  background-color: white;
+}
+
+.square-hover-box:hover .hover-content-text {
+  opacity: 1;
+  transform: translate3d(0,0,0) scale(1);
+}
+      
+.hover-border:hover  {
+  width: calc(85% + 1vmin);
+  height: calc(85% + 1vmin);
+  border: solid 1vmax white;
+} 
+      
+.square-hover-box:hover .square-hover-title {
+opacity: 0;
+}  
 
 /*flexbox rotate gallery*/
 
