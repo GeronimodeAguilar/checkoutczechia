@@ -19,11 +19,14 @@
 <body>
     <div class="wrapsite">
 
-    <header>
-  <video class="headervideo" src="../video/prag-radio-tower.mp4" muted autoplay loop playsinline></video>    
-  <h2 class="header-title"><div id="messagesBox">Prag</div></h2>    
-  <button class="down-arrow" id="arrow-scrol-down">&#9650;</button>    
-    </header> 
+        <header class="template">
+            <div class="gridwrap">
+                <div class="bold-text-box">
+                    <span class="big-title parallax-item">Prag</span>
+                </div>  
+            </div>     
+        <img src="../img/bkg/czech-republic-flag640-vertical.png" class="down-flag down-arrow">
+        </header> 
     
     <nav class="menu" id="navbox">
       <a class="flag-link" href="#"><img src="../img/bkg/czech-republic-flag640.png" class="flag-menu"></a>
@@ -237,36 +240,26 @@
 </ul>
       </div>
 <script>
-/*textshadow*/
 
-const hero = document.querySelector('header');
-const text = hero.querySelector('.header-title');
-const walk = 8;
-    
-function shadow(e) {
-const width = hero.offsetWidth;  
-const height = hero.offsetHeight;  
-let x = e.offsetX;
-let y = e.offsetY;    
+/* mousemove backgroud picture and title*/
 
-    if(this !== e.target) {
-x = x + e.target.offsetLeft;
-y = y + e.target.offsetTop;        
-    }
-    
-const xWalk = Math.round((x / width * walk) - (walk/2));
-const yWalk =  Math.round((y / height * walk) - (walk/2));     
-text.style.textShadow = `
-${xWalk}px ${yWalk}px 0 hsla(211, 76%, 28%,1),
-${yWalk}px ${xWalk * -1}px 0 hsla(358, 83%, 46%,1)
-`;
+function parallaxed(e) {
+      let mouseMovedX = (e.clientX * -0.3 / 8);
+      let mouseMovedY = (e.clientY * -0.3 / 8);
+      let mouseMovX = (e.clientX * -0.3 / 2);
+      let mouseMovY = (e.clientY * -0.3 / 2);      
+      let paralaxImg = document.querySelectorAll('.parallax-item');
+  
+        paralaxImg.forEach(function(elem){
+           elem.style.transform='translate(' + mouseMovedX + 'px,' + mouseMovedY + 'px)';
+        elem.style.backgroundPosition = mouseMovX + "px " + mouseMovY + "px";
+        });
 }    
     
-hero.addEventListener('mousemove', shadow);    
-
+window.addEventListener('mousemove', parallaxed); 
 
 /*simple typing messages*/
-
+/*
     let messagesContainer = document.getElementById('messagesBox');
 
 let things = ['History', 'Culture', 'Quisine', 'Nightlife', 'Prague'];
@@ -327,7 +320,7 @@ function tick() {
     timeout = window.setTimeout(tick, worddelay);
 }
 
-let timeout = window.setTimeout(tick, worddelay);
+let timeout = window.setTimeout(tick, worddelay);*/
 
 /*mouse reveal Img*/
 

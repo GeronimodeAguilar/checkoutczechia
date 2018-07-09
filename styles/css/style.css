@@ -159,13 +159,33 @@ header.template {
   overflow: hidden;
 }
 
+/* knockout Gradient Text Mousemove */
+
+.gradient-title {
+  grid-column: 2;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(211, 76%, 28%,0.7); 
+  font-size: 3rem;
+  font-weight: 900;
+  font-family:  "Tahoma";
+  text-align: center;
+  z-index: 9;
+  background: repeating-linear-gradient(to top left,
+  var(--red), var(--blue) 25vmin, var(--red) 25vmin, var(--blue) 25vmin);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: 0;
+  background-size: 100vw 100%;
+}    
+
 /* knockout text */
 
 .bold-text-box{
   grid-area: 1 / 1 / 10 / 10;    
   height:100vh;
   width:100vw;
-  color:rgba(255,255,255,.0);
+  color:transparent;
   background-color: var(--blue);
   overflow: hidden;
   display: grid;
@@ -173,35 +193,55 @@ header.template {
 }
 
 .bold-text{
-      height:100vh;
-  width:100vw;
+  height:120vh;
+  width:120vw;
   background: no-repeat center/100% url('../../img/cont/45.jpg');
   -webkit-background-clip:text;
+  background-size:  200vw 200vh;
   text-transform: uppercase;
-    text-align: center;
-      font-size: 50vh;
+  text-align: center;
+  font-size: 50vh;
   font-weight: 900;
   font-family: Arial;
-  animation: ground 9s infinite ease-in-out alternate
+  line-height: 1em;
 }
+
+.big-title {
+  height:120vh;
+  width:120vw;
+  background: no-repeat center/100% url('../../img/bkg/prague-overview.jpg');
+  -webkit-background-clip:text;
+  background-size:  150vw 150vh;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 110vh;
+  font-weight: 900;
+  font-family: Arial;
+  line-height: 1em;
+  transition: all 100ms linear;
+}
+
+/* animated background text*/
 
 .big-word-box{ 
   display: flex;
   flex-flow: row wrap;
-  justify-content:  space-evenly;
-align-content: space-around ;
-grid-area: 1 / 1 / 10 / 10;    
-height:100vh;
-width:100vw;
-color:transparent;
-background-color: dodgerblue;
+  justify-content: space-evenly;
+  align-content: space-around ;
+  grid-area: 1 / 1 / 10 / 10;    
+  height:100vh;
+  width:100vw;
+  color:transparent;
+  background-color: var(--blue);
   background-image: url('../../img/bkg/flag-horizontal-original.svg');
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;       
-background-clip: text;
--webkit-background-clip: text;     
-animation: ground 30s infinite ease-in-out alternate;    
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;      
+  background-origin: content-box; 
+  background-clip: text;
+  -webkit-background-clip: text;     
+  animation: ground 20s infinite ease-in-out alternate;  
+  z-index: 3;  
 }
 
 .big-letter{
@@ -211,50 +251,33 @@ text-align: center;
 font-size: 40vmin;
 font-weight: 900;
 font-family: Arial;
-line-height: 1em;    
+line-height: 1em;   
 }
-
-@keyframes ground {
-0%{
-  background-position: 0vmin 0vmin
-}
-20%{
-  background-position: -10vmin 10vmin
-}
-40%{
-  background-position: -20vmin -20vmin
-}
-60%{
-  background-position: -30vmin 30vmin
-}
-80%{
-  background-position: -20vmin -20vmin
-}
-  100%{
-  background-position: -10vmin 10vmin
-}
-} 
 
 @keyframes ground {
   0%{
-    background-position: 0vh 0vh
+    background-size:  100vw 100vh;
+    background-position: 0vmin 0vmin;
   }
   20%{
-    background-position: 2vh 2vh
+    background-size:  200vw 100vh;
+    background-position: 20vmin 0vmin;
   }
   40%{
-    background-position: 4vh 4vh
+    background-size:  100vw 100vh;
   }
   60%{
-    background-position: 1vh 1vh
+    background-size:  300vw 100vh;
+    background-position: -10vmin 0vmin;    
   }
   80%{
-    background-position: -4vh -4vh
+    background-size:  100vw 100vh;
   }
     100%{
-    background-position: -2vh -2vh
+    background-size:  200vw 100vh;
+    background-position: 10vmin 0vmin;
   }
-}
+  } 
 
 .toggle-list {
   grid-column: 1 / -1;
@@ -336,6 +359,7 @@ line-height: 1em;
 }
 
 .headervideo {
+  grid-area: 1 / 1 / 10 / 10;
   max-width: 1280px;
   z-index: 1;
 }

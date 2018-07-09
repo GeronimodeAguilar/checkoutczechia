@@ -921,15 +921,19 @@
       </div>
 <script>
   'use strict'
-
 /* mousemove logo and title*/
 
 function parallaxed(e) {
-      let amountMovedX = (e.clientX * -0.3 / 8);
-      let amountMovedY = (e.clientY * -0.3 / 8);
+      let mouseMovedX = (e.clientX * -0.3 / 8);
+      let mouseMovedY = (e.clientY * -0.3 / 8);
+      let mouseMovX = (e.clientX * -0.3);
+      let mouseMovY = (e.clientY * -0.3);      
       let paralaxImg = document.querySelectorAll('.parallax-item');
   
-        paralaxImg.forEach((elem) => elem.style.transform='translate(' + amountMovedX + 'px,' + amountMovedY + 'px)')
+        paralaxImg.forEach(function(elem){
+           elem.style.transform='translate(' + mouseMovedX + 'px,' + mouseMovedY + 'px)';
+        elem.style.backgroundPosition = mouseMovX + "px " + mouseMovY + "px";
+        });
 }    
     
 window.addEventListener('mousemove', parallaxed);  
