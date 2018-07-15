@@ -120,13 +120,8 @@
 
   <h3>Geography</h3>
 
-  <figure>
-    <img class="contentimg align-right slide-in"  id="pic" src="../img/cont/zlin-TGM-statue.jpg" alt="">
-    <figcaption>TGM statue</figcaption>
-  </figure>
+  <canvas class="glitch-art"></canvas>
 
-   <p class="hidden">The Czech Republic (/ˈtʃɛk rɪˈpʌblɪk/ (About this sound listen)[10] Czech: Česká republika, Czech pronunciation: [ˈtʃɛskaː ˈrɛpuˌblɪka] (About this sound listen)),[11] also known as Czechia[12] (/ˈtʃɛkiə/ (About this sound listen); Czech: Česko, pronounced [ˈtʃɛsko] (About this sound listen)), is a landlocked country in Central Europe bordered by Germany to the west, Austria to the south, Slovakia to the east and Poland to the northeast.[13] The Czech Republic covers an area of 78,866 square kilometres (30,450 sq mi) with a mostly temperate continental climate and oceanic climate. It is a unitary parliamentary republic, has 10.6 million inhabitants and the capital and largest city is Prague, with 1.3 million residents. The Czech Republic is a member of the European Union (EU), NATO, the OECD, the United Nations, the OSCE, and the Council of Europe.</p>
-   
   <h3>Stats</h3>   
 
 
@@ -293,6 +288,31 @@ previous.addEventListener("click", function () {
     current = (slides.length - 1);
   slides[current].classList.add("basic-active");
 });
+
+/*glitchArt*/
+
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var img = new Image();
+img.src = '../img/cont/23.jpg';
+img.onload = function() {
+  draw(this);
+};
+
+function draw(img) {
+  let glitchArt = document.querySelector('.glitch-art');
+  var canvas = glitchArt.getContext('2d');
+  glitchArt.setAttribute("width", img.width);
+  glitchArt.setAttribute("height", img.height);
+  var verticalSlices = Math.round(img.height / 30);
+  var maxHorizOffset = 30;
+  for (var i = 0; i < verticalSlices; i++)  {
+    var horizOffset = getRandom(-Math.abs(maxHorizOffset), maxHorizOffset);
+    canvas.drawImage(img, 0, i * verticalSlices, img.width, i * verticalSlices + verticalSlices, horizOffset, i * verticalSlices, img.width, i * verticalSlices + verticalSlices);
+  }
+}    
 
 </script>
 </body>
