@@ -1,10 +1,7 @@
 window.onload = function() {
     let mainelement = document.createElement("script");
-    /*let ternaryelement = document.createElement("script");*/
     mainelement.src = "../scripts/before/main.js";
-   /* ternaryelement.src = "../scripts/before/ternary.js";*/
     document.body.appendChild(mainelement);
-   /* mainelement.after(ternaryelement);*/
     loaderbox.hidden = true;   
     var elements = document.getElementsByClassName('txt-rotate');
 for (var i=0; i<elements.length; i++) {

@@ -921,13 +921,13 @@
       </div>
 <script>
   'use strict'
-/* mousemove logo and title*/
+/* mousemove backgroud picture and title*/
 
 function parallaxed(e) {
       let mouseMovedX = (e.clientX * -0.3 / 8);
       let mouseMovedY = (e.clientY * -0.3 / 8);
-      let mouseMovX = (e.clientX * -0.3);
-      let mouseMovY = (e.clientY * -0.3);      
+      let mouseMovX = (e.clientX * -0.3 / 2);
+      let mouseMovY = (e.clientY * -0.3 / 2);      
       let paralaxImg = document.querySelectorAll('.parallax-item');
   
         paralaxImg.forEach(function(elem){
