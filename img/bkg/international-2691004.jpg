@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+.bold-text-box{
+  height:100vh;
+  width:100vw;
+  font-size: 10rem;
+  font-weight: 900;
+  font-family: Arial;
+  color:rgba(255,255,255,.1);
+  background-color:skyblue;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.bold-text{
+  background: no-repeat center/100% url('55.JPG');
+  -webkit-background-clip:text;
+  text-transform: uppercase;
+  animation: ground 9s infinite ease-in-out alternate
+}
+
+@keyframes ground {
+  0%{
+    background-position: 0vh 0vh
+  }
+  20%{
+    background-position: 2vh 2vh
+  }
+  40%{
+    background-position: 4vh 4vh
+  }
+  60%{
+    background-position: 1vh 1vh
+  }
+  80%{
+    background-position: -4vh -4vh
+  }
+    100%{
+    background-position: -2vh -2vh
+  }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="bold-text-box">
+    <span class="bold-text">
+       CZechia        
+    </span>
+    
+</div>
+
+</body>
+</html>
