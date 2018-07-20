@@ -149,6 +149,42 @@ header.template {
   overflow: hidden;
 }
 
+/* window effect on mousemove*/
+
+.perspective-wrap {
+  grid-column: 2;
+  display: grid;
+width: 100%;
+height: 100%;
+background: transparent;
+}
+
+.perspective-frame {
+  width: 100%;
+  height: 70vh;
+  perspective: 1000px;
+}
+
+.perspective-card {
+  display: grid;
+width: 100%;
+height: 100%;
+border-radius: 5vmin;
+background: white;
+border: 5vmin solid var(--blue);
+box-shadow: 0 0 2px rgba(30, 30, 20, 0.5);
+        transform-origin: 50% 50%;
+overflow: hidden;
+transition: all 500ms linear;
+}
+.perspective-img {
+width: 150%;
+height: 150%;
+transform-origin: 50% 50%;
+  place-self: center center;
+  transition: all 250ms linear;
+}
+
 /* knockout Gradient Text Mousemove */
 
 .gradient-title {
@@ -1005,6 +1041,39 @@ img.sliderimg + img.sliderimg {
   position: absolute; 			
         display: block;
         background:  no-repeat center/100% url("../../img/cont/27.jpg");
+}
+
+/*blend pictures*/
+
+.blend_wrapper {
+  grid-column: 1 / -1;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid: repeat(4,25vh) / 100vw;
+  overflow: hidden;
+  filter: brightness(150%)
+}
+
+.blend_item {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: difference;
+}   
+
+#blend1 {
+  grid-area: 1 / 1 / 3 / 1 ;
+background: no-repeat center/100% url("../../img/cont/192.jpg");
+}      
+
+#blend2 {
+  grid-area: 1 / 1 / 5 / 1 ;
+background: no-repeat center/100% url("../../img/cont/5.jpg");            
+}       
+
+#blend3 {
+  grid-area: 3 / 1 / 5 / 1 ;
+background: no-repeat center/100% url("../../img/cont/193.jpg");            
 }
 
 /*glitch art*/
