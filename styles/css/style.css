@@ -306,6 +306,52 @@ line-height: 1em;
   }
   } 
 
+/*knockout text over image*/  
+
+.img_txt_wrap {
+  grid-column: 2;
+  display: grid;
+ grid: repeat(10, 1fr) / repeat(10, 1fr);    
+  min-height: 100vh;
+  background-image: url("../../img/cont/castle-spilberg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.img_txt_title {
+  grid-area: 8 / 1 / 11 / 9;    
+  background-color: white;
+  mix-blend-mode: screen;
+  box-sizing: border-box;
+  font-family: georgia , arial;
+  font-size: calc(5rem + 5vmin);
+  font-weight: 800;
+  letter-spacing: -0.5rem;
+  line-height: .7;
+  margin: 0;
+  text-align: left;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+}
+
+.img_txt_text {
+    grid-area: 1 / 5 / 5 / 11;      
+  background-color: white;
+  text-align: right;
+  mix-blend-mode: screen;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+      font-size: calc(1rem + 1vmin);
+      width: 100%;
+    height:  calc(1rem + 8vmin);
+    
+}
+
 /*picture gallery mask over*/
 
 .mask_wrapper {
