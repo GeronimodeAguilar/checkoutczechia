@@ -218,6 +218,26 @@
     </div>
 
 </div>
+
+<div class="rolodex_wrap" id="imgdex">
+  <figure class="rolodex_box">
+    <img class="rolodex_pic" src="../img/cont/45.jpg" alt=""><figcaption class="rolodex_caption">first</figcaption>
+  </figure>
+  <figure class="rolodex_box">
+    <img class="rolodex_pic" src="../img/cont/43.jpg" alt=""><figcaption class="rolodex_caption">second</figcaption>
+  </figure>
+  <figure class="rolodex_box">
+    <img class="rolodex_pic" src="../img/cont/48.jpg" alt=""><figcaption class="rolodex_caption">third</figcaption>
+  </figure>
+  <figure class="rolodex_box">
+    <img class="rolodex_pic" src="../img/cont/49.jpg" alt=""><figcaption class="rolodex_caption">fourfth</figcaption>
+  </figure>
+
+<form class="rolodex_form">
+<input class="rolodex_ranger" type="range" min="1" onfocus="this.oldvalue = this.value;" oninput="updateImage(this);this.oldvalue = this.value;" id="ranger">
+</form>
+
+</div>
   
   <h3>History</h3>
 
@@ -955,6 +975,43 @@ function squareAnimation() {
          arrowDown.classList.toggle('down-flag-move');
             };
 setInterval(squareAnimation,1000);
+
+/*rolodex form slider*/
+
+var imgdex = document.querySelector('.rolodex_wrap'),
+figs = imgdex.querySelectorAll('.rolodex_box'),
+imgcount = figs.length;
+ranger.max = imgcount;
+ranger.value = imgcount;
+  
+for(var i=0;i<(imgcount-1);i++) {
+	var rotation = parseFloat(-92 + "." + (imgcount - i));
+	figs[i].style.transform = 'rotateX(' + rotation + 'deg)';
+}
+document.querySelectorAll('.rolodex_caption')[3].style.opacity = 1;
+
+function updateImage(slider) {
+	var currentimg = document.querySelector('.rolodex_box:nth-child('+slider.value+')');
+	if (slider.oldvalue !== undefined) {
+		var oldimg = document.querySelector('.rolodex_box:nth-child('+(slider.oldvalue)+')');
+	} else {
+		slider.oldvalue = imgcount;
+		var oldimg = document.querySelector('.rolodex_box:nth-child('+(slider.oldvalue)+')');
+	}
+	if (slider.value < slider.oldvalue) { 
+		// going forwards
+		currentimg.style.transform = 'rotateX('+slider.value+'deg)';
+	} 
+	if (slider.value > slider.oldvalue) {
+		// going backwards
+		var rotation = parseFloat(-92 + "." + (imgcount - slider.value));
+		oldimg.style.transform = 'rotateX(' + rotation + 'deg)';
+   }
+   if (slider.value !== slider.oldvalue) {
+	   currentimg.querySelector('.rolodex_caption').style.opacity = 1;
+	   oldimg.querySelector('.rolodex_caption').style.opacity = 0;
+   }
+}    
 
 /*basic slider*/
 
