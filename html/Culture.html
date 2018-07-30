@@ -136,6 +136,12 @@
 
    <p class="hidden">The Czech Republic (/ˈtʃɛk rɪˈpʌblɪk/ (About this sound listen)[10] Czech: Česká republika, Czech pronunciation: [ˈtʃɛskaː ˈrɛpuˌblɪka] (About this sound listen)),[11] also known as Czechia[12] (/ˈtʃɛkiə/ (About this sound listen); Czech: Česko, pronounced [ˈtʃɛsko] (About this sound listen)), is a landlocked country in Central Europe bordered by Germany to the west, Austria to the south, Slovakia to the east and Poland to the northeast.[13] The Czech Republic covers an area of 78,866 square kilometres (30,450 sq mi) with a mostly temperate continental climate and oceanic climate. It is a unitary parliamentary republic, has 10.6 million inhabitants and the capital and largest city is Prague, with 1.3 million residents. The Czech Republic is a member of the European Union (EU), NATO, the OECD, the United Nations, the OSCE, and the Council of Europe.</p>
    
+   <div class="move_pic_wrapper">
+    <div class="pic_layer_1"></div>
+    <div class="pic_layer_2"></div>
+    <div class="pic_layer_3"></div>
+  </div> 
+
   <h3>Stats</h3>   
 
 
@@ -333,6 +339,23 @@
      stackedBox.addEventListener('click', fullSizeCard);          
      closeModalButton.addEventListener('click', closeFullModal);    
        
+/* 3layers  stacked move on mousemove*/
+
+let wrapper = document.querySelector('.move_pic_wrapper');
+let	layerOne = document.querySelector('.pic_layer_1');
+let	layerTwo = document.querySelector('.pic_layer_2');		
+let	layerThree = document.querySelector('.pic_layer_3');
+
+function movePictures(e){
+  	let pageX = e.movementX;
+		let pageY = e.movementY;
+  	layerOne.style.transform = 'translateX(' + pageX * 10 + '%) translateY(' + pageY * 10 + '%)';
+  	layerTwo.style.transform = 'translateX(' + pageX * 5 + '%) translateY(' + pageY * 5 + '%)';
+  	layerThree.style.transform = 'translateX(' + pageX * 2 + '%) translateY(' + pageY * 2 + '%)';
+	}    
+    
+	wrapper.addEventListener('mousemove', movePictures);
+
           </script>  
 </body>
 </html>
