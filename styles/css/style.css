@@ -4162,46 +4162,59 @@ grid-column: 5 / 15;
 #gridpic1 {
   grid-area:  1 / 1 / 5 / 5;
   z-index: 3;
+  filter:hue-rotate(130deg);
 }    
 
 #gridpic2 {
   grid-area: 1 / 4 / 4 / 6;
   z-index: 2;
+  filter:hue-rotate(190deg);
+
 }
 
 #gridpic3 {
   grid-area: 1 / 6 / 6 / 11;
+  filter:hue-rotate(130deg);
+
 }
 
 #gridpic4 {
   grid-area:  7 / 1 / 11 / 5;
+  filter:hue-rotate(190deg);
+
 } 
 
 #gridpic5 {
   grid-area: 2 / 3 / 8 / 9;
           z-index: 1;
+          filter:hue-rotate(130deg);
 }
 
 #gridpic6 {
   grid-area: 5 / 3 / 9 / 6;
   z-index: 4;
+  filter:hue-rotate(190deg);
 }  
 
 #gridpic7 {
   grid-area: 4 / 1 / 7 / 4;
+  filter:hue-rotate(130deg);
 }  
 
 #gridpic8 {
   grid-area: 4 / 7 / 8 / 11 ;
   z-index: 0;
+  filter:hue-rotate(190deg);
 }   
 
 #gridpic9 {
   grid-area: 8 / 4 / 11 / 7 ;
+  filter:hue-rotate(190deg);
 }   
 
 #gridpic10 {
   grid-area: 5 / 6 / 11 / 11 ;
+  filter:hue-rotate(130deg);
 }
 
 /*Direction Aware Hover Effects Gallery*/
