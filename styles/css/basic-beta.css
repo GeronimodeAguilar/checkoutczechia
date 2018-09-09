@@ -38,7 +38,7 @@ body {
     overflow: hidden;
 }
 
-p.text_content {
+p.text_basic {
   grid-column: 2;
   background: linear-gradient( to top left ,hsla(358, 90%, 95%,1), whitesmoke, hsla(211, 90%, 90%,1));
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -149,9 +149,47 @@ header.template {
     place-content: stretch;	
 }
 
-.picture_component {
-    width: 80%;
-height: 80%;
+.small_pic_component {
+  grid-column: span 1;
+  grid-row: span 1;
+  width: 90%;
+height: 90%;
+cursor: pointer;
+background-color: var(--blue);
+}
+
+.medium_pic_component {
+  grid-column: span 2;
+  grid-row: span 2;
+  width: 90%;
+height: 90%;
+cursor: pointer;
+background-color: var(--blue);
+}
+
+.large_pic_component {
+  grid-column: 1 / -1;
+  grid-row: span 3;
+  width: 90%;
+height: 90%;
+cursor: pointer;
+background-color: var(--blue);
+}
+
+.tall_pic_component {
+  grid-column: span 1;
+  grid-row: span 3;
+  width: 90%;
+height: 90%;
+cursor: pointer;
+background-color: var(--blue);
+}
+
+.side_pic_component {
+  grid-column: span 1;
+  grid-row: span 2;
+  width: 90%;
+height: 90%;
 cursor: pointer;
 background-color: var(--blue);
 }
@@ -161,12 +199,12 @@ background-color: var(--blue);
 height: 100%;
 }
 
-.text_box {
+.text_content {
     width: 100%;
     height: 100%;
     background:  transparent;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 900;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-weight: 400;
     font-size: 1rem;
     color: var(--blue);
     padding: 10px;
@@ -175,6 +213,42 @@ height: 100%;
     z-index: 1;
   }
 
+  .small_text_box {
+    grid-column: span 1;
+    grid-row: span 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .medium_text_box {
+    grid-column: span 2;
+    grid-row: span 2;
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: var(--blue);
+  }
+
+  .large_text_box {
+    grid-column: 1 / -1;
+    grid-row: span 3;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--blue);
+  } 
+  
+  .tall_text_box {
+    grid-column: span 1;
+    grid-row: span 2;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--blue);
+  }
 /* window effect on mousemove*/
 
 .perspective-wrap {
@@ -1727,21 +1801,22 @@ figcaption {
       }
 
 /*slide in image*/
-.slide-in {
+.slide_in {
   opacity:0;
   transition:all .8s;
 }
 
-.align-left.slide-in {
+.align-left {
   transform:translateX(-10%) scale(0.95);
 }
-.align-right.slide-in {
+.align-right {
   transform:translateX(10%) scale(0.95);
 }
 
-.slide-in.reveal_component {
+.reveal_component {
   opacity:1;
   transform:translateX(0%) scale(1);
+  transition:all .8s;
 }
 
 footer {
