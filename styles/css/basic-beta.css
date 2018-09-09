@@ -1163,6 +1163,60 @@ img.sliderimg + img.sliderimg {
   opacity: 0;
  }
 
+/* drag on touch slider*/ 
+
+ .touch_slider {
+  grid-column: 1 / -1;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider__wrapper {
+    display: grid;
+    grid:  100vh / repeat(5,100vw);
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.touch_slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+.slide__img {
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide__text {
+  position: absolute;
+  color: white;
+  bottom: 0.625rem;
+  left: 0;
+  padding: 1.25rem;
+}
+
+.swipe__img {
+  transform: translatex(10px);
+  animation: moving-finger 0.8s ease-in-out 4 alternate;
+}
+
+@keyframes moving-finger {
+  from {
+    transform: translatex(10px);
+  }
+  to {
+    transform: translatex(0);
+  }
+}
+
 /*rotate on mouse carrussel wheel*/
 
 .carrusel-rotation {

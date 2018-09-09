@@ -155,6 +155,30 @@
           </figure>
       </section>
 
+   <div class="touch_slider">
+      <div class="slider__wrapper">
+         <div class="touch_slide">
+            <img src="../img/cont/101.jpg" alt="" class="slide__img">
+            <p class="slide__text">8 Avenue du Mahatma Gandhi Paris</p>
+         </div>
+         <div class="touch_slide">
+            <img src="../img/cont/102.jpg" alt="" class="slide__img">
+            <p class="slide__text">Wilderness photographer</p>
+         </div>
+         <div class="touch_slide">
+            <img src="../img/cont/103.jpg" alt="" class="slide__img">
+            <p class="slide__text">Little Governors Camp, Kenya</p>
+         </div>
+         <div class="touch_slide">
+            <img src="../img/cont/104.jpg" alt="" class="slide__img">
+            <p class="slide__text">Purwokerto, Indonesia</p>
+         </div>
+         <div class="touch_slide">
+            <img src="../img/cont/105.jpg" alt="" class="slide__img">
+            <p class="slide__text">Coffee break</p>
+      </div>
+   </div>
+</div>      
      
         <div class="links-grid">
             <a href="http://www.czechtourism.com" class="grid-link" id="link-square1"><span class="link-title">czechtourism.com</span><img src="../img/cont/234.jpg" alt="" class="link-pic"></a>
@@ -814,6 +838,105 @@ previous.addEventListener("click", function () {
     current = (slides.length - 1);
   slides[current].classList.add("basic-active");
 });
+    
+/* drag on touch slider*/
+    
+const touchContainer = document.querySelector('.touch_slider');
+let container_width = touchContainer.clientWidth;
+const imgs_wrapper = document.querySelector('.slider__wrapper');
+const touchImages = document.querySelectorAll('.touch_slide');
+const total_imgs = touchImages.length;
+let current_index = 0;
+let pointer_is_down = false;
+let [start_x, end_x] = [0, 0];
+let move_distance = 0;
+
+function initializeTouch() {
+   imgs_wrapper.style.width = `${container_width * total_imgs}px`;
+   }
+
+// Mousemove and Touchmove Event
+function createDraggingEffects() {
+   const max_distance = 2;
+   const scrolled_distance = (current_index * container_width) + (start_x - end_x) / max_distance;
+
+   switchImages(-scrolled_distance);
+}
+
+// Mouseup and Touchend Event
+function calculateFinalMoveDistance() {
+   const scrolled_distance = Math.abs(start_x - end_x);
+   const minimum_distance = 10;
+
+   if (scrolled_distance < minimum_distance) {
+      move_distance = -(current_index * container_width);
+      switchImages();
+      return false;
+   }
+
+   if (start_x > end_x & current_index < total_imgs - 1) { // scroll next
+      current_index++;
+   } else if (start_x < end_x && current_index > 0) { // scroll prev
+      current_index--;
+   }
+container_width = touchContainer.clientWidth;
+   move_distance = -(current_index * container_width);
+   switchImages(move_distance);
+}
+
+// Switch Images
+function switchImages(scrolled_number) {
+   const distance = scrolled_number || move_distance;
+   imgs_wrapper.style.transform = `translateX(${distance}px)`;
+}
+
+// Mouseleave event
+function handleMouseLeave(e) {
+   if (!pointer_is_down) return false;
+
+   pointer_is_down = false;
+   [start_x, end_x] = [0, 0];
+   switchImages();
+}
+
+initializeTouch();
+
+touchContainer.addEventListener('mousedown', (e) => {
+   e.preventDefault();
+   pointer_is_down = true;
+   start_x = e.pageX;
+});
+
+touchContainer.addEventListener('mousemove', (e) => {
+   e.preventDefault();
+   if (!pointer_is_down) return false;
+   end_x = e.pageX;
+   createDraggingEffects();
+});
+
+touchContainer.addEventListener('mouseup', (e) => {
+   e.preventDefault();
+   pointer_is_down = false;
+   calculateFinalMoveDistance();
+});
+
+touchContainer.addEventListener('mouseleave', handleMouseLeave);
+
+touchContainer.addEventListener('touchstart', (e) => {
+   pointer_is_down = true;
+   start_x = e.touches[0].pageX;
+});
+
+touchContainer.addEventListener('touchmove', (e) => {
+   if (!pointer_is_down) return false;
+   end_x = e.touches[0].pageX;
+   createDraggingEffects();
+});
+
+touchContainer.addEventListener('touchend', (e) => {
+   pointer_is_down = false;
+   calculateFinalMoveDistance();
+});    
 
 /*reveal on mouseover*/
 
