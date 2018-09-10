@@ -249,6 +249,58 @@ height: 100%;
     font-size: 1.4rem;
     color: var(--blue);
   }
+
+/* lightbox*/
+
+.lightbox_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: hidden;
+}
+
+.img-lightbox {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  transition: all 1s ease-in-out;
+  animation: fadeIn_lightbox 1s forwards;
+}
+
+.close_lightbox {
+  position: fixed;
+  top: 10vh;
+  right: 10vh;
+  z-index: 110;
+  font-size: 7rem;
+  border: none;
+  background: var(--red);
+  color: white;
+  width: 20vw;
+height: 20vh;
+}
+
+@keyframes fadeIn_lightbox {
+  0% {
+    opacity: 0;
+    height:0vh;
+    width:0vw;
+    transform: translate(50vw, 50vh);
+  }
+  100% {
+    opacity: 1;
+    height:100vh;
+    width:100vw;
+    transform: translate(0, 0);
+  }
+}
+
 /* window effect on mousemove*/
 
 .perspective-wrap {

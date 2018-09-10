@@ -580,6 +580,46 @@ let revealImages = function () {
 }
 revealImages().revealPicInit()
 
+/*lightBox*/
+
+var images = document.querySelectorAll('.content_picture');
+
+images.forEach(function (image) {
+  image.addEventListener('click', function () {
+    addOverlay();
+    addCloseBtn();
+    image.className = 'img-lightbox';
+  });
+});
+
+function addOverlay() {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox_overlay';
+  document.body.appendChild(overlay);
+}
+
+function addCloseBtn() {
+  var closeBtn = document.createElement('button');
+  closeBtn.className = 'close_lightbox';
+  closeBtn.innerHTML = 'X';
+
+function closeLightbox() {
+    var lo = document.querySelector('.lightbox_overlay');
+    var btn = document.querySelector('.close_lightbox');
+    lo.parentNode.removeChild(lo);
+    btn.parentNode.removeChild(btn);
+
+    images.forEach(function (image) {
+      if (image.classList.contains('img-lightbox')) {
+        image.className = 'content_picture align-right slide_in';
+      }
+    });
+  }  
+
+  closeBtn.addEventListener('click', closeLightbox);
+  document.body.appendChild(closeBtn);
+}   
+
 /*simple javascript accordion*/
 
 const items = document.querySelectorAll(".accordionbox a");
