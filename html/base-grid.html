@@ -133,6 +133,9 @@
           <figure class="small_pic_component">          
                <img src="../img/cont/125.jpg" alt="" class="content_picture align-right slide_in">         </figure>
           <p class="text_content small_text_box hidden_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor neque quis est accumsan, nec tincidunt lacus dapibus. Nulla facilisi. Phasellus imperdiet, erat ultrices lobortis consequat, nibh nisl finibus arcu, sed mattis nibh quam eu elit.</p> 
+          <figure class="wide_pic_component">
+            <img src="../img/cont/179.jpg" alt="" class="fullsize_picture align-right slide_in">
+          </figure>   
           <figure class="medium_pic_component">
               <img src="../img/cont/136.jpg" alt="" class="content_picture align-right slide_in">
           </figure>                      
@@ -149,16 +152,19 @@
               <img src="../img/conv/5.jpg" alt="" class="content_picture align-right slide_in">
           </figure>           
           <p class="text_content medium_text_box hidden_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor neque quis est accumsan, nec tincidunt lacus dapibus. Nulla facilisi. Phasellus imperdiet, erat ultrices lobortis consequat, nibh nisl finibus arcu, sed mattis nibh quam eu elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor neque quis est accumsan, nec tincidunt lacus dapibus. Nulla facilisi. Phasellus imperdiet, erat ultrices lobortis consequat, nibh nisl finibus arcu, sed mattis nibh quam eu elit.</p>                      
+          <figure class="wide_pic_component">
+            <img src="../img/cont/176.jpg" alt="" class="fullsize_picture align-right slide_in">
+        </figure>              
           <p class="text_content large_text_box hidden_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor neque quis est accumsan, nec tincidunt lacus dapibus. Nulla facilisi. Phasellus imperdiet, erat ultrices lobortis consequat, nibh nisl finibus arcu, sed mattis nibh quam eu elit.</p>                    
                     <figure class="large_pic_component">
-              <img src="../img/cont/105.jpg" alt="" class="content_picture align-right slide_in">
+              <img src="../img/cont/105.jpg" alt="" class="fullsize_picture align-right slide_in">
           </figure>
       </section>
 
    <div class="touch_slider">
       <div class="slider__wrapper">
          <div class="touch_slide">
-            <img src="../img/cont/101.jpg" alt="" class="slide__img">
+            <img src="../img/cont/121.jpg" alt="" class="slide__img">
             <p class="slide__text">8 Avenue du Mahatma Gandhi Paris</p>
          </div>
          <div class="touch_slide">
@@ -582,9 +588,9 @@ revealImages().revealPicInit()
 
 /*lightBox*/
 
-var images = document.querySelectorAll('.content_picture');
+let contentImages = document.querySelectorAll('.slide_in');
 
-images.forEach(function (image) {
+contentImages.forEach(function (image) {
   image.addEventListener('click', function () {
     addOverlay();
     addCloseBtn();
@@ -609,7 +615,7 @@ function closeLightbox() {
     lo.parentNode.removeChild(lo);
     btn.parentNode.removeChild(btn);
 
-    images.forEach(function (image) {
+    contentImages.forEach(function (image) {
       if (image.classList.contains('img-lightbox')) {
         image.className = 'content_picture align-right slide_in';
       }
